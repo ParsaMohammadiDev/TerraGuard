@@ -16,13 +16,8 @@ public class MenuScene implements SceneLogic {
     private AnimationFactory animFactory;
     private SceneManager sceneManager;
 
-    private MenuScene() {}
-
-    public void setAnimFactory(AnimationFactory animFactory) {
+    public MenuScene(AnimationFactory animFactory, SceneManager sceneManager) {
         this.animFactory = animFactory;
-    }
-
-    public void setSceneManager(SceneManager sceneManager) {
         this.sceneManager = sceneManager;
     }
 
@@ -63,10 +58,7 @@ public class MenuScene implements SceneLogic {
 
         public MenuScene build() {
             if (animFactory != null && sceneManager != null) {
-                MenuScene menuScene = new MenuScene();
-                menuScene.setAnimFactory(animFactory);
-                menuScene.setSceneManager(sceneManager);
-                return menuScene;
+                return new MenuScene(animFactory, sceneManager);
             } else {
                 throw new IllegalStateException("AnimationFactory and SceneManager must be set");
             }

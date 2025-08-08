@@ -12,7 +12,7 @@ public class IntroScene implements SceneLogic {
 
     private AnimationFactory animFactory;
 
-    public void setAnimFactory(AnimationFactory animFactory) {
+    public IntroScene(AnimationFactory animFactory) {
         this.animFactory = animFactory;
     }
 
@@ -36,9 +36,7 @@ public class IntroScene implements SceneLogic {
 
         public IntroScene build() {
             if (animFactory != null) {
-                IntroScene introScene = new IntroScene();
-                introScene.setAnimFactory(animFactory);
-                return introScene;
+                return new IntroScene(animFactory);
             } else {
                 throw new IllegalStateException("Animation Factory must be set");
             }
