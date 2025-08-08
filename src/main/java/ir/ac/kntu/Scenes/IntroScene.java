@@ -1,8 +1,6 @@
 package ir.ac.kntu.Scenes;
 
-import ir.ac.kntu.Animations.Animation;
 import ir.ac.kntu.Animations.Factories.AnimationFactory;
-import ir.ac.kntu.Animations.ZoomAndFadeAnimation;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -42,7 +40,7 @@ public class IntroScene implements SceneLogic {
                 introScene.setAnimFactory(animFactory);
                 return introScene;
             } else {
-                throw new IllegalStateException("AnimationFactory must be set");
+                throw new IllegalStateException("Animation Factory must be set");
             }
         }
     }

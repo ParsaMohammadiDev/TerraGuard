@@ -20,7 +20,7 @@ public class Kenney extends Application {
     @Override
     public void start(Stage primaryStage) {
         setAppData(primaryStage);
-        primaryStage.setScene(sceneFactory.getIntroScene());
+        primaryStage.setScene(sceneFactory.getMenuScene());
         primaryStage.show();
     }
 
