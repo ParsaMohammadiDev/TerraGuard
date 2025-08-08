@@ -1,6 +1,7 @@
 package ir.ac.kntu.Scenes;
 
 import ir.ac.kntu.Animations.Factories.AnimationFactory;
+import ir.ac.kntu.Scenes.SceneManagers.SceneManager;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -13,9 +14,16 @@ public class MenuScene implements SceneLogic {
     private static final String NAME_ICON_PATH = "/app/name_icon.png";
 
     private AnimationFactory animFactory;
+    private SceneManager sceneManager;
+
+    private MenuScene() {}
 
     public void setAnimFactory(AnimationFactory animFactory) {
         this.animFactory = animFactory;
+    }
+
+    public void setSceneManager(SceneManager sceneManager) {
+        this.sceneManager = sceneManager;
     }
 
     @Override
@@ -41,19 +49,26 @@ public class MenuScene implements SceneLogic {
 
     public static class Builder {
         private AnimationFactory animFactory;
+        private SceneManager sceneManager;
 
         public Builder withAnimationFactory(AnimationFactory animFactory) {
             this.animFactory = animFactory;
             return this;
         }
 
+        public Builder withSceneManager(SceneManager sceneManager) {
+            this.sceneManager = sceneManager;
+            return this;
+        }
+
         public MenuScene build() {
-            if (animFactory != null) {
+            if (animFactory != null && sceneManager != null) {
                 MenuScene menuScene = new MenuScene();
                 menuScene.setAnimFactory(animFactory);
+                menuScene.setSceneManager(sceneManager);
                 return menuScene;
             } else {
-                throw new IllegalStateException("Animation Factory must be set");
+                throw new IllegalStateException("AnimationFactory and SceneManager must be set");
             }
         }
     }

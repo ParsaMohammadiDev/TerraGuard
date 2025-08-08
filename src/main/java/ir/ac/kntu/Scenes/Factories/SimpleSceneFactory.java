@@ -1,13 +1,20 @@
 package ir.ac.kntu.Scenes.Factories;
 
 import ir.ac.kntu.Animations.Factories.AnimationFactory;
-import ir.ac.kntu.Animations.Factories.SimpleAnimationFactory;
 import ir.ac.kntu.Scenes.IntroScene;
 import ir.ac.kntu.Scenes.MenuScene;
+import ir.ac.kntu.Scenes.SceneManagers.SceneManager;
 import javafx.scene.Scene;
 
 public class SimpleSceneFactory implements SceneFactory {
-    private static final AnimationFactory animFactory = new SimpleAnimationFactory();
+    private final AnimationFactory animFactory;
+    private final SceneManager sceneManager;
+
+    public SimpleSceneFactory(AnimationFactory animFactory, SceneManager sceneManager) {
+        this.animFactory = animFactory;
+        this.sceneManager = sceneManager;
+    }
+
     @Override
     public Scene getIntroScene() {
         return new IntroScene.Builder().withAnimationFactory(animFactory).build().getScene();
@@ -15,6 +22,6 @@ public class SimpleSceneFactory implements SceneFactory {
 
     @Override
     public Scene getMenuScene() {
-        return new MenuScene.Builder().withAnimationFactory(animFactory).build().getScene();
+        return new MenuScene.Builder().withAnimationFactory(animFactory).withSceneManager(sceneManager).build().getScene();
     }
 }
