@@ -1,4 +1,4 @@
-package ir.ac.kntu;
+package ir.ac.kntu.animations;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;

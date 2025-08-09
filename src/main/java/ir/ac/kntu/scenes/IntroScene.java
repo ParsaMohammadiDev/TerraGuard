@@ -1,5 +1,6 @@
-package ir.ac.kntu;
+package ir.ac.kntu.scenes;
 
+import ir.ac.kntu.animations.factories.AnimationFactory;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

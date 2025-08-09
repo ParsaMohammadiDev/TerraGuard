@@ -1,4 +1,4 @@
-package ir.ac.kntu;
+package ir.ac.kntu.animations;
 
 import javafx.animation.ScaleTransition;
 import javafx.scene.Node;

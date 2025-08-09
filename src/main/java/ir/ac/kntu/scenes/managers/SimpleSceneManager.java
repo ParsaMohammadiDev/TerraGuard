@@ -1,5 +1,9 @@
-package ir.ac.kntu;
+package ir.ac.kntu.scenes.managers;
 
+import ir.ac.kntu.animations.factories.AnimationFactory;
+import ir.ac.kntu.animations.factories.SimpleAnimationFactory;
+import ir.ac.kntu.scenes.factories.SceneFactory;
+import ir.ac.kntu.scenes.factories.SimpleSceneFactory;
 import javafx.animation.PauseTransition;
 import javafx.stage.Stage;
 import javafx.util.Duration;

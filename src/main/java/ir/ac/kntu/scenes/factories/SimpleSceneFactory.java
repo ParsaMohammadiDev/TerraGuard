@@ -1,5 +1,9 @@
-package ir.ac.kntu;
+package ir.ac.kntu.scenes.factories;
 
+import ir.ac.kntu.animations.factories.AnimationFactory;
+import ir.ac.kntu.scenes.IntroScene;
+import ir.ac.kntu.scenes.MenuScene;
+import ir.ac.kntu.scenes.managers.SceneManager;
 import javafx.scene.Scene;
 
 public class SimpleSceneFactory implements SceneFactory {

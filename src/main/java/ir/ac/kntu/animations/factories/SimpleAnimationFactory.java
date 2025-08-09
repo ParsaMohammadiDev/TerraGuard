@@ -1,4 +1,8 @@
-package ir.ac.kntu;
+package ir.ac.kntu.animations.factories;
+
+import ir.ac.kntu.animations.Animation;
+import ir.ac.kntu.animations.ButtonHoverAnimation;
+import ir.ac.kntu.animations.ZoomAndFadeAnimation;
 
 public class SimpleAnimationFactory implements AnimationFactory {
     @Override
