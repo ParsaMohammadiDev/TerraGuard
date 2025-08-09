@@ -1,4 +1,4 @@
-package ir.ac.kntu.Scenes.SceneManagers;
+package ir.ac.kntu;
 
 public interface SceneManager {
     void showIntro();

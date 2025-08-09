@@ -1,7 +1,5 @@
 package ir.ac.kntu;
 
-import ir.ac.kntu.Scenes.SceneManagers.SceneManager;
-import ir.ac.kntu.Scenes.SceneManagers.SimpleSceneManager;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;

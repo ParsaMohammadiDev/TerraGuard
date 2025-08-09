@@ -1,6 +1,4 @@
-package ir.ac.kntu.Animations.Factories;
-
-import ir.ac.kntu.Animations.Animation;
+package ir.ac.kntu;
 
 public interface AnimationFactory {
     Animation getZoomAndFadeAnimation();

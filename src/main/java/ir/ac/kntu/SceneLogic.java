@@ -1,4 +1,4 @@
-package ir.ac.kntu.Scenes;
+package ir.ac.kntu;
 
 import javafx.scene.Scene;
 
