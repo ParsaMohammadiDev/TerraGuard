@@ -1,8 +1,7 @@
 package ir.ac.kntu.components.tiles.factories;
 
-import ir.ac.kntu.components.tiles.Grass;
-import ir.ac.kntu.components.tiles.Tile;
-import ir.ac.kntu.components.tiles.TileType;
+import ir.ac.kntu.components.tiles.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +15,8 @@ public class FlyWeightTileFactory implements TileFactory {
     private Tile createTile(TileType tileType) {
         return switch (tileType) {
             case GRASS -> new Grass(tileType);
+            case ROAD -> new Road(tileType);
+            case CASTLE -> new Castle(tileType);
         };
     }
 }
