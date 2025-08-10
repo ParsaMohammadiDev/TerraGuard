@@ -1,7 +1,7 @@
 package ir.ac.kntu.game;
 
-import javafx.scene.Node;
+import javafx.scene.layout.Pane;
 
 public interface GameEngine {
-    Node getGamePane();
+    Pane getGamePane();
 }

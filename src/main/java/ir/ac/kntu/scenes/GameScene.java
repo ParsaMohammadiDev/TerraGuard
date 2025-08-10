@@ -1,8 +1,11 @@
 package ir.ac.kntu.scenes;
 
 import ir.ac.kntu.game.GameEngine;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 public class GameScene implements SceneLogic {
     private GameEngine gameEngine;
@@ -13,9 +16,16 @@ public class GameScene implements SceneLogic {
 
     @Override
     public Scene getScene() {
-        StackPane gamePane = new StackPane();
-        gamePane.getChildren().add(gameEngine.getGamePane());
-        return new Scene(gamePane, 1200, 500);
+        VBox root = new VBox();
+        HBox sceneElements = new HBox();
+        sceneElements.getStyleClass().add("scene_elements");
+        Pane gamePane = gameEngine.getGamePane();
+        gamePane.getStyleClass().add("game_pane");
+        sceneElements.getChildren().add(gamePane);
+        root.getChildren().add(sceneElements);
+        Scene scene = new Scene(root, 1200, 650);
+        scene.getStylesheets().add(getClass().getResource("/style/game_scene_style.css").toExternalForm());
+        return scene;
     }
 
     public static class Builder {

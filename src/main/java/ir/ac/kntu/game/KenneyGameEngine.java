@@ -4,12 +4,18 @@ import ir.ac.kntu.components.maps.GrassLand;
 import ir.ac.kntu.components.maps.renderers.GridMapRenderer;
 import ir.ac.kntu.components.maps.renderers.MapRenderer;
 import ir.ac.kntu.components.tiles.factories.FlyWeightTileFactory;
-import javafx.scene.Node;
+import ir.ac.kntu.components.tiles.factories.TileFactory;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 public class KenneyGameEngine implements GameEngine {
-    private MapRenderer mapRenderer = new GridMapRenderer(new FlyWeightTileFactory());
+    private final TileFactory tileFactory = new FlyWeightTileFactory();
+    private final MapRenderer mapRenderer = new GridMapRenderer(tileFactory);
+
     @Override
-    public Node getGamePane() {
-        return mapRenderer.renderMap(new GrassLand());
+    public Pane getGamePane() {
+        StackPane gamePane = new StackPane();
+        gamePane.getChildren().add(mapRenderer.renderMap(new GrassLand()));
+        return gamePane;
     }
 }

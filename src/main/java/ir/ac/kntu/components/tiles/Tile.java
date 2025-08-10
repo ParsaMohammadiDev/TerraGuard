@@ -15,6 +15,7 @@ public abstract class Tile {
     public ImageView getImageView() {
         ImageView imageView = new ImageView(getImage());
         imageView.setFitWidth(TILE_SIZE);
+        imageView.setFitHeight(TILE_SIZE);
         return imageView;
     }
 

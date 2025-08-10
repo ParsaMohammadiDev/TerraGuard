@@ -1,0 +1,17 @@
+.root {
+    -fx-background-color: rgb(3, 177, 252);
+    -fx-spacing: 10px;
+    -fx-alignment: CENTER;
+}
+
+.scene_elements {
+    -fx-alignment: CENTER;
+}
+
+.game_pane {
+    -fx-border-radius: 30px;
+    -fx-border-width: 20px;
+    -fx-border-color: white;
+    -fx-background-color: white;
+    -fx-background-radius: 23px;
+}
