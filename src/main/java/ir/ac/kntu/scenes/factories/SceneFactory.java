@@ -5,4 +5,5 @@ import javafx.scene.Scene;
 public interface SceneFactory {
     Scene getIntroScene();
     Scene getMenuScene();
+    Scene getGameScene();
 }

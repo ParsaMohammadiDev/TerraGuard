@@ -2,6 +2,8 @@ package ir.ac.kntu.scenes.managers;
 
 import ir.ac.kntu.animations.factories.AnimationFactory;
 import ir.ac.kntu.animations.factories.SimpleAnimationFactory;
+import ir.ac.kntu.game.GameEngine;
+import ir.ac.kntu.game.KenneyGameEngine;
 import ir.ac.kntu.scenes.factories.SceneFactory;
 import ir.ac.kntu.scenes.factories.SimpleSceneFactory;
 import javafx.animation.PauseTransition;
@@ -12,12 +14,13 @@ public class SimpleSceneManager implements SceneManager {
     private static final Duration INTRO_DURATION = Duration.seconds(2);
 
     private final Stage stage;
+    private final GameEngine gameEngine = new KenneyGameEngine();
     private final SceneFactory sceneFactory;
+    private final AnimationFactory animFactory = new SimpleAnimationFactory();
 
     public SimpleSceneManager(Stage stage) {
         this.stage = stage;
-        AnimationFactory animFactory = new SimpleAnimationFactory();
-        this.sceneFactory = new SimpleSceneFactory(animFactory, this);
+        this.sceneFactory = new SimpleSceneFactory(animFactory, this, gameEngine);
     }
 
     @Override
@@ -32,5 +35,10 @@ public class SimpleSceneManager implements SceneManager {
     @Override
     public void showMenu() {
         stage.setScene(sceneFactory.getMenuScene());
+    }
+
+    @Override
+    public void showGame() {
+        stage.setScene(sceneFactory.getGameScene());
     }
 }
