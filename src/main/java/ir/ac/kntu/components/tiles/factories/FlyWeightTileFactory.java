@@ -16,6 +16,9 @@ public class FlyWeightTileFactory implements TileFactory {
         return switch (tileType) {
             case GRASS -> new Grass(tileType);
             case ROAD -> new Road(tileType);
+            case PLANT -> new Plant(tileType);
+            case ROCK -> new Rock(tileType);
+            case EMPTY -> new Empty(tileType);
         };
     }
 }

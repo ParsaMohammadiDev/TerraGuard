@@ -4,12 +4,16 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public abstract class Tile {
-    private static final double TILE_SIZE = 50;
+    private static final double TILE_SIZE = 70;
 
     private TileType tileType;
 
     public Tile(TileType tileType) {
         this.tileType = tileType;
+    }
+
+    public static double getTileSize() {
+        return TILE_SIZE;
     }
 
     public ImageView getImageView() {
