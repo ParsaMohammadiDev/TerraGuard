@@ -14,12 +14,14 @@ public class SimpleSceneManager implements SceneManager {
     private static final Duration INTRO_DURATION = Duration.seconds(2);
 
     private final Stage stage;
-    private final GameEngine gameEngine = new KenneyGameEngine();
+    private final GameEngine gameEngine;
     private final SceneFactory sceneFactory;
-    private final AnimationFactory animFactory = new SimpleAnimationFactory();
+    private final AnimationFactory animFactory;
 
     public SimpleSceneManager(Stage stage) {
         this.stage = stage;
+        gameEngine = new KenneyGameEngine();
+        animFactory = new SimpleAnimationFactory();
         this.sceneFactory = new SimpleSceneFactory(animFactory, this, gameEngine);
     }
 
