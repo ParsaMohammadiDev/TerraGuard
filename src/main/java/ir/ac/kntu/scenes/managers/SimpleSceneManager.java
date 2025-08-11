@@ -20,8 +20,8 @@ public class SimpleSceneManager implements SceneManager {
 
     public SimpleSceneManager(Stage stage) {
         this.stage = stage;
-        gameEngine = new KenneyGameEngine();
         animFactory = new SimpleAnimationFactory();
+        gameEngine = new KenneyGameEngine(animFactory);
         this.sceneFactory = new SimpleSceneFactory(animFactory, this, gameEngine);
     }
 

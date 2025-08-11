@@ -1,5 +1,6 @@
 package ir.ac.kntu.game;
 
+import ir.ac.kntu.animations.factories.AnimationFactory;
 import ir.ac.kntu.components.maps.GrassLand;
 import ir.ac.kntu.components.maps.renderers.GridMapRenderer;
 import ir.ac.kntu.components.maps.renderers.MapRenderer;
@@ -9,8 +10,15 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 public class KenneyGameEngine implements GameEngine {
-    private final TileFactory tileFactory = new FlyWeightTileFactory();
-    private final MapRenderer mapRenderer = new GridMapRenderer(tileFactory);
+    private final TileFactory tileFactory;
+    private final MapRenderer mapRenderer;
+    private final AnimationFactory animFactory;
+
+    public KenneyGameEngine(AnimationFactory animFactory) {
+        this.animFactory = animFactory;
+        tileFactory = new FlyWeightTileFactory(animFactory);
+        mapRenderer = new GridMapRenderer(tileFactory);
+    }
 
     @Override
     public Pane getGamePane() {

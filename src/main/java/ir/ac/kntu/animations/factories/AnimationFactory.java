@@ -5,4 +5,5 @@ import ir.ac.kntu.animations.Animation;
 public interface AnimationFactory {
     Animation getZoomAndFadeAnimation();
     Animation getButtonHoverAnimation();
+    Animation getTileHoverAnimation();
 }
