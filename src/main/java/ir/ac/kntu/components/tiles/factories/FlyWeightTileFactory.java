@@ -25,6 +25,9 @@ public class FlyWeightTileFactory implements TileFactory {
             case ROAD -> new Road(tileType);
             case PLANT -> new Plant(tileType);
             case ROCK -> new Rock(tileType);
+            case PARTICLES -> new Particles(tileType);
+            case SAND -> new Sand(tileType);
+            case STONE -> new Stone(tileType);
             case CONSTRUCTION -> new Construction(tileType, animFactory);
             case EMPTY -> new Empty(tileType);
         };

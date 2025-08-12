@@ -5,6 +5,9 @@ public enum TileType {
     ROAD,
     PLANT,
     ROCK,
+    SAND,
+    STONE,
+    PARTICLES,
     CONSTRUCTION,
     EMPTY
 }

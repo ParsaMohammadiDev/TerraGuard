@@ -1,7 +1,9 @@
 package ir.ac.kntu.game;
 
 import ir.ac.kntu.animations.factories.AnimationFactory;
+import ir.ac.kntu.components.maps.Desert;
 import ir.ac.kntu.components.maps.GrassLand;
+import ir.ac.kntu.components.maps.StoneLand;
 import ir.ac.kntu.components.maps.renderers.GridMapRenderer;
 import ir.ac.kntu.components.maps.renderers.MapRenderer;
 import ir.ac.kntu.components.tiles.factories.FlyWeightTileFactory;
@@ -23,7 +25,7 @@ public class KenneyGameEngine implements GameEngine {
     @Override
     public Pane getGamePane() {
         StackPane gamePane = new StackPane();
-        gamePane.getChildren().add(mapRenderer.renderMap(new GrassLand()));
+        gamePane.getChildren().add(mapRenderer.renderMap(new StoneLand()));
         return gamePane;
     }
 }
