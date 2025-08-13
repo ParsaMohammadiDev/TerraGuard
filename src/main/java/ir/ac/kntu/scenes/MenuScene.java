@@ -33,14 +33,15 @@ public class MenuScene implements SceneLogic {
         startGame.setOnAction(event -> sceneManager.showGame());
         Button selectMap = new Button("Select Map");
         selectMap.setOnAction(event -> sceneManager.showMapSelector());
-        Button hardness = new Button("Game Hardness");
-        buttons.getChildren().addAll(startGame, selectMap, hardness);
+        Button difficulty = new Button("Game Difficulty");
+        difficulty.setOnAction(event -> {sceneManager.showDifficultySelector();});
+        buttons.getChildren().addAll(startGame, selectMap, difficulty);
         buttons.getStyleClass().add("buttons");
         menuItems.getChildren().addAll(nameIcon, buttons);
         Scene scene = new Scene(menuItems, 1200, 650);
         scene.getStylesheets().add(getClass().getResource(SCENE_STYLE_PATH).toExternalForm());
         animFactory.getZoomAndFadeAnimation().animate(nameIcon, buttons);
-        animFactory.getButtonHoverAnimation().animate(startGame, selectMap, hardness);
+        animFactory.getButtonHoverAnimation().animate(startGame, selectMap, difficulty);
         return scene;
     }
 }

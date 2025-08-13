@@ -52,4 +52,9 @@ public class SimpleSceneManager implements SceneManager {
     public void showMapSelector() {
         stage.setScene(sceneFactory.getMapSelectorScene());
     }
+
+    @Override
+    public void showDifficultySelector() {
+        stage.setScene(sceneFactory.getDifficultySelectorScene());
+    }
 }

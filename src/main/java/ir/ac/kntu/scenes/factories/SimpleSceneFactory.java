@@ -3,10 +3,7 @@ package ir.ac.kntu.scenes.factories;
 import ir.ac.kntu.animations.factories.AnimationFactory;
 import ir.ac.kntu.database.DataManager;
 import ir.ac.kntu.game.GameEngine;
-import ir.ac.kntu.scenes.GameScene;
-import ir.ac.kntu.scenes.IntroScene;
-import ir.ac.kntu.scenes.MapSelectorScene;
-import ir.ac.kntu.scenes.MenuScene;
+import ir.ac.kntu.scenes.*;
 import ir.ac.kntu.scenes.managers.SceneManager;
 import javafx.scene.Scene;
 
@@ -41,5 +38,10 @@ public class SimpleSceneFactory implements SceneFactory {
     @Override
     public Scene getMapSelectorScene() {
         return new MapSelectorScene(dataManager, animFactory, gameEngine, sceneManager).getScene();
+    }
+
+    @Override
+    public Scene getDifficultySelectorScene() {
+        return new DifficultySelectorScene(sceneManager, animFactory, gameEngine).getScene();
     }
 }

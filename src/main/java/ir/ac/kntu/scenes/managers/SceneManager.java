@@ -5,4 +5,5 @@ public interface SceneManager {
     void showMenu();
     void showGame();
     void showMapSelector();
+    void showDifficultySelector();
 }

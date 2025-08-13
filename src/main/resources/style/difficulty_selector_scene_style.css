@@ -1,0 +1,60 @@
+.root {
+    -fx-background-image: url("/app/menu_background.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-alignment: CENTER;
+    -fx-spacing: 150px;
+}
+
+.difficulty_selector {
+    -fx-alignment: CENTER;
+    -fx-spacing: 20px;
+}
+
+.slider {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 20, 0, 0, 10);
+}
+
+.slider_labels {
+    -fx-alignment: CENTER;
+    -fx-spacing: 50px;
+}
+
+.slider .track {
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-padding: 10px;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+}
+
+.slider .thumb {
+    -fx-background-color: rgb(3, 177, 252);
+    -fx-background-radius: 50%;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+    -fx-border-color: White;
+    -fx-border-width: 5px;
+    -fx-border-radius: 50%;
+}
+
+.button {
+    -fx-font-family: "Berlin Sans FB";
+    -fx-font-size: 20px;
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-padding: 20px 40px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 25px;
+    -fx-cursor: hand;
+    -fx-border-width: 8px;
+    -fx-border-color: rgb(39, 39, 39);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 20, 0, 0, 10);
+}
+
+.page_title {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 20, 0, 0, 10);
+}
+
+.slider_label {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 20, 0, 0, 10);
+}

@@ -7,4 +7,5 @@ public interface SceneFactory {
     Scene getMenuScene();
     Scene getGameScene();
     Scene getMapSelectorScene();
+    Scene getDifficultySelectorScene();
 }
