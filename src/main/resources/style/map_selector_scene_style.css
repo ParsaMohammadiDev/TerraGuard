@@ -1,0 +1,49 @@
+.root {
+    -fx-background-image: url("/app/menu_background.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-alignment: CENTER;
+    -fx-spacing: 20px;
+}
+
+.navigator {
+    -fx-alignment: CENTER;
+    -fx-spacing: 40px;
+}
+
+.navigator_button {
+    -fx-font-family: "Berlin Sans FB";
+    -fx-font-size: 60px;
+    -fx-text-fill: White;
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 20, 0, 0, 10);
+    -fx-padding: 0;
+}
+
+.map_thumbnail {
+    -fx-border-radius: 30px;
+    -fx-border-width: 20px;
+    -fx-border-color: white;
+    -fx-background-color: white;
+    -fx-background-radius: 23px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 20, 0, 0, 10);
+}
+
+.select_button {
+    -fx-font-family: "Berlin Sans FB";
+    -fx-font-size: 20px;
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-padding: 20px 40px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 25px;
+    -fx-cursor: hand;
+    -fx-border-width: 8px;
+    -fx-border-color: rgb(39, 39, 39);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 20, 0, 0, 10);
+}
+
+.page_title {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 20, 0, 0, 10);
+}

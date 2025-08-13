@@ -30,10 +30,9 @@ public class MenuScene implements SceneLogic {
         nameIcon.setFitHeight(300);
         nameIcon.getStyleClass().add("name_icon");
         Button startGame = new Button("Start Game");
-        startGame.setOnAction(event -> {
-            sceneManager.showGame();
-        });
+        startGame.setOnAction(event -> sceneManager.showGame());
         Button selectMap = new Button("Select Map");
+        selectMap.setOnAction(event -> sceneManager.showMapSelector());
         Button hardness = new Button("Game Hardness");
         buttons.getChildren().addAll(startGame, selectMap, hardness);
         buttons.getStyleClass().add("buttons");

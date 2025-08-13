@@ -2,6 +2,11 @@ package ir.ac.kntu.scenes.managers;
 
 import ir.ac.kntu.animations.factories.AnimationFactory;
 import ir.ac.kntu.animations.factories.SimpleAnimationFactory;
+import ir.ac.kntu.components.maps.renderers.GridMapRenderer;
+import ir.ac.kntu.components.maps.renderers.MapRenderer;
+import ir.ac.kntu.components.tiles.factories.FlyWeightTileFactory;
+import ir.ac.kntu.database.DataManager;
+import ir.ac.kntu.database.HardCodedDataManager;
 import ir.ac.kntu.game.GameEngine;
 import ir.ac.kntu.game.KenneyGameEngine;
 import ir.ac.kntu.scenes.factories.SceneFactory;
@@ -17,12 +22,14 @@ public class SimpleSceneManager implements SceneManager {
     private final GameEngine gameEngine;
     private final SceneFactory sceneFactory;
     private final AnimationFactory animFactory;
+    private final DataManager dataManager;
 
     public SimpleSceneManager(Stage stage) {
         this.stage = stage;
         animFactory = new SimpleAnimationFactory();
         gameEngine = new KenneyGameEngine(animFactory);
-        this.sceneFactory = new SimpleSceneFactory(animFactory, this, gameEngine);
+        dataManager = new HardCodedDataManager();
+        this.sceneFactory = new SimpleSceneFactory(animFactory, this, gameEngine, dataManager);
     }
 
     @Override
@@ -42,5 +49,10 @@ public class SimpleSceneManager implements SceneManager {
     @Override
     public void showGame() {
         stage.setScene(sceneFactory.getGameScene());
+    }
+
+    @Override
+    public void showMapSelector() {
+        stage.setScene(sceneFactory.getMapSelectorScene());
     }
 }
