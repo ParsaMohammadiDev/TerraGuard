@@ -32,4 +32,11 @@ public class StoneLand implements Map {
     public TileType[][] getOverlayMapArray() {
         return OVERLAY_MAP;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        } else return other instanceof StoneLand;
+    }
 }

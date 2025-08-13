@@ -8,4 +8,5 @@ public interface GameEngine {
     Pane getGamePane();
     MapRenderer getMapRenderer();
     void setGameMap(Map map);
+    Map getGameMap();
 }

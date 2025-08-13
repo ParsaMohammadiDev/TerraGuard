@@ -35,6 +35,7 @@ public class MapSelectorScene implements SceneLogic {
         this.animFactory = animFactory;
         mapsList = dataManager.loadMapsList();
         mapsNum = mapsList.size();
+        currentMapIndex = getCurrentMapIndex();
     }
 
     @Override
@@ -98,6 +99,10 @@ public class MapSelectorScene implements SceneLogic {
     private void showMapThumbnail(int mapIndex) {
         currentMapIndex = mapIndex;
         mapThumbnailView.setImage(gameEngine.getMapRenderer().renderMapImage(mapsList.get(currentMapIndex)));
+    }
+
+    private int getCurrentMapIndex() {
+        return mapsList.indexOf(gameEngine.getGameMap());
     }
 
     public static class Builder {

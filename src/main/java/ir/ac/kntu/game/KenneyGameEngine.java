@@ -37,4 +37,9 @@ public class KenneyGameEngine implements GameEngine {
     public void setGameMap(Map map) {
         gameMap = map;
     }
+
+    @Override
+    public Map getGameMap() {
+        return gameMap;
+    }
 }
