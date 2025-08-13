@@ -1,9 +1,8 @@
 package ir.ac.kntu.game;
 
 import ir.ac.kntu.animations.factories.AnimationFactory;
-import ir.ac.kntu.components.maps.Desert;
 import ir.ac.kntu.components.maps.GrassLand;
-import ir.ac.kntu.components.maps.StoneLand;
+import ir.ac.kntu.components.maps.Map;
 import ir.ac.kntu.components.maps.renderers.GridMapRenderer;
 import ir.ac.kntu.components.maps.renderers.MapRenderer;
 import ir.ac.kntu.components.tiles.factories.FlyWeightTileFactory;
@@ -14,10 +13,10 @@ import javafx.scene.layout.StackPane;
 public class KenneyGameEngine implements GameEngine {
     private final TileFactory tileFactory;
     private final MapRenderer mapRenderer;
-    private final AnimationFactory animFactory;
+
+    private Map gameMap = new GrassLand();
 
     public KenneyGameEngine(AnimationFactory animFactory) {
-        this.animFactory = animFactory;
         tileFactory = new FlyWeightTileFactory(animFactory);
         mapRenderer = new GridMapRenderer(tileFactory);
     }
@@ -25,7 +24,17 @@ public class KenneyGameEngine implements GameEngine {
     @Override
     public Pane getGamePane() {
         StackPane gamePane = new StackPane();
-        gamePane.getChildren().add(mapRenderer.renderMap(new StoneLand()));
+        gamePane.getChildren().add(mapRenderer.renderMap(gameMap));
         return gamePane;
+    }
+
+    @Override
+    public MapRenderer getMapRenderer() {
+        return mapRenderer;
+    }
+
+    @Override
+    public void setGameMap(Map map) {
+        gameMap = map;
     }
 }
