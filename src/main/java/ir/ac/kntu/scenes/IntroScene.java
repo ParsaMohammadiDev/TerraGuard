@@ -25,21 +25,4 @@ public class IntroScene implements SceneLogic {
         root.getChildren().add(nameIconView);
         return new Scene(root, 1200, 650, Color.rgb(3, 177, 252));
     }
-
-    public static class Builder {
-        private AnimationFactory animFactory;
-
-        public Builder withAnimationFactory(AnimationFactory animFactory) {
-            this.animFactory = animFactory;
-            return this;
-        }
-
-        public IntroScene build() {
-            if (animFactory != null) {
-                return new IntroScene(animFactory);
-            } else {
-                throw new IllegalStateException("Animation Factory must be set");
-            }
-        }
-    }
 }

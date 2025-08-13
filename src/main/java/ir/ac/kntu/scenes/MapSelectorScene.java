@@ -19,10 +19,9 @@ import java.util.List;
 
 public class MapSelectorScene implements SceneLogic {
     private final DataManager dataManager;
-    private final GameEngine gameEngine;
+    private GameEngine gameEngine;
     private final AnimationFactory animFactory;
     private final SceneManager sceneManager;
-
     private List<Map> mapsList;
     private int mapsNum;
     private int currentMapIndex = 0;
@@ -103,41 +102,5 @@ public class MapSelectorScene implements SceneLogic {
 
     private int getCurrentMapIndex() {
         return mapsList.indexOf(gameEngine.getGameMap());
-    }
-
-    public static class Builder {
-        private AnimationFactory animFactory;
-        private DataManager dataManager;
-        private GameEngine gameEngine;
-        private SceneManager sceneManager;
-
-        public Builder withAnimationFactory(AnimationFactory animFactory) {
-            this.animFactory = animFactory;
-            return this;
-        }
-
-        public Builder withDataManager(DataManager dataManager) {
-            this.dataManager = dataManager;
-            return this;
-        }
-
-        public Builder withGameEngine(GameEngine gameEngine) {
-            this.gameEngine = gameEngine;
-            return this;
-        }
-
-
-        public Builder withSceneManager(SceneManager sceneManager) {
-            this.sceneManager = sceneManager;
-            return this;
-        }
-
-        public MapSelectorScene build() {
-            if (animFactory != null && dataManager != null && gameEngine != null && sceneManager != null) {
-                return new MapSelectorScene(dataManager, animFactory, gameEngine, sceneManager);
-            } else {
-                throw new IllegalStateException("DataManager, GameEngine, AnimationFactory, and SceneManager must be set");
-            }
-        }
     }
 }

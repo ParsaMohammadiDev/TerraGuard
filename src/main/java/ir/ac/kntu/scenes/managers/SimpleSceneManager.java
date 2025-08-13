@@ -2,9 +2,6 @@ package ir.ac.kntu.scenes.managers;
 
 import ir.ac.kntu.animations.factories.AnimationFactory;
 import ir.ac.kntu.animations.factories.SimpleAnimationFactory;
-import ir.ac.kntu.components.maps.renderers.GridMapRenderer;
-import ir.ac.kntu.components.maps.renderers.MapRenderer;
-import ir.ac.kntu.components.tiles.factories.FlyWeightTileFactory;
 import ir.ac.kntu.database.DataManager;
 import ir.ac.kntu.database.HardCodedDataManager;
 import ir.ac.kntu.game.GameEngine;
@@ -19,7 +16,7 @@ public class SimpleSceneManager implements SceneManager {
     private static final Duration INTRO_DURATION = Duration.seconds(2);
 
     private final Stage stage;
-    private final GameEngine gameEngine;
+    private GameEngine gameEngine;
     private final SceneFactory sceneFactory;
     private final AnimationFactory animFactory;
     private final DataManager dataManager;
@@ -27,8 +24,8 @@ public class SimpleSceneManager implements SceneManager {
     public SimpleSceneManager(Stage stage) {
         this.stage = stage;
         animFactory = new SimpleAnimationFactory();
-        gameEngine = new KenneyGameEngine(animFactory);
         dataManager = new HardCodedDataManager();
+        gameEngine = new KenneyGameEngine(animFactory);
         this.sceneFactory = new SimpleSceneFactory(animFactory, this, gameEngine, dataManager);
     }
 

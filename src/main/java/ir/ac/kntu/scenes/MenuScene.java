@@ -43,27 +43,4 @@ public class MenuScene implements SceneLogic {
         animFactory.getButtonHoverAnimation().animate(startGame, selectMap, hardness);
         return scene;
     }
-
-    public static class Builder {
-        private AnimationFactory animFactory;
-        private SceneManager sceneManager;
-
-        public Builder withAnimationFactory(AnimationFactory animFactory) {
-            this.animFactory = animFactory;
-            return this;
-        }
-
-        public Builder withSceneManager(SceneManager sceneManager) {
-            this.sceneManager = sceneManager;
-            return this;
-        }
-
-        public MenuScene build() {
-            if (animFactory != null && sceneManager != null) {
-                return new MenuScene(animFactory, sceneManager);
-            } else {
-                throw new IllegalStateException("AnimationFactory and SceneManager must be set");
-            }
-        }
-    }
 }

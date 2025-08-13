@@ -1,7 +1,6 @@
 package ir.ac.kntu.scenes.factories;
 
 import ir.ac.kntu.animations.factories.AnimationFactory;
-import ir.ac.kntu.components.maps.renderers.MapRenderer;
 import ir.ac.kntu.database.DataManager;
 import ir.ac.kntu.game.GameEngine;
 import ir.ac.kntu.scenes.GameScene;
@@ -14,8 +13,8 @@ import javafx.scene.Scene;
 public class SimpleSceneFactory implements SceneFactory {
     private final AnimationFactory animFactory;
     private final SceneManager sceneManager;
-    private final GameEngine gameEngine;
     private final DataManager dataManager;
+    private GameEngine gameEngine;
 
     public SimpleSceneFactory(AnimationFactory animFactory, SceneManager sceneManager, GameEngine gameEngine, DataManager dataManager) {
         this.animFactory = animFactory;
@@ -26,21 +25,21 @@ public class SimpleSceneFactory implements SceneFactory {
 
     @Override
     public Scene getIntroScene() {
-        return new IntroScene.Builder().withAnimationFactory(animFactory).build().getScene();
+        return new IntroScene(animFactory).getScene();
     }
 
     @Override
     public Scene getMenuScene() {
-        return new MenuScene.Builder().withAnimationFactory(animFactory).withSceneManager(sceneManager).build().getScene();
+        return new MenuScene(animFactory, sceneManager).getScene();
     }
 
     @Override
     public Scene getGameScene() {
-        return new GameScene.Builder().withGameEngine(gameEngine).build().getScene();
+        return new GameScene(gameEngine).getScene();
     }
 
     @Override
     public Scene getMapSelectorScene() {
-        return new MapSelectorScene.Builder().withAnimationFactory(animFactory).withDataManager(dataManager).withGameEngine(gameEngine).withSceneManager(sceneManager).build().getScene();
+        return new MapSelectorScene(dataManager, animFactory, gameEngine, sceneManager).getScene();
     }
 }

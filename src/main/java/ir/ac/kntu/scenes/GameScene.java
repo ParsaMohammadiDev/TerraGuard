@@ -27,21 +27,4 @@ public class GameScene implements SceneLogic {
         scene.getStylesheets().add(getClass().getResource("/style/game_scene_style.css").toExternalForm());
         return scene;
     }
-
-    public static class Builder {
-        private GameEngine gameEngine;
-
-        public Builder withGameEngine(GameEngine gameEngine) {
-            this.gameEngine = gameEngine;
-            return this;
-        }
-
-        public GameScene build() {
-            if (gameEngine != null) {
-                return new GameScene(gameEngine);
-            } else {
-                throw new IllegalStateException("GameEngine must be set");
-            }
-        }
-    }
 }
