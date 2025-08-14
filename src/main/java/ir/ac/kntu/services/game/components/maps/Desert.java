@@ -1,8 +1,12 @@
 package ir.ac.kntu.services.game.components.maps;
 
 import ir.ac.kntu.services.game.components.tiles.TileType;
+import javafx.geometry.Point2D;
 
 public class Desert implements Map {
+    private static final Point2D START_POINT = new Point2D(0, 5);
+    private static final Point2D END_POINT = new Point2D(9, 4);
+
     private static final TileType[][] TERRAIN_MAP = {
             {TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND},
             {TileType.ROAD, TileType.ROAD, TileType.ROAD, TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND},
@@ -38,5 +42,15 @@ public class Desert implements Map {
         if (other == null) {
             return false;
         } else return other instanceof Desert;
+    }
+
+    @Override
+    public Point2D getStartPoint() {
+        return START_POINT;
+    }
+
+    @Override
+    public Point2D getEndPoint() {
+        return END_POINT;
     }
 }
