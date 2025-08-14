@@ -10,8 +10,10 @@ public interface GameServices {
     MapRenderer getMapRenderer();
     DifficultyFactory getDifficultyFactory();
     TileFactory getTileFactory();
+    EnemyServices getEnemyServices();
     void setGameEngine(GameEngine gameEngine);
     void setMapRenderer(MapRenderer mapRenderer);
     void setDifficultyFactory(DifficultyFactory difficultyFactory);
     void setTileFactory(TileFactory tileFactory);
+    void setEnemyServices(EnemyServices enemyServices);
 }

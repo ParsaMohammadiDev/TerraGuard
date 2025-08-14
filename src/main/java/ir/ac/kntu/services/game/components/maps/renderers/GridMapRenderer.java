@@ -1,5 +1,6 @@
 package ir.ac.kntu.services.game.components.maps.renderers;
 
+import ir.ac.kntu.services.game.GameServices;
 import ir.ac.kntu.services.game.components.tiles.Tile;
 import ir.ac.kntu.services.game.components.tiles.TileType;
 import ir.ac.kntu.services.game.components.tiles.factories.TileFactory;
@@ -14,10 +15,10 @@ public class GridMapRenderer implements MapRenderer {
     private static final int ROWS = 7;
     private static final int COLUMNS = 9;
 
-    private TileFactory tileFactory;
+    private GameServices gameServices;
 
-    public GridMapRenderer(TileFactory tileFactory) {
-        this.tileFactory = tileFactory;
+    public GridMapRenderer(GameServices gameServices) {
+        this.gameServices = gameServices;
     }
 
     @Override
@@ -43,7 +44,7 @@ public class GridMapRenderer implements MapRenderer {
         GridPane mapGrid = new GridPane();
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLUMNS; col++) {
-                mapGrid.add(tileFactory.getTile(mapArray[row][col]).getImageView(), col, row);
+                mapGrid.add(gameServices.getTileFactory().getTile(mapArray[row][col]).getImageView(), col, row);
             }
         }
         mapGrid.setSnapToPixel(false);

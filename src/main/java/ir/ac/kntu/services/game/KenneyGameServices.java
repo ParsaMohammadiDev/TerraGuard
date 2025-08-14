@@ -10,6 +10,7 @@ public class KenneyGameServices implements GameServices {
     private MapRenderer mapRenderer;
     private DifficultyFactory difficultyFactory;
     private TileFactory tileFactory;
+    private EnemyServices enemyServices;
 
     @Override
     public GameEngine getGameEngine() {
@@ -49,5 +50,15 @@ public class KenneyGameServices implements GameServices {
     @Override
     public void setTileFactory(TileFactory tileFactory) {
         this.tileFactory = tileFactory;
+    }
+
+    @Override
+    public EnemyServices getEnemyServices() {
+        return enemyServices;
+    }
+
+    @Override
+    public void setEnemyServices(EnemyServices enemyServices) {
+        this.enemyServices = enemyServices;
     }
 }
