@@ -4,8 +4,8 @@ import ir.ac.kntu.services.game.components.tiles.TileType;
 import javafx.geometry.Point2D;
 
 public class Desert implements Map {
-    private static final Point2D START_POINT = new Point2D(0, 5);
-    private static final Point2D END_POINT = new Point2D(9, 4);
+    private static final Point2D START_POINT = new Point2D(0, 4);
+    private static final Point2D END_POINT = new Point2D(8, 3);
 
     private static final TileType[][] TERRAIN_MAP = {
             {TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND},

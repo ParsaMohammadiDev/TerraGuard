@@ -4,8 +4,8 @@ import ir.ac.kntu.services.game.components.tiles.TileType;
 import javafx.geometry.Point2D;
 
 public class StoneLand implements Map {
-    private static final Point2D START_POINT = new Point2D(1, 7);
-    private static final Point2D END_POINT = new Point2D(9, 1);
+    private static final Point2D START_POINT = new Point2D(1, 6);
+    private static final Point2D END_POINT = new Point2D(8, 1);
 
     private static final TileType[][] TERRAIN_MAP = {
             {TileType.STONE, TileType.ROAD, TileType.ROAD, TileType.STONE, TileType.STONE, TileType.STONE, TileType.STONE, TileType.STONE, TileType.STONE},

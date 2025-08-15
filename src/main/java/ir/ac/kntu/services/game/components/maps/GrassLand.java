@@ -4,8 +4,8 @@ import ir.ac.kntu.services.game.components.tiles.TileType;
 import javafx.geometry.Point2D;
 
 public class GrassLand implements Map {
-    private static final Point2D START_POINT = new Point2D(3, 1);
-    private static final Point2D END_POINT = new Point2D(9, 1);
+    private static final Point2D START_POINT = new Point2D(2, 0);
+    private static final Point2D END_POINT = new Point2D(8, 0);
 
     private static final TileType[][] TERRAIN_MAP = {
             {TileType.GRASS, TileType.GRASS, TileType.GRASS, TileType.GRASS, TileType.GRASS, TileType.GRASS, TileType.GRASS, TileType.GRASS, TileType.GRASS},
