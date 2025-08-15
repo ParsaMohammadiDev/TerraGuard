@@ -17,9 +17,4 @@ public class SoliderType implements EnemyType {
     public Image getOverlayImage() {
         return SOLIDER_OVERLAY_IMAGE;
     }
-
-    @Override
-    public boolean equals(final Object obj) {
-
-    }
 }
