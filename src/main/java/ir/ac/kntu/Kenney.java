@@ -1,7 +1,12 @@
 package ir.ac.kntu;
 
 import ir.ac.kntu.services.app.animations.factories.SimpleAnimationFactory;
+import ir.ac.kntu.services.game.EnemyServices;
+import ir.ac.kntu.services.game.KenneyEnemyServices;
+import ir.ac.kntu.services.game.components.enemies.factories.SimpleEnemyFactory;
+import ir.ac.kntu.services.game.components.enemies.types.factories.FlyWeightEnemyTypeFactory;
 import ir.ac.kntu.services.game.components.maps.renderers.GridMapRenderer;
+import ir.ac.kntu.services.game.components.pathfinders.BFSPathFinder;
 import ir.ac.kntu.services.game.components.tiles.factories.FlyWeightTileFactory;
 import ir.ac.kntu.services.app.database.HardCodedDataManager;
 import ir.ac.kntu.services.game.core.KenneyGameEngine;
@@ -13,6 +18,8 @@ import ir.ac.kntu.services.app.AppServices;
 import ir.ac.kntu.services.game.GameServices;
 import ir.ac.kntu.services.app.KenneyAppService;
 import ir.ac.kntu.services.game.KenneyGameServices;
+import ir.ac.kntu.services.game.core.managers.SimpleEnemyManager;
+import ir.ac.kntu.services.game.core.spawners.SimpleEnemyRenderer;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -41,6 +48,7 @@ public class Kenney extends Application {
     private AppServices setServices(Stage primaryStage) {
         AppServices appServices = new KenneyAppService();
         GameServices gameServices = new KenneyGameServices();
+        EnemyServices enemyServices = new KenneyEnemyServices();
         SceneFactory sceneFactory = new SimpleSceneFactory(appServices, gameServices);
 
         appServices.setSceneFactory(sceneFactory);
@@ -49,9 +57,16 @@ public class Kenney extends Application {
         appServices.setDataManager(new HardCodedDataManager());
 
         gameServices.setTileFactory(new FlyWeightTileFactory(appServices));
-        gameServices.setMapRenderer(new GridMapRenderer(gameServices.getTileFactory()));
+        gameServices.setMapRenderer(new GridMapRenderer(gameServices));
         gameServices.setDifficultyFactory(new SimpleDifficultyFactory());
         gameServices.setGameEngine(new KenneyGameEngine(gameServices));
+        gameServices.setEnemyServices(enemyServices);
+
+        enemyServices.setPathFinder(new BFSPathFinder());
+        enemyServices.setEnemyTypeFactory(new FlyWeightEnemyTypeFactory());
+        enemyServices.setEnemyFactory(new SimpleEnemyFactory(gameServices));
+        enemyServices.setEnemyManager(new SimpleEnemyManager(gameServices));
+        enemyServices.setEnemyRenderer(new SimpleEnemyRenderer(gameServices));
 
         return appServices;
     }

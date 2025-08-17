@@ -3,7 +3,6 @@ package ir.ac.kntu.services.game.components.maps.renderers;
 import ir.ac.kntu.services.game.GameServices;
 import ir.ac.kntu.services.game.components.tiles.Tile;
 import ir.ac.kntu.services.game.components.tiles.TileType;
-import ir.ac.kntu.services.game.components.tiles.factories.TileFactory;
 import javafx.scene.Node;
 import ir.ac.kntu.services.game.components.maps.Map;
 import javafx.scene.image.Image;
@@ -23,16 +22,18 @@ public class GridMapRenderer implements MapRenderer {
 
     @Override
     public Node renderMap(Map map) {
-        StackPane mapPane = new StackPane();
-        GridPane terrain = renderLayer(map.getTerrainMapArray());
-        GridPane overlay = renderLayer(map.getOverlayMapArray());
-        mapPane.getChildren().addAll(terrain, overlay);
-        return mapPane;
+        return renderLayer(map.getTerrainMapArray());
+    }
+
+    @Override
+    public Node renderOverlay(Map map) {
+        return renderLayer(map.getOverlayMapArray());
     }
 
     @Override
     public Image renderMapImage(Map map) {
-        StackPane mapPane = (StackPane) renderMap(map);
+        StackPane mapPane = new StackPane();
+        mapPane.getChildren().addAll(renderMap(map), renderOverlay(map));
         mapPane.applyCss();
         mapPane.layout();
         WritableImage mapImage = new WritableImage((int) (COLUMNS * Tile.getTileSize()), (int) (ROWS * Tile.getTileSize()));

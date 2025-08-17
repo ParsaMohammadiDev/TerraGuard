@@ -10,4 +10,5 @@ public interface GameEngine {
     GameDifficulty getGameDifficulty();
     void setGameMap(Map map);
     void setGameDifficulty(GameDifficulty difficulty);
+    void startGame();
 }

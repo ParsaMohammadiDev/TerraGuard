@@ -6,5 +6,6 @@ import javafx.scene.image.Image;
 
 public interface MapRenderer {
     Node renderMap(Map map);
+    Node renderOverlay(Map map);
     Image renderMapImage(Map map);
 }
