@@ -2,7 +2,6 @@ package ir.ac.kntu.services.game.core.spawners;
 
 import ir.ac.kntu.services.game.GameServices;
 import ir.ac.kntu.services.game.components.enemies.Enemy;
-import ir.ac.kntu.services.game.components.tiles.Tile;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
@@ -10,58 +9,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SimpleEnemyRenderer implements EnemyRenderer {
-    private static final double ENEMY_SPEED_SEED = 30;
-    private static final int rows = 7;
-    private static final int cols = 9;
-
-    private GameServices gameServices;
-    private List<Enemy> enemies = new ArrayList<>();
-    private double enemySpeed = 0;
+    private final GameServices gameServices;
+    private final List<Enemy> enemies = new ArrayList<>();
+    private final Pane enemyPane = new Pane();
 
     public SimpleEnemyRenderer(GameServices gameServices) {
         this.gameServices = gameServices;
-        enemySpeed = gameServices.getGameEngine().getGameDifficulty().getDifficultyCoefficient() * ENEMY_SPEED_SEED;
+        enemyPane.setPrefSize(
+                gameServices.getMapRenderer().getMapCols() * gameServices.getTileFactory().getTileSize(),
+                gameServices.getMapRenderer().getMapRows() * gameServices.getTileFactory().getTileSize()
+        );
     }
 
     @Override
     public Pane renderEnemies() {
-        Pane enemyPane = new Pane();
-        for (Enemy enemy : enemies) {
-            moveEnemy(enemy);
-            enemyPane.getChildren().add(enemy.getView());
-        }
-        enemyPane.setPrefSize(cols * Tile.getTileSize(), rows * Tile.getTileSize());
         return enemyPane;
     }
 
     @Override
     public void addEnemy(Enemy enemy) {
         enemies.add(enemy);
+        enemyPane.getChildren().add(enemy.getView());
+        moveEnemy(enemy);
     }
 
     private void moveEnemy(Enemy enemy) {
         List<Point2D> path = enemy.getPath();
-        if (path == null || path.size() < 2) return;
+        if (path == null || path.size() < 2) return; // no movement if path is empty or has only one point
 
-        // start at first point
-        enemy.setPosition(path.get(0).getX(), path.get(0).getY());
+        enemy.setPosition(path.get(0).getX(), path.get(0).getY()); // set position to start
+        int[] currentIndex = {1}; // keep track of target point indexes
 
-        final int[] currentIndex = {1};
-
-        AnimationTimer timer = new AnimationTimer() {
-            private long lastUpdate = -1;
+        AnimationTimer timer = new AnimationTimer() { // AnimationTimer Anonymous impl
+            private long lastUpdate = -1; // to save last frame time to calc delta time
 
             @Override
-            public void handle(long now) {
+            public void handle(long now) { // AnimationTimer runs handle() every frame
                 if (lastUpdate < 0) {
-                    lastUpdate = now;
+                    lastUpdate = now; // now is in nanoseconds
                     return;
                 }
 
-                double deltaTime = (now - lastUpdate) / 1_000_000_000.0;
+                double deltaTime = (now - lastUpdate) / 1_000_000_000.0; // convert time te seconds
                 lastUpdate = now;
 
-                if (currentIndex[0] >= path.size()) {
+                if (currentIndex[0] >= path.size()) { // end if enemy reached end of path
                     stop();
                     return;
                 }
@@ -69,22 +61,22 @@ public class SimpleEnemyRenderer implements EnemyRenderer {
                 Point2D currentPos = new Point2D(enemy.getX(), enemy.getY());
                 Point2D target = path.get(currentIndex[0]);
 
-                Point2D direction = target.subtract(currentPos);
+                Point2D direction = target.subtract(currentPos); //direction vector
                 double distance = direction.magnitude();
 
-                if (distance < 1) {
+                if (distance < 1) { // snap to target if distance is less than 1px
                     currentIndex[0]++;
                     return;
                 }
 
-                Point2D normalized = direction.normalize();
-                double moveDist = enemySpeed * deltaTime;
+                Point2D normalized = direction.normalize(); // change length of direction vector to 1
+                double moveDist = enemy.getSpeed() * deltaTime; // calc distance to move comes from speed and delta time
 
-                if (moveDist >= distance) {
+                if (moveDist >= distance) { // has enemy passed target?
                     enemy.setPosition(target.getX(), target.getY());
-                    currentIndex[0]++;
+                    currentIndex[0]++; // snap it back to target if yes
                 } else {
-                    Point2D newPos = currentPos.add(normalized.multiply(moveDist));
+                    Point2D newPos = currentPos.add(normalized.multiply(moveDist)); // move a bit forward if no
                     enemy.setPosition(newPos.getX(), newPos.getY());
                 }
             }
