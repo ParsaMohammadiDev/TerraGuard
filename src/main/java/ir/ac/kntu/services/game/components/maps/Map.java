@@ -6,6 +6,8 @@ import javafx.geometry.Point2D;
 public interface Map {
     TileType[][] getTerrainMapArray();
     TileType[][] getOverlayMapArray();
-    Point2D getStartPoint();
-    Point2D getEndPoint();
+    int getStartRow();
+    int getStartCol();
+    int getEndRow();
+    int getEndCol();
 }

@@ -4,8 +4,10 @@ import ir.ac.kntu.services.game.components.tiles.TileType;
 import javafx.geometry.Point2D;
 
 public class Desert implements Map {
-    private static final Point2D START_POINT = new Point2D(0, 4);
-    private static final Point2D END_POINT = new Point2D(8, 3);
+    private static final int START_ROW = 1;
+    private static final int START_COL = 0;
+    private static final int END_ROW = 3;
+    private static final int END_COL = 8;
 
     private static final TileType[][] TERRAIN_MAP = {
             {TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND, TileType.SAND},
@@ -45,12 +47,22 @@ public class Desert implements Map {
     }
 
     @Override
-    public Point2D getStartPoint() {
-        return START_POINT;
+    public int getStartRow() {
+        return START_ROW;
     }
 
     @Override
-    public Point2D getEndPoint() {
-        return END_POINT;
+    public int getStartCol() {
+        return START_COL;
+    }
+
+    @Override
+    public int getEndRow() {
+        return END_ROW;
+    }
+
+    @Override
+    public int getEndCol() {
+        return END_COL;
     }
 }
