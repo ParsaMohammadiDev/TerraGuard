@@ -12,10 +12,15 @@ public abstract class Enemy {
 
     private EnemyType type;
     private List<Point2D> path;
+    private double x;
+    private double y;
+    private StackPane enemyView;
 
     public Enemy(EnemyType type, List<Point2D> path) {
         this.type = type;
         this.path = path;
+        enemyView = getEnemyComposite();
+        enemyView.setPrefSize(VIEW_SIZE, VIEW_SIZE);
     }
 
     public EnemyType getEnemyType() {
@@ -23,9 +28,25 @@ public abstract class Enemy {
     }
 
     public Pane getView() {
-        StackPane enemyPane = getEnemyComposite();
-        enemyPane.setPrefSize(VIEW_SIZE, VIEW_SIZE);
-        return enemyPane;
+        return enemyView;
+    }
+    public List<Point2D> getPath() {
+        return path;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setPosition(double x, double y) {
+        this.x = x;
+        this.y = y;
+        Pane view = getView();
+        view.relocate(x, y); // <-- actually move the JavaFX node
     }
 
     public abstract StackPane getEnemyComposite();
