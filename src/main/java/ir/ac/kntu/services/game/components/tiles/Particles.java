@@ -6,8 +6,8 @@ public class Particles extends Tile {
     private static final String PARTICLES_PATH = "/game/components/tiles/particles.png";
     private static final Image PARTICLES_IMAGE = new Image(PARTICLES_PATH);
 
-    public Particles(TileType tileType) {
-        super(tileType);
+    public Particles(TileType tileType, double tileSize) {
+        super(tileType, tileSize);
     }
 
     @Override

@@ -6,8 +6,8 @@ public class Stone extends Tile {
     private static final String STONE_PATH = "/game/components/tiles/stone.png";
     private static final Image STONE_IMAGE = new Image(STONE_PATH);
 
-    public Stone(TileType tileType) {
-        super(tileType);
+    public Stone(TileType tileType, double tileSize) {
+        super(tileType, tileSize);
     }
 
     @Override

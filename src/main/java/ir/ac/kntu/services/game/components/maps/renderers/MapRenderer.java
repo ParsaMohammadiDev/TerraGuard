@@ -8,4 +8,6 @@ public interface MapRenderer {
     Node renderMap(Map map);
     Node renderOverlay(Map map);
     Image renderMapImage(Map map);
+    int getMapRows();
+    int getMapCols();
 }

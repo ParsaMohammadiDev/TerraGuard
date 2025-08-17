@@ -1,12 +1,14 @@
 package ir.ac.kntu.services.game.components.pathfinders;
 
+import ir.ac.kntu.services.game.GameServices;
 import ir.ac.kntu.services.game.components.maps.Map;
-import ir.ac.kntu.services.game.components.tiles.Tile;
 import ir.ac.kntu.services.game.components.tiles.TileType;
 import javafx.geometry.Point2D;
 import java.util.*;
 
 public class BFSPathFinder implements PathFinder {
+    private GameServices gameServices;
+
     private static final int[][] DIRECTIONS = {
             {1, 0},
             {0, 1},
@@ -15,6 +17,10 @@ public class BFSPathFinder implements PathFinder {
     };
 
     private static final double MAX_JITTER = 15;
+
+    public BFSPathFinder(GameServices gameServices) {
+        this.gameServices = gameServices;
+    }
 
     @Override
     public List<Point2D> generatePath(Map map, boolean randomized) {
@@ -52,7 +58,7 @@ public class BFSPathFinder implements PathFinder {
     }
 
     private List<Point2D> getCenteredPath(List<Point2D> purePath) {
-        double tileSize = Tile.getTileSize();
+        double tileSize = gameServices.getTileFactory().getTileSize();
         List<Point2D> centeredPath = new ArrayList<>();
         for (Point2D p : purePath) {
             double x = p.getX() * tileSize + tileSize / 4;

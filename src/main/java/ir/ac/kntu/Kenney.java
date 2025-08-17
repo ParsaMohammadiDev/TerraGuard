@@ -62,7 +62,7 @@ public class Kenney extends Application {
         gameServices.setGameEngine(new KenneyGameEngine(gameServices));
         gameServices.setEnemyServices(enemyServices);
 
-        enemyServices.setPathFinder(new BFSPathFinder());
+        enemyServices.setPathFinder(new BFSPathFinder(gameServices));
         enemyServices.setEnemyTypeFactory(new FlyWeightEnemyTypeFactory());
         enemyServices.setEnemyFactory(new SimpleEnemyFactory(gameServices));
         enemyServices.setEnemyManager(new SimpleEnemyManager(gameServices));

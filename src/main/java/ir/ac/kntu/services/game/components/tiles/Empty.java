@@ -6,8 +6,8 @@ public class Empty extends Tile {
     private static final String EMPTY_PATH = "/game/components/tiles/empty.png";
     private static final Image EMPTY_IMAGE = new Image(EMPTY_PATH);
 
-    public Empty(TileType type) {
-        super(type);
+    public Empty(TileType type, double tileSize) {
+        super(type, tileSize);
     }
 
     @Override

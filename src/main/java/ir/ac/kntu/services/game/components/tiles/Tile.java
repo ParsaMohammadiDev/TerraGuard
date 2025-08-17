@@ -4,22 +4,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public abstract class Tile {
-    private static final double TILE_SIZE = 70;
-
     private TileType tileType;
+    private double tileSize;
 
-    public Tile(TileType tileType) {
+    public Tile(TileType tileType, double tileSize) {
         this.tileType = tileType;
-    }
-
-    public static double getTileSize() {
-        return TILE_SIZE;
+        this.tileSize = tileSize;
     }
 
     public ImageView getImageView() {
         ImageView imageView = new ImageView(getImage());
-        imageView.setFitWidth(TILE_SIZE);
-        imageView.setFitHeight(TILE_SIZE);
+        imageView.setFitWidth(tileSize);
+        imageView.setFitHeight(tileSize);
         return imageView;
     }
 

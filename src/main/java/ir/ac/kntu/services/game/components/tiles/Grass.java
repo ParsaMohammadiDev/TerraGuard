@@ -6,8 +6,8 @@ public class Grass extends Tile {
     private static final String GRASS_PATH = "/game/components/tiles/grass.png";
     private static final Image GRASS_IMAGE = new Image(GRASS_PATH);
 
-    public Grass(TileType tileType) {
-        super(tileType);
+    public Grass(TileType tileType, double tileSize) {
+        super(tileType, tileSize);
     }
 
     @Override

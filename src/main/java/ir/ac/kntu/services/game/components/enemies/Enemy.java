@@ -14,6 +14,7 @@ public abstract class Enemy {
     private List<Point2D> path;
     private double x;
     private double y;
+    private double speed;
     private StackPane enemyView;
 
     public Enemy(EnemyType type, List<Point2D> path) {
@@ -30,6 +31,7 @@ public abstract class Enemy {
     public Pane getView() {
         return enemyView;
     }
+
     public List<Point2D> getPath() {
         return path;
     }
@@ -40,6 +42,14 @@ public abstract class Enemy {
 
     public double getY() {
         return y;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
     }
 
     public void setPosition(double x, double y) {

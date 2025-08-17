@@ -6,8 +6,8 @@ public class Road extends Tile {
     private static final String ROAD_PATH = "/game/components/tiles/road.png";
     private static final Image ROAD_IMAGE = new Image(ROAD_PATH);
 
-    public Road(TileType tileType) {
-        super(tileType);
+    public Road(TileType tileType, double tileSize) {
+        super(tileType, tileSize);
     }
 
     @Override

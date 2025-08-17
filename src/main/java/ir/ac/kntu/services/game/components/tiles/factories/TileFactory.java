@@ -5,4 +5,5 @@ import ir.ac.kntu.services.game.components.tiles.TileType;
 
 public interface TileFactory {
     Tile getTile(TileType tileType);
+    double getTileSize();
 }

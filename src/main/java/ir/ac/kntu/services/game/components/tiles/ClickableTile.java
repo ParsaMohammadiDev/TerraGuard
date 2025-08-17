@@ -6,8 +6,8 @@ import javafx.scene.image.ImageView;
 public abstract class ClickableTile extends Tile {
     private final AppServices appServices;
 
-    public ClickableTile(TileType tileType, AppServices appServices) {
-        super(tileType);
+    public ClickableTile(TileType tileType, AppServices appServices, Double tileSize) {
+        super(tileType, tileSize);
         this.appServices = appServices;
     }
 

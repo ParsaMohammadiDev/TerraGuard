@@ -8,8 +8,8 @@ public class Construction extends ClickableTile {
     private static final String CONSTRUCTION_PATH = "/game/components/tiles/construction.png";
     private static final Image CONSTRUCTION_IMAGE = new Image(CONSTRUCTION_PATH);
 
-    public Construction(TileType tileType, AppServices appServices) {
-        super(tileType, appServices);
+    public Construction(TileType tileType, AppServices appServices, double tileSize) {
+        super(tileType, appServices, tileSize);
     }
 
     @Override
