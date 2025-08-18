@@ -1,7 +1,8 @@
 package ir.ac.kntu.services.game.core.spawners;
 
-import ir.ac.kntu.services.game.GameServices;
 import ir.ac.kntu.services.game.components.enemies.Enemy;
+import ir.ac.kntu.services.game.components.maps.renderers.MapRenderer;
+import ir.ac.kntu.services.game.components.tiles.factories.TileFactory;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
@@ -9,15 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SimpleEnemyRenderer implements EnemyRenderer {
-    private final GameServices gameServices;
     private final List<Enemy> enemies = new ArrayList<>();
     private final Pane enemyPane = new Pane();
 
-    public SimpleEnemyRenderer(GameServices gameServices) {
-        this.gameServices = gameServices;
+    public SimpleEnemyRenderer(MapRenderer mapRenderer, TileFactory tileFactory) {
         enemyPane.setPrefSize(
-                gameServices.getMapRenderer().getMapCols() * gameServices.getTileFactory().getTileSize(),
-                gameServices.getMapRenderer().getMapRows() * gameServices.getTileFactory().getTileSize()
+                mapRenderer.getMapCols() * tileFactory.getTileSize(),
+                mapRenderer.getMapRows() * tileFactory.getTileSize()
         );
     }
 

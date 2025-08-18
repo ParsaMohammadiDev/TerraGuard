@@ -1,24 +1,25 @@
 package ir.ac.kntu.services.game.components.enemies.factories;
 
-import ir.ac.kntu.services.game.GameServices;
 import ir.ac.kntu.services.game.components.enemies.Enemy;
 import ir.ac.kntu.services.game.components.enemies.Solider;
+import ir.ac.kntu.services.game.components.enemies.types.factories.EnemyTypeFactory;
+import ir.ac.kntu.services.game.components.maps.Map;
+import ir.ac.kntu.services.game.components.pathfinders.PathFinder;
 
 public class SimpleEnemyFactory implements EnemyFactory {
-    private GameServices gameServices;
+    private final EnemyTypeFactory enemyTypeFactory;
+    private final PathFinder pathFinder;
 
-    public SimpleEnemyFactory(GameServices gameServices) {
-        this.gameServices = gameServices;
+    public SimpleEnemyFactory(EnemyTypeFactory enemyTypeFactory, PathFinder pathFinder) {
+        this.enemyTypeFactory = enemyTypeFactory;
+        this.pathFinder = pathFinder;
     }
 
     @Override
-    public Enemy getSolider() {
+    public Enemy getSolider(Map map) {
         return new Solider(
-                gameServices.getEnemyServices().getEnemyTypeFactory().getSoliderType(),
-                gameServices.getEnemyServices().getPathFinder().generatePath(
-                        gameServices.getGameEngine().getGameMap(),
-                        true
-                )
+                enemyTypeFactory.getSoliderType(),
+                pathFinder.generatePath(map, true)
         );
     }
 }

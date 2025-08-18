@@ -1,8 +1,11 @@
 package ir.ac.kntu.services.app.scenes;
 
-import ir.ac.kntu.services.app.AppServices;
-import ir.ac.kntu.services.game.GameServices;
+import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
+import ir.ac.kntu.services.app.database.DataManager;
+import ir.ac.kntu.services.app.scenes.managers.SceneManager;
 import ir.ac.kntu.services.game.components.maps.Map;
+import ir.ac.kntu.services.game.components.maps.renderers.MapRenderer;
+import ir.ac.kntu.services.game.core.GameEngine;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -16,18 +19,22 @@ import javafx.scene.text.Text;
 import java.util.List;
 
 public class MapSelectorScene implements SceneLogic {
-    private final AppServices appServices;
-    private final GameServices gameServices;
+    private final GameEngine gameEngine;
+    private final MapRenderer mapRenderer;
+    private final AnimationFactory animFactory;
+    private final SceneManager sceneManager;
 
-    private List<Map> mapsList;
-    private int mapsNum;
+    private final List<Map> mapsList;
+    private final int mapsNum;
     private int currentMapIndex = 0;
     private ImageView mapThumbnailView;
 
-    public MapSelectorScene(AppServices appServices, GameServices gameServices) {
-        this.appServices = appServices;
-        this.gameServices = gameServices;
-        mapsList = appServices.getDataManager().loadMapsList();
+    public MapSelectorScene(GameEngine gameEngine, MapRenderer mapRenderer, DataManager dataManager, AnimationFactory animFactory, SceneManager sceneManager) {
+        this.gameEngine = gameEngine;
+        this.mapRenderer = mapRenderer;
+        this.animFactory = animFactory;
+        this.sceneManager = sceneManager;
+        mapsList = dataManager.loadMapsList();
         mapsNum = mapsList.size();
         currentMapIndex = getCurrentMapIndex();
     }
@@ -67,7 +74,7 @@ public class MapSelectorScene implements SceneLogic {
         next.setOnAction(event -> showMapThumbnail(getNextMapIndex()));
         prev.setOnAction(event -> showMapThumbnail(getPrevMapIndex()));
         navigator.getChildren().addAll(prev, thumbnailPane, next);
-        appServices.getAnimationFactory().getButtonHoverAnimation().animate(next, prev); // keep UI consistent
+        animFactory.getButtonHoverAnimation().animate(next, prev); // keep UI consistent
         return navigator;
     }
 
@@ -75,10 +82,10 @@ public class MapSelectorScene implements SceneLogic {
         Button select = new Button("Select");
         select.getStyleClass().add("select_button");
         select.setOnAction(event -> {
-            gameServices.getGameEngine().setGameMap(mapsList.get(currentMapIndex));
-            appServices.getSceneManager().showMenu();
+            gameEngine.setGameMap(mapsList.get(currentMapIndex));
+            sceneManager.showMenu();
         });
-        appServices.getAnimationFactory().getButtonHoverAnimation().animate(select);
+        animFactory.getButtonHoverAnimation().animate(select);
         return select;
     }
 
@@ -92,10 +99,10 @@ public class MapSelectorScene implements SceneLogic {
 
     private void showMapThumbnail(int mapIndex) {
         currentMapIndex = mapIndex;
-        mapThumbnailView.setImage(gameServices.getMapRenderer().renderMapImage(mapsList.get(currentMapIndex)));
+        mapThumbnailView.setImage(mapRenderer.renderMapImage(mapsList.get(currentMapIndex)));
     }
 
     private int getCurrentMapIndex() {
-        return mapsList.indexOf(gameServices.getGameEngine().getGameMap());
+        return mapsList.indexOf(gameEngine.getGameMap());
     }
 }

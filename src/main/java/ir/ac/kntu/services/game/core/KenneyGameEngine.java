@@ -1,23 +1,28 @@
 package ir.ac.kntu.services.game.core;
 
-import ir.ac.kntu.services.game.GameServices;
 import ir.ac.kntu.services.game.components.maps.GrassLand;
 import ir.ac.kntu.services.game.components.maps.Map;
-import ir.ac.kntu.services.game.components.tiles.Tile;
+import ir.ac.kntu.services.game.components.maps.renderers.MapRenderer;
 import ir.ac.kntu.services.game.core.difficulties.GameDifficulty;
-import javafx.scene.layout.AnchorPane;
+import ir.ac.kntu.services.game.core.difficulties.factories.DifficultyFactory;
+import ir.ac.kntu.services.game.core.managers.EnemyManager;
+import ir.ac.kntu.services.game.core.spawners.EnemyRenderer;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 public class KenneyGameEngine implements GameEngine {
-    private final GameServices gameServices;
+    private final MapRenderer mapRenderer;
+    private final EnemyRenderer enemyRenderer;
+    private final EnemyManager enemyManager;
 
     private Map gameMap;
     private GameDifficulty difficulty;
 
-    public KenneyGameEngine(GameServices gameServices) {
-        this.gameServices = gameServices;
-        this.difficulty = gameServices.getDifficultyFactory().getEasyDifficulty();
+    public KenneyGameEngine(MapRenderer mapRenderer, EnemyRenderer enemyRenderer, EnemyManager enemyManager, DifficultyFactory difficultyFactory) {
+        this.mapRenderer = mapRenderer;
+        this.enemyRenderer = enemyRenderer;
+        this.enemyManager = enemyManager;
+        this.difficulty = difficultyFactory.getEasyDifficulty();
         this.gameMap = new GrassLand();
     }
 
@@ -25,9 +30,9 @@ public class KenneyGameEngine implements GameEngine {
     public Pane getGamePane() {
         startGame();
         StackPane gamePane = new StackPane();
-        gamePane.getChildren().add(gameServices.getMapRenderer().renderMap(gameMap));
-        gamePane.getChildren().add(gameServices.getEnemyServices().getEnemyRenderer().renderEnemies());
-        gamePane.getChildren().add(gameServices.getMapRenderer().renderOverlay(gameMap));
+        gamePane.getChildren().add(mapRenderer.renderMap(gameMap));
+        gamePane.getChildren().add(enemyRenderer.renderEnemies());
+        gamePane.getChildren().add(mapRenderer.renderOverlay(gameMap));
         return gamePane;
     }
 
@@ -53,6 +58,6 @@ public class KenneyGameEngine implements GameEngine {
 
     @Override
     public void startGame() {
-        gameServices.getEnemyServices().getEnemyManager().runEnemies();
+        enemyManager.runEnemies(difficulty, gameMap);
     }
 }

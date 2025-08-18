@@ -1,16 +1,16 @@
 package ir.ac.kntu.services.app.scenes;
 
-import ir.ac.kntu.services.game.GameServices;
+import ir.ac.kntu.services.game.core.GameEngine;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class GameScene implements SceneLogic {
-    private GameServices gameServices;
+    private final GameEngine gameEngine;
 
-    public GameScene(GameServices gameServices) {
-        this.gameServices = gameServices;
+    public GameScene(GameEngine gameEngine) {
+        this.gameEngine = gameEngine;
     }
 
     @Override
@@ -18,7 +18,7 @@ public class GameScene implements SceneLogic {
         VBox root = new VBox();
         HBox sceneElements = new HBox();
         sceneElements.getStyleClass().add("scene_elements");
-        Pane gamePane = gameServices.getGameEngine().getGamePane();
+        Pane gamePane = gameEngine.getGamePane();
         gamePane.getStyleClass().add("game_pane");
         sceneElements.getChildren().add(gamePane);
         root.getChildren().add(sceneElements);

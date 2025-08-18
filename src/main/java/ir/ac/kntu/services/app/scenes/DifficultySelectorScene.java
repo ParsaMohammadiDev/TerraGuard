@@ -1,8 +1,10 @@
 package ir.ac.kntu.services.app.scenes;
 
-import ir.ac.kntu.services.app.AppServices;
-import ir.ac.kntu.services.game.GameServices;
+import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
+import ir.ac.kntu.services.app.scenes.managers.SceneManager;
+import ir.ac.kntu.services.game.core.GameEngine;
 import ir.ac.kntu.services.game.core.difficulties.GameDifficulty;
+import ir.ac.kntu.services.game.core.difficulties.factories.DifficultyFactory;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
@@ -14,14 +16,18 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class DifficultySelectorScene implements SceneLogic {
-    private AppServices appServices;
-    private GameServices gameServices;
+    private final GameEngine gameEngine;
+    private final DifficultyFactory difficultyFactory;
+    private final SceneManager sceneManager;
+    private final AnimationFactory animFactory;
 
     private Slider difficultySlider;
 
-    public DifficultySelectorScene(AppServices appServices, GameServices gameServices) {
-        this.appServices = appServices;
-        this.gameServices = gameServices;
+    public DifficultySelectorScene(GameEngine gameEngine, DifficultyFactory difficultyFactory, SceneManager sceneManager, AnimationFactory animFactory) {
+        this.gameEngine = gameEngine;
+        this.difficultyFactory = difficultyFactory;
+        this.sceneManager = sceneManager;
+        this.animFactory = animFactory;
     }
 
     @Override
@@ -38,7 +44,7 @@ public class DifficultySelectorScene implements SceneLogic {
 
     private Slider createSlider() {
         difficultySlider = new Slider(0, 2, 0);
-        difficultySlider.setValue(gameServices.getGameEngine().getGameDifficulty().enumerate());
+        difficultySlider.setValue(gameEngine.getGameDifficulty().enumerate());
         difficultySlider.setMaxWidth(400);
         difficultySlider.setMajorTickUnit(1);
         difficultySlider.setMinorTickCount(1);
@@ -64,10 +70,10 @@ public class DifficultySelectorScene implements SceneLogic {
         Button select = new Button("Select");
         select.getStyleClass().add("select_button");
         select.setOnAction(event -> {
-            gameServices.getGameEngine().setGameDifficulty(getDifficultyFromSliderValue((int) (difficultySlider.getValue())));
-            appServices.getSceneManager().showMenu();
+            gameEngine.setGameDifficulty(getDifficultyFromSliderValue((int) (difficultySlider.getValue())));
+            sceneManager.showMenu();
         });
-        appServices.getAnimationFactory().getButtonHoverAnimation().animate(select);
+        animFactory.getButtonHoverAnimation().animate(select);
         return select;
     }
 
@@ -94,9 +100,9 @@ public class DifficultySelectorScene implements SceneLogic {
 
     private GameDifficulty getDifficultyFromSliderValue(int value) {
         return switch (value) {
-            case 0 -> gameServices.getDifficultyFactory().getEasyDifficulty();
-            case 1 -> gameServices.getDifficultyFactory().getMediumDifficulty();
-            case 2 -> gameServices.getDifficultyFactory().getHardDifficulty();
+            case 0 -> difficultyFactory.getEasyDifficulty();
+            case 1 -> difficultyFactory.getMediumDifficulty();
+            case 2 -> difficultyFactory.getHardDifficulty();
             default -> throw new IllegalStateException("Unexpected Slider value");
         };
     }

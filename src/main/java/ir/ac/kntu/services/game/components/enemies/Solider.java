@@ -1,7 +1,5 @@
 package ir.ac.kntu.services.game.components.enemies;
 
-import ir.ac.kntu.services.game.EnemyServices;
-import ir.ac.kntu.services.game.GameServices;
 import ir.ac.kntu.services.game.components.enemies.types.EnemyType;
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;

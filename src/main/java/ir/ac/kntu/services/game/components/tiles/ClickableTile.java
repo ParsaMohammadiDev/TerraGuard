@@ -1,20 +1,21 @@
 package ir.ac.kntu.services.game.components.tiles;
 
-import ir.ac.kntu.services.app.AppServices;
+import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
+import javafx.animation.AnimationTimer;
 import javafx.scene.image.ImageView;
 
 public abstract class ClickableTile extends Tile {
-    private final AppServices appServices;
+    private final AnimationFactory animFactory;
 
-    public ClickableTile(TileType tileType, AppServices appServices, Double tileSize) {
+    public ClickableTile(TileType tileType, AnimationFactory animFactory, Double tileSize) {
         super(tileType, tileSize);
-        this.appServices = appServices;
+        this.animFactory = animFactory;
     }
 
     @Override
     public ImageView getImageView() {
         ImageView imageView = super.getImageView();
-        appServices.getAnimationFactory().getTileHoverAnimation().animate(imageView);
+        animFactory.getTileHoverAnimation().animate(imageView);
         return imageView;
     }
 }

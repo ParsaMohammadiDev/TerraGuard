@@ -4,7 +4,6 @@ import ir.ac.kntu.services.game.components.enemies.types.EnemyType;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-
 import java.util.List;
 
 public abstract class Enemy {
@@ -56,7 +55,7 @@ public abstract class Enemy {
         this.x = x;
         this.y = y;
         Pane view = getView();
-        view.relocate(x, y); // <-- actually move the JavaFX node
+        view.relocate(x, y);
     }
 
     public abstract StackPane getEnemyComposite();

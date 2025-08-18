@@ -1,7 +1,7 @@
 package ir.ac.kntu.services.game.components.maps.renderers;
 
-import ir.ac.kntu.services.game.GameServices;
 import ir.ac.kntu.services.game.components.tiles.TileType;
+import ir.ac.kntu.services.game.components.tiles.factories.TileFactory;
 import javafx.scene.Node;
 import ir.ac.kntu.services.game.components.maps.Map;
 import javafx.scene.image.Image;
@@ -10,12 +10,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
 public class GridMapRenderer implements MapRenderer {
-    private GameServices gameServices;
+    private final TileFactory tileFactory;
+
     private int mapRows;
     private int mapCols;
 
-    public GridMapRenderer(GameServices gameServices) {
-        this.gameServices = gameServices;
+    public GridMapRenderer(TileFactory tileFactory) {
+        this.tileFactory = tileFactory;
     }
 
     @Override
@@ -33,7 +34,7 @@ public class GridMapRenderer implements MapRenderer {
     @Override
     public Image renderMapImage(Map map) {
         setMapDimensions(map);
-        double tileSize = gameServices.getTileFactory().getTileSize();
+        double tileSize = tileFactory.getTileSize();
         StackPane mapPane = new StackPane();
         mapPane.getChildren().addAll(renderMap(map), renderOverlay(map));
         mapPane.applyCss();
@@ -57,7 +58,7 @@ public class GridMapRenderer implements MapRenderer {
         GridPane mapGrid = new GridPane();
         for (int row = 0; row < mapRows; row++) {
             for (int col = 0; col < mapCols; col++) {
-                mapGrid.add(gameServices.getTileFactory().getTile(mapArray[row][col]).getImageView(), col, row);
+                mapGrid.add(tileFactory.getTile(mapArray[row][col]).getImageView(), col, row);
             }
         }
         mapGrid.setSnapToPixel(false);
