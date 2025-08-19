@@ -1,7 +1,5 @@
 package ir.ac.kntu.services.app.scenes;
 
-import ir.ac.kntu.services.app.huds.HUD;
-import ir.ac.kntu.services.app.huds.CoinDisplayer;
 import ir.ac.kntu.services.app.huds.factories.HUDFactory;
 import ir.ac.kntu.services.game.core.GameEngine;
 import javafx.scene.Node;

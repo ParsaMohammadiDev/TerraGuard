@@ -9,7 +9,7 @@ public class CoinsWallet implements Wallet {
 
     private double balance = STARTLING_BALANCE;
 
-    public CoinsWallet(final WalletPublisher walletPublisher) {
+    public CoinsWallet(WalletPublisher walletPublisher) {
         this.walletPublisher = walletPublisher;
     }
 

@@ -2,7 +2,6 @@ package ir.ac.kntu.services.app.scenes.factories;
 
 import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
 import ir.ac.kntu.services.app.database.DataManager;
-import ir.ac.kntu.services.app.huds.HUD;
 import ir.ac.kntu.services.app.huds.factories.HUDFactory;
 import ir.ac.kntu.services.app.scenes.*;
 import ir.ac.kntu.services.app.scenes.managers.SceneManager;

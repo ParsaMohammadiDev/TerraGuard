@@ -1,11 +1,17 @@
 package ir.ac.kntu.services.app.huds;
 
 import ir.ac.kntu.services.game.components.wallets.WalletSubscriber;
+import ir.ac.kntu.services.game.components.wallets.publishers.WalletPublisher;
 import javafx.scene.Node;
 import javafx.scene.text.Text;
 
 public class CoinDisplayer implements WalletSubscriber, HUD {
     private final Text coinText = new Text();
+
+    public CoinDisplayer(WalletPublisher walletPublisher) {
+        walletPublisher.addSubscriber(this);
+    }
+
     @Override
     public void update(double amount) {
         coinText.setText(String.valueOf((int) amount));
