@@ -1,7 +1,6 @@
 package ir.ac.kntu.services.game.components.tiles;
 
 import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
-import javafx.animation.AnimationTimer;
 import javafx.scene.image.ImageView;
 
 public abstract class ClickableTile extends Tile {

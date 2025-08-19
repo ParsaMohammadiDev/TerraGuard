@@ -6,6 +6,7 @@
 
 .scene_elements {
     -fx-alignment: CENTER;
+    -fx-spacing: 20;
 }
 
 .game_pane {
@@ -14,4 +15,14 @@
     -fx-border-color: white;
     -fx-background-color: white;
     -fx-background-radius: 23px;
+}
+
+.coin_hud {
+    -fx-alignment: CENTER;
+    -fx-spacing: 6;
+}
+
+.game_hud {
+    -fx-alignment: TOP;
+    -fx-spacing: 10;
 }

@@ -36,7 +36,7 @@ public class SimpleEnemyRenderer implements EnemyRenderer {
         List<Point2D> path = enemy.getPath();
         if (path == null || path.size() < 2) return; // no movement if path is empty or has only one point
 
-        enemy.setPosition(path.get(0).getX(), path.get(0).getY()); // set position to start
+        enemy.setPosition(path.getFirst().getX(), path.getFirst().getY()); // set position to start
         int[] currentIndex = {1}; // keep track of target point indexes
 
         AnimationTimer timer = new AnimationTimer() { // AnimationTimer Anonymous impl

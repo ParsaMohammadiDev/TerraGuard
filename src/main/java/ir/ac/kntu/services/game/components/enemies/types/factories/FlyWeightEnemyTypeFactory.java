@@ -7,7 +7,7 @@ import java.util.Map;
 
 
 public class FlyWeightEnemyTypeFactory implements EnemyTypeFactory {
-    private Map<String, EnemyType> types = new HashMap<>();
+    private final Map<String, EnemyType> types = new HashMap<>();
 
     @Override
     public EnemyType getSoliderType() {

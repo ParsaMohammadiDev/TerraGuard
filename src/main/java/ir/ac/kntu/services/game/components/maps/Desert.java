@@ -1,7 +1,6 @@
 package ir.ac.kntu.services.game.components.maps;
 
 import ir.ac.kntu.services.game.components.tiles.TileType;
-import javafx.geometry.Point2D;
 
 public class Desert implements Map {
     private static final int START_ROW = 1;

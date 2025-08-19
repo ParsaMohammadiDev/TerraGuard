@@ -27,7 +27,6 @@ import ir.ac.kntu.services.game.core.managers.SimpleEnemyManager;
 import ir.ac.kntu.services.game.core.spawners.EnemyRenderer;
 import ir.ac.kntu.services.game.core.spawners.SimpleEnemyRenderer;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
