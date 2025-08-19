@@ -1,4 +1,4 @@
-package ir.ac.kntu.services.game.components.wallets.subscribers;
+package ir.ac.kntu.services.game.components.wallets;
 
 public interface WalletSubscriber {
     void update(double balance);

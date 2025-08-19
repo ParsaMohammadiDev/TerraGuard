@@ -1,6 +1,6 @@
 package ir.ac.kntu.services.game.components.wallets.publishers;
 
-import ir.ac.kntu.services.game.components.wallets.subscribers.WalletSubscriber;
+import ir.ac.kntu.services.game.components.wallets.WalletSubscriber;
 import java.util.ArrayList;
 import java.util.List;
 
