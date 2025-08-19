@@ -2,6 +2,8 @@ package ir.ac.kntu.services.app.scenes.factories;
 
 import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
 import ir.ac.kntu.services.app.database.DataManager;
+import ir.ac.kntu.services.app.huds.HUD;
+import ir.ac.kntu.services.app.huds.factories.HUDFactory;
 import ir.ac.kntu.services.app.scenes.*;
 import ir.ac.kntu.services.app.scenes.managers.SceneManager;
 import ir.ac.kntu.services.game.components.maps.renderers.MapRenderer;
@@ -16,14 +18,16 @@ public class SimpleSceneFactory implements SceneFactory {
     private final SceneManager sceneManager;
     private final DataManager dataManager;
     private final AnimationFactory animFactory;
+    private final HUDFactory hudFactory;
 
-    public SimpleSceneFactory(GameEngine gameEngine, MapRenderer mapRenderer, DifficultyFactory difficultyFactory, SceneManager sceneManager, DataManager dataManager, AnimationFactory animFactory) {
+    public SimpleSceneFactory(GameEngine gameEngine, MapRenderer mapRenderer, DifficultyFactory difficultyFactory, SceneManager sceneManager, DataManager dataManager, AnimationFactory animFactory, HUDFactory hudFactory) {
         this.gameEngine = gameEngine;
         this.mapRenderer = mapRenderer;
         this.sceneManager = sceneManager;
         this.dataManager = dataManager;
         this.animFactory = animFactory;
         this.difficultyFactory = difficultyFactory;
+        this.hudFactory = hudFactory;
     }
 
     @Override
@@ -38,7 +42,7 @@ public class SimpleSceneFactory implements SceneFactory {
 
     @Override
     public Scene getGameScene() {
-        return new GameScene(gameEngine).getScene();
+        return new GameScene(gameEngine, hudFactory).getScene();
     }
 
     @Override

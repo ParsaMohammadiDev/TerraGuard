@@ -1,6 +1,8 @@
 package ir.ac.kntu.services.app.scenes;
 
-import ir.ac.kntu.services.game.components.wallets.subscribers.CoinDisplayer;
+import ir.ac.kntu.services.app.huds.HUD;
+import ir.ac.kntu.services.app.huds.CoinDisplayer;
+import ir.ac.kntu.services.app.huds.factories.HUDFactory;
 import ir.ac.kntu.services.game.core.GameEngine;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -18,9 +20,11 @@ public class GameScene implements SceneLogic {
     private static final String COIN_PATH = "/app/coin.png";
 
     private final GameEngine gameEngine;
+    private final HUDFactory hudFactory;
 
-    public GameScene(GameEngine gameEngine) {
+    public GameScene(GameEngine gameEngine, HUDFactory hudFactory) {
         this.gameEngine = gameEngine;
+        this.hudFactory = hudFactory;
     }
 
     @Override
@@ -50,8 +54,7 @@ public class GameScene implements SceneLogic {
         coinIcon.setPreserveRatio(true);
         coinIcon.setFitWidth(40);
         Text coinText = new Text("Coins: ");
-        SceneElement coinDisplayer = new CoinDisplayer();
-        Node coinValue = coinDisplayer.getNode();
+        Node coinValue = hudFactory.getCoinHUD();
         setTextStyle(40, coinText, (Text) coinValue);
         coinHUD.getChildren().addAll(coinIcon, coinText, coinValue);
         coinHUD.getStyleClass().add("coin_hud");

@@ -24,7 +24,7 @@
 }
 
 .game_hud {
-    -fx-alignment: TOP;
+    -fx-alignment: TOP_CENTER;
     -fx-spacing: 10;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 20, 0, 0, 10);
 }
