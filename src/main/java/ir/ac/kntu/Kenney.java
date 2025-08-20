@@ -5,7 +5,13 @@ import ir.ac.kntu.services.app.animations.factories.SimpleAnimationFactory;
 import ir.ac.kntu.services.app.database.DataManager;
 import ir.ac.kntu.services.app.huds.factories.HUDFactory;
 import ir.ac.kntu.services.app.huds.factories.SimpleHUDFactory;
+import ir.ac.kntu.services.app.menus.factories.MenuFactory;
+import ir.ac.kntu.services.app.menus.factories.SimpleMenuFactory;
+import ir.ac.kntu.services.app.menus.options.providers.MenuOptionProvider;
+import ir.ac.kntu.services.app.menus.options.providers.SimpleMenuOptionProvider;
 import ir.ac.kntu.services.app.scenes.managers.SceneManager;
+import ir.ac.kntu.services.game.components.defenders.types.factories.DefenderTypeFactory;
+import ir.ac.kntu.services.game.components.defenders.types.factories.FlyWeightDefenderTypeFactory;
 import ir.ac.kntu.services.game.components.enemies.factories.EnemyFactory;
 import ir.ac.kntu.services.game.components.enemies.factories.SimpleEnemyFactory;
 import ir.ac.kntu.services.game.components.enemies.types.factories.EnemyTypeFactory;
@@ -75,7 +81,10 @@ public class Kenney extends Application {
         GameEngine gameEngine = new KenneyGameEngine(mapRenderer, enemyRenderer, enemyManager, difficultyFactory, coinGenerator);
         SceneManager sceneManager = new SimpleSceneManager(primaryStage);
         HUDFactory hudFactory = new SimpleHUDFactory(walletPublisher);
-        SceneFactory sceneFactory = new SimpleSceneFactory(gameEngine, mapRenderer, difficultyFactory, sceneManager, dataManager, animFactory, hudFactory);
+        DefenderTypeFactory defenderTypeFactory = new FlyWeightDefenderTypeFactory();
+        MenuFactory menuFactory = new SimpleMenuFactory();
+        MenuOptionProvider menuOptionProvider = new SimpleMenuOptionProvider(defenderTypeFactory);
+        SceneFactory sceneFactory = new SimpleSceneFactory(gameEngine, mapRenderer, difficultyFactory, sceneManager, dataManager, animFactory, hudFactory, menuFactory, menuOptionProvider);
         sceneManager.setSceneFactory(sceneFactory);
         return sceneManager;
     }

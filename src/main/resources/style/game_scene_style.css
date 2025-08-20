@@ -28,3 +28,38 @@
     -fx-spacing: 10;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 20, 0, 0, 10);
 }
+
+.construction_menu {
+    -fx-background-color: White;
+    -fx-border-radius: 20;
+    -fx-background-radius: 22;
+    -fx-padding: 10 20 10 10;
+}
+
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-padding: 20;
+    -fx-spacing: 20;
+}
+
+.scroll-bar:vertical {
+    -fx-pref-width: 20px;
+}
+
+.scroll-bar .track {
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-background-radius: 0;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: rgb(0, 178, 255);
+    -fx-background-radius: 20;
+}
+
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
+    -fx-opacity: 0;
+}

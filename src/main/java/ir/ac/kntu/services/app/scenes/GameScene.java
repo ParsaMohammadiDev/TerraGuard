@@ -1,6 +1,8 @@
 package ir.ac.kntu.services.app.scenes;
 
 import ir.ac.kntu.services.app.huds.factories.HUDFactory;
+import ir.ac.kntu.services.app.menus.factories.MenuFactory;
+import ir.ac.kntu.services.app.menus.options.providers.MenuOptionProvider;
 import ir.ac.kntu.services.game.core.GameEngine;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -19,10 +21,14 @@ public class GameScene implements SceneLogic {
 
     private final GameEngine gameEngine;
     private final HUDFactory hudFactory;
+    private final MenuFactory menuFactory;
+    private final MenuOptionProvider menuOptionProvider;
 
-    public GameScene(GameEngine gameEngine, HUDFactory hudFactory) {
+    public GameScene(GameEngine gameEngine, HUDFactory hudFactory, MenuFactory menuFactory, MenuOptionProvider menuOptionProvider) {
         this.gameEngine = gameEngine;
         this.hudFactory = hudFactory;
+        this.menuFactory = menuFactory;
+        this.menuOptionProvider = menuOptionProvider;
     }
 
     @Override
@@ -41,7 +47,8 @@ public class GameScene implements SceneLogic {
 
     private Pane getGameHUD() {
         Pane gameHUD = new VBox();
-        gameHUD.getChildren().add(getCoinsHUD());
+        gameHUD.setPrefWidth(350);
+        gameHUD.getChildren().addAll(getCoinsHUD(), menuFactory.getConstructionMenu(menuOptionProvider.getConstructionMenuOptions()).getView());
         gameHUD.getStyleClass().add("game_hud");
         return gameHUD;
     }

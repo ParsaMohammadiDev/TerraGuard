@@ -27,7 +27,7 @@ public class ConstructionMenu implements Menu {
         VBox menu = new VBox(scrollPane);
         menu.getStyleClass().add("construction_menu");
         menu.setPrefSize(350, 200);
-        menu.setAlignment(Pos.CENTER_LEFT);
+        menu.setAlignment(Pos.TOP_CENTER);
         return menu;
     }
 

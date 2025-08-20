@@ -3,6 +3,8 @@ package ir.ac.kntu.services.app.scenes.factories;
 import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
 import ir.ac.kntu.services.app.database.DataManager;
 import ir.ac.kntu.services.app.huds.factories.HUDFactory;
+import ir.ac.kntu.services.app.menus.factories.MenuFactory;
+import ir.ac.kntu.services.app.menus.options.providers.MenuOptionProvider;
 import ir.ac.kntu.services.app.scenes.*;
 import ir.ac.kntu.services.app.scenes.managers.SceneManager;
 import ir.ac.kntu.services.game.components.maps.renderers.MapRenderer;
@@ -18,8 +20,10 @@ public class SimpleSceneFactory implements SceneFactory {
     private final DataManager dataManager;
     private final AnimationFactory animFactory;
     private final HUDFactory hudFactory;
+    private final MenuOptionProvider menuOptionProvider;
+    private final MenuFactory menuFactory;
 
-    public SimpleSceneFactory(GameEngine gameEngine, MapRenderer mapRenderer, DifficultyFactory difficultyFactory, SceneManager sceneManager, DataManager dataManager, AnimationFactory animFactory, HUDFactory hudFactory) {
+    public SimpleSceneFactory(GameEngine gameEngine, MapRenderer mapRenderer, DifficultyFactory difficultyFactory, SceneManager sceneManager, DataManager dataManager, AnimationFactory animFactory, HUDFactory hudFactory, MenuFactory menuFactory, MenuOptionProvider menuOptionProvider) {
         this.gameEngine = gameEngine;
         this.mapRenderer = mapRenderer;
         this.sceneManager = sceneManager;
@@ -27,6 +31,8 @@ public class SimpleSceneFactory implements SceneFactory {
         this.animFactory = animFactory;
         this.difficultyFactory = difficultyFactory;
         this.hudFactory = hudFactory;
+        this.menuFactory = menuFactory;
+        this.menuOptionProvider = menuOptionProvider;
     }
 
     @Override
@@ -41,7 +47,7 @@ public class SimpleSceneFactory implements SceneFactory {
 
     @Override
     public Scene getGameScene() {
-        return new GameScene(gameEngine, hudFactory).getScene();
+        return new GameScene(gameEngine, hudFactory, menuFactory, menuOptionProvider).getScene();
     }
 
     @Override
