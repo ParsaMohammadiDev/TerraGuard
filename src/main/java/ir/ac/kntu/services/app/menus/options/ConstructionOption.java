@@ -1,5 +1,8 @@
 package ir.ac.kntu.services.app.menus.options;
 
+import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
+import ir.ac.kntu.services.game.components.defenders.types.DefenderType;
+import ir.ac.kntu.services.game.core.markets.Market;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -15,22 +18,24 @@ public abstract class ConstructionOption implements MenuOption {
     private static final String COIN_ICON_PATH = "/app/coin.png";
     private static final Image COIN_ICON_IMAGE = new Image(COIN_ICON_PATH);
 
+    private final AnimationFactory animFactory;
+
     private Text nameText;
     private Text priceText;
     private Image itemImage;
 
-    public ConstructionOption(String name, String price, Image itemImage) {
-        this.nameText = new Text(name);
-        this.priceText = new Text(price);
-        this.itemImage = itemImage;
+    private final HBox optionPane = new HBox();
+
+    public ConstructionOption(DefenderType defenderType, AnimationFactory animFactory, Market market) {
+        this.nameText = new Text(defenderType.getName());
+        this.priceText = new Text(String.valueOf((int)defenderType.getPrice()));
+        this.itemImage = defenderType.getImage();
+        this.animFactory = animFactory;
+        styleMenuPane(market, defenderType);
     }
 
     @Override
     public Node getView() {
-        HBox optionPane = new HBox();
-        optionPane.setAlignment(Pos.CENTER);
-        optionPane.setSpacing(50);
-        optionPane.getChildren().addAll(getTitlePane(), getPricePane());
         return optionPane;
     }
 
@@ -58,6 +63,17 @@ public abstract class ConstructionOption implements MenuOption {
 
     private void styleText(Text text) {
         text.setFont(Font.font("Berlin Sans FB", FontWeight.EXTRA_BOLD, 20));
-        priceText.setFill(Color.BLACK);
+        text.setFill(Color.BLACK);
+    }
+
+    private void styleMenuPane(Market market, DefenderType defenderType) {
+        optionPane.setAlignment(Pos.CENTER);
+        optionPane.setSpacing(50);
+        optionPane.getChildren().addAll(getTitlePane(), getPricePane());
+        optionPane.disableProperty().bind(market.isAffordable(defenderType).not());
+        optionPane.opacityProperty().bind(
+                market.isAffordable(defenderType).map(affordable -> affordable ? 1.0 : 0.5)
+        );
+        animFactory.getButtonHoverAnimation().animate(optionPane);
     }
 }

@@ -11,6 +11,7 @@ public class SimpleHUDFactory implements HUDFactory {
     public SimpleHUDFactory(WalletPublisher walletPublisher) {
         this.walletPublisher = walletPublisher;
     }
+
     @Override
     public Node getCoinHUD() {
         HUD coinHUD = new CoinDisplayer(walletPublisher);

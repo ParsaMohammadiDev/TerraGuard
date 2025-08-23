@@ -10,6 +10,7 @@ import ir.ac.kntu.services.app.menus.factories.SimpleMenuFactory;
 import ir.ac.kntu.services.app.menus.options.providers.MenuOptionProvider;
 import ir.ac.kntu.services.app.menus.options.providers.SimpleMenuOptionProvider;
 import ir.ac.kntu.services.app.scenes.managers.SceneManager;
+import ir.ac.kntu.services.game.components.defenders.types.DefenderType;
 import ir.ac.kntu.services.game.components.defenders.types.factories.DefenderTypeFactory;
 import ir.ac.kntu.services.game.components.defenders.types.factories.FlyWeightDefenderTypeFactory;
 import ir.ac.kntu.services.game.components.enemies.factories.EnemyFactory;
@@ -38,11 +39,16 @@ import ir.ac.kntu.services.app.scenes.factories.SimpleSceneFactory;
 import ir.ac.kntu.services.app.scenes.managers.SimpleSceneManager;
 import ir.ac.kntu.services.game.core.managers.EnemyManager;
 import ir.ac.kntu.services.game.core.managers.SimpleEnemyManager;
+import ir.ac.kntu.services.game.core.markets.KenneyMarket;
+import ir.ac.kntu.services.game.core.markets.Market;
 import ir.ac.kntu.services.game.core.spawners.EnemyRenderer;
 import ir.ac.kntu.services.game.core.spawners.SimpleEnemyRenderer;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Kenney extends Application {
     private static final String APP_NAME = "Kenney";
@@ -83,7 +89,10 @@ public class Kenney extends Application {
         HUDFactory hudFactory = new SimpleHUDFactory(walletPublisher);
         DefenderTypeFactory defenderTypeFactory = new FlyWeightDefenderTypeFactory();
         MenuFactory menuFactory = new SimpleMenuFactory();
-        MenuOptionProvider menuOptionProvider = new SimpleMenuOptionProvider(defenderTypeFactory);
+        List<DefenderType> defenderTypes = new ArrayList<>();
+        defenderTypes.add(defenderTypeFactory.getFastTowerType());
+        Market market = new KenneyMarket(defenderTypes, walletPublisher);
+        MenuOptionProvider menuOptionProvider = new SimpleMenuOptionProvider(defenderTypeFactory, market, animFactory);
         SceneFactory sceneFactory = new SimpleSceneFactory(gameEngine, mapRenderer, difficultyFactory, sceneManager, dataManager, animFactory, hudFactory, menuFactory, menuOptionProvider);
         sceneManager.setSceneFactory(sceneFactory);
         return sceneManager;
