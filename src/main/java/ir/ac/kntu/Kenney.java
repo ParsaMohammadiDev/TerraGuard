@@ -46,7 +46,6 @@ import ir.ac.kntu.services.game.core.spawners.SimpleEnemyRenderer;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,26 +74,43 @@ public class Kenney extends Application {
         DataManager dataManager = new HardCodedDataManager();
         EnemyTypeFactory enemyTypeFactory = new FlyWeightEnemyTypeFactory();
         DifficultyFactory difficultyFactory = new SimpleDifficultyFactory();
+        WalletPublisher walletPublisher = new SimpleWalletPublisher();
+        DefenderTypeFactory defenderTypeFactory = new FlyWeightDefenderTypeFactory();
+        MenuFactory menuFactory = new SimpleMenuFactory();
+        List<DefenderType> defenderTypes = new ArrayList<>();
+
+        defenderTypes.add(defenderTypeFactory.getFastTowerType());
+
+        SceneManager sceneManager = new SimpleSceneManager(primaryStage);
         TileFactory tileFactory = new FlyWeightTileFactory(animFactory);
         MapRenderer mapRenderer = new GridMapRenderer(tileFactory);
+        Wallet wallet = new CoinsWallet(walletPublisher);
+        CoinGenerator coinGenerator = new AutoCoinGenerator(wallet);
+        HUDFactory hudFactory = new SimpleHUDFactory(walletPublisher);
+
         EnemyRenderer enemyRenderer = new SimpleEnemyRenderer(mapRenderer, tileFactory);
         PathFinder pathFinder = new BFSPathFinder(tileFactory);
         EnemyFactory enemyFactory = new SimpleEnemyFactory(enemyTypeFactory, pathFinder);
         EnemyManager enemyManager = new SimpleEnemyManager(enemyFactory, enemyRenderer);
-        WalletPublisher walletPublisher = new SimpleWalletPublisher();
-        Wallet wallet = new CoinsWallet(walletPublisher);
-        CoinGenerator coinGenerator = new AutoCoinGenerator(wallet);
-        GameEngine gameEngine = new KenneyGameEngine(mapRenderer, enemyRenderer, enemyManager, difficultyFactory, coinGenerator);
-        SceneManager sceneManager = new SimpleSceneManager(primaryStage);
-        HUDFactory hudFactory = new SimpleHUDFactory(walletPublisher);
-        DefenderTypeFactory defenderTypeFactory = new FlyWeightDefenderTypeFactory();
-        MenuFactory menuFactory = new SimpleMenuFactory();
-        List<DefenderType> defenderTypes = new ArrayList<>();
-        defenderTypes.add(defenderTypeFactory.getFastTowerType());
         Market market = new KenneyMarket(defenderTypes, walletPublisher);
+
         MenuOptionProvider menuOptionProvider = new SimpleMenuOptionProvider(defenderTypeFactory, market, animFactory);
-        SceneFactory sceneFactory = new SimpleSceneFactory(gameEngine, mapRenderer, difficultyFactory, sceneManager, dataManager, animFactory, hudFactory, menuFactory, menuOptionProvider);
+
+        GameEngine gameEngine = new KenneyGameEngine(mapRenderer, enemyRenderer, enemyManager, difficultyFactory, coinGenerator);
+
+        SceneFactory sceneFactory = new SimpleSceneFactory(
+                gameEngine,
+                mapRenderer,
+                difficultyFactory,
+                sceneManager,
+                dataManager,
+                animFactory,
+                hudFactory,
+                menuFactory,
+                menuOptionProvider);
+
         sceneManager.setSceneFactory(sceneFactory);
+
         return sceneManager;
     }
 }
