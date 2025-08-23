@@ -1,9 +1,6 @@
 package ir.ac.kntu.services.app.animations.factories;
 
-import ir.ac.kntu.services.app.animations.Animation;
-import ir.ac.kntu.services.app.animations.ButtonHoverAnimation;
-import ir.ac.kntu.services.app.animations.TileHoverAnimation;
-import ir.ac.kntu.services.app.animations.ZoomAndFadeAnimation;
+import ir.ac.kntu.services.app.animations.*;
 
 public class SimpleAnimationFactory implements AnimationFactory {
     @Override
@@ -19,5 +16,10 @@ public class SimpleAnimationFactory implements AnimationFactory {
     @Override
     public Animation getTileHoverAnimation() {
         return new TileHoverAnimation();
+    }
+
+    @Override
+    public Animation getKillerAnimation() {
+        return new KillerAnimation();
     }
 }
