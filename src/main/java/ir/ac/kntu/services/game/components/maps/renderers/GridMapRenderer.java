@@ -58,7 +58,7 @@ public class GridMapRenderer implements MapRenderer {
         GridPane mapGrid = new GridPane();
         for (int row = 0; row < mapRows; row++) {
             for (int col = 0; col < mapCols; col++) {
-                mapGrid.add(tileFactory.getTile(mapArray[row][col]).getImageView(), col, row);
+                mapGrid.add(tileFactory.getTile(mapArray[row][col]).getView(), col, row);
             }
         }
         mapGrid.setSnapToPixel(false);

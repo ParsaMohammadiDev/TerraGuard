@@ -12,7 +12,7 @@ public abstract class Tile {
         this.tileSize = tileSize;
     }
 
-    public ImageView getImageView() {
+    public ImageView getView() {
         ImageView imageView = new ImageView(getImage());
         imageView.setFitWidth(tileSize);
         imageView.setFitHeight(tileSize);

@@ -20,10 +20,9 @@ public class SimpleSceneFactory implements SceneFactory {
     private final DataManager dataManager;
     private final AnimationFactory animFactory;
     private final HUDFactory hudFactory;
-    private final MenuOptionProvider menuOptionProvider;
     private final MenuFactory menuFactory;
 
-    public SimpleSceneFactory(GameEngine gameEngine, MapRenderer mapRenderer, DifficultyFactory difficultyFactory, SceneManager sceneManager, DataManager dataManager, AnimationFactory animFactory, HUDFactory hudFactory, MenuFactory menuFactory, MenuOptionProvider menuOptionProvider) {
+    public SimpleSceneFactory(GameEngine gameEngine, MapRenderer mapRenderer, DifficultyFactory difficultyFactory, SceneManager sceneManager, DataManager dataManager, AnimationFactory animFactory, HUDFactory hudFactory, MenuFactory menuFactory) {
         this.gameEngine = gameEngine;
         this.mapRenderer = mapRenderer;
         this.sceneManager = sceneManager;
@@ -32,7 +31,6 @@ public class SimpleSceneFactory implements SceneFactory {
         this.difficultyFactory = difficultyFactory;
         this.hudFactory = hudFactory;
         this.menuFactory = menuFactory;
-        this.menuOptionProvider = menuOptionProvider;
     }
 
     @Override
@@ -47,7 +45,7 @@ public class SimpleSceneFactory implements SceneFactory {
 
     @Override
     public Scene getGameScene() {
-        return new GameScene(gameEngine, hudFactory, menuFactory, menuOptionProvider).getScene();
+        return new GameScene(gameEngine, hudFactory, menuFactory).getScene();
     }
 
     @Override

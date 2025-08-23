@@ -24,6 +24,8 @@ import ir.ac.kntu.services.game.components.pathfinders.PathFinder;
 import ir.ac.kntu.services.game.components.tiles.factories.FlyWeightTileFactory;
 import ir.ac.kntu.services.app.database.HardCodedDataManager;
 import ir.ac.kntu.services.game.components.tiles.factories.TileFactory;
+import ir.ac.kntu.services.game.components.tiles.states.providers.SimpleTileStateProvider;
+import ir.ac.kntu.services.game.components.tiles.states.providers.TileStateProvider;
 import ir.ac.kntu.services.game.components.wallets.CoinsWallet;
 import ir.ac.kntu.services.game.components.wallets.Wallet;
 import ir.ac.kntu.services.game.components.wallets.generators.AutoCoinGenerator;
@@ -76,25 +78,26 @@ public class Kenney extends Application {
         DifficultyFactory difficultyFactory = new SimpleDifficultyFactory();
         WalletPublisher walletPublisher = new SimpleWalletPublisher();
         DefenderTypeFactory defenderTypeFactory = new FlyWeightDefenderTypeFactory();
-        MenuFactory menuFactory = new SimpleMenuFactory();
         List<DefenderType> defenderTypes = new ArrayList<>();
 
         defenderTypes.add(defenderTypeFactory.getFastTowerType());
 
         SceneManager sceneManager = new SimpleSceneManager(primaryStage);
-        TileFactory tileFactory = new FlyWeightTileFactory(animFactory);
-        MapRenderer mapRenderer = new GridMapRenderer(tileFactory);
+
         Wallet wallet = new CoinsWallet(walletPublisher);
         CoinGenerator coinGenerator = new AutoCoinGenerator(wallet);
         HUDFactory hudFactory = new SimpleHUDFactory(walletPublisher);
+        Market market = new KenneyMarket(defenderTypes, walletPublisher);
 
+        MenuOptionProvider menuOptionProvider = new SimpleMenuOptionProvider(defenderTypeFactory, market, animFactory);
+        MenuFactory menuFactory = new SimpleMenuFactory(menuOptionProvider);
+        TileStateProvider tileStateProvider = new SimpleTileStateProvider(animFactory, menuFactory);
+        TileFactory tileFactory = new FlyWeightTileFactory(animFactory, tileStateProvider);
+        MapRenderer mapRenderer = new GridMapRenderer(tileFactory);
         EnemyRenderer enemyRenderer = new SimpleEnemyRenderer(mapRenderer, tileFactory);
         PathFinder pathFinder = new BFSPathFinder(tileFactory);
         EnemyFactory enemyFactory = new SimpleEnemyFactory(enemyTypeFactory, pathFinder);
         EnemyManager enemyManager = new SimpleEnemyManager(enemyFactory, enemyRenderer);
-        Market market = new KenneyMarket(defenderTypes, walletPublisher);
-
-        MenuOptionProvider menuOptionProvider = new SimpleMenuOptionProvider(defenderTypeFactory, market, animFactory);
 
         GameEngine gameEngine = new KenneyGameEngine(mapRenderer, enemyRenderer, enemyManager, difficultyFactory, coinGenerator);
 
@@ -106,8 +109,7 @@ public class Kenney extends Application {
                 dataManager,
                 animFactory,
                 hudFactory,
-                menuFactory,
-                menuOptionProvider);
+                menuFactory);
 
         sceneManager.setSceneFactory(sceneFactory);
 

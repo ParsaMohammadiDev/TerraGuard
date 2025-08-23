@@ -13,7 +13,6 @@ public class Clicked implements TileState {
     private final Menu menu;
 
     private ClickableTile tile;
-    private ImageView tileView;
 
     public Clicked(AnimationFactory animFactory, MenuFactory menuFactory, TileStateProvider stateProvider) {
         this.menu = menuFactory.getConstructionMenu();

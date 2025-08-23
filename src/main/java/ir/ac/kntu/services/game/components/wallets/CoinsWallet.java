@@ -3,7 +3,7 @@ package ir.ac.kntu.services.game.components.wallets;
 import ir.ac.kntu.services.game.components.wallets.publishers.WalletPublisher;
 
 public class CoinsWallet implements Wallet {
-    private static final double STARTLING_BALANCE = 150;
+    private static final double STARTLING_BALANCE = 20;
 
     private final WalletPublisher walletPublisher;
 

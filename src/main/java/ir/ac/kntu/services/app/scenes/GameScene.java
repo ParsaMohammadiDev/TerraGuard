@@ -22,13 +22,11 @@ public class GameScene implements SceneLogic {
     private final GameEngine gameEngine;
     private final HUDFactory hudFactory;
     private final MenuFactory menuFactory;
-    private final MenuOptionProvider menuOptionProvider;
 
-    public GameScene(GameEngine gameEngine, HUDFactory hudFactory, MenuFactory menuFactory, MenuOptionProvider menuOptionProvider) {
+    public GameScene(GameEngine gameEngine, HUDFactory hudFactory, MenuFactory menuFactory) {
         this.gameEngine = gameEngine;
         this.hudFactory = hudFactory;
         this.menuFactory = menuFactory;
-        this.menuOptionProvider = menuOptionProvider;
     }
 
     @Override
@@ -48,7 +46,7 @@ public class GameScene implements SceneLogic {
     private Pane getGameHUD() {
         Pane gameHUD = new VBox();
         gameHUD.setPrefWidth(350);
-        gameHUD.getChildren().addAll(getCoinsHUD(), menuFactory.getConstructionMenu(menuOptionProvider.getConstructionMenuOptions()).getView());
+        gameHUD.getChildren().addAll(getCoinsHUD(), menuFactory.getConstructionMenu().getView());
         gameHUD.getStyleClass().add("game_hud");
         return gameHUD;
     }

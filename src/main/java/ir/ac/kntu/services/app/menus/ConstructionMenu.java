@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ConstructionMenu implements Menu {
     private final List<MenuOption> options;
-    private final ScrollPane scrollPane;
+    private final VBox menuPane;
 
     public ConstructionMenu(List<MenuOption> options) {
         this.options = options;
@@ -18,26 +18,27 @@ public class ConstructionMenu implements Menu {
         for (MenuOption option : options) {
             pane.getChildren().add(option.getView());
         }
-        scrollPane = new ScrollPane(pane);
+        ScrollPane scrollPane = new ScrollPane(pane);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        menuPane = new VBox(scrollPane);
+        menuPane.getStyleClass().add("construction_menu");
+        menuPane.setPrefSize(350, 200);
+        menuPane.setAlignment(Pos.TOP_CENTER);
+        menuPane.setVisible(false);
     }
 
     @Override
     public Node getView() {
-        VBox menu = new VBox(scrollPane);
-        menu.getStyleClass().add("construction_menu");
-        menu.setPrefSize(350, 200);
-        menu.setAlignment(Pos.TOP_CENTER);
-        return menu;
+        return menuPane;
     }
 
     @Override
     public void show() {
-        scrollPane.setVisible(true);
+        menuPane.setVisible(true);
     }
 
     @Override
     public void hide() {
-        scrollPane.setVisible(false);
+        menuPane.setVisible(false);
     }
 }
