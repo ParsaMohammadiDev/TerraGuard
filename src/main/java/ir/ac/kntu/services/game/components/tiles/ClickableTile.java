@@ -1,11 +1,12 @@
 package ir.ac.kntu.services.game.components.tiles;
 
 import ir.ac.kntu.services.game.components.tiles.states.TileState;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 
 public abstract class ClickableTile extends Tile {
     private TileState state;
-    private final ImageView view;
+    private final Node view;
 
     public ClickableTile(TileType tileType, Double tileSize, TileState state) {
         super(tileType, tileSize);
@@ -28,7 +29,7 @@ public abstract class ClickableTile extends Tile {
     }
 
     @Override
-    public ImageView getView() {
+    public Node getView() {
         return view;
     }
 }
