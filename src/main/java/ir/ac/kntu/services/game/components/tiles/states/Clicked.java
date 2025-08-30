@@ -7,6 +7,7 @@ import ir.ac.kntu.services.game.components.tiles.ClickableTile;
 import ir.ac.kntu.services.game.components.tiles.states.providers.TileStateProvider;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 public class Clicked implements TileState {
     private final TileStateProvider stateProvider;
@@ -24,10 +25,11 @@ public class Clicked implements TileState {
     @Override
     public void setTile(ClickableTile tile) {
         this.tile = tile;
+        menu.setInvoker(tile);
     }
 
     @Override
-    public void apply(Node view) {
+    public void apply(Pane view) {
         animFactory.getKillerAnimation().animate(view);
     }
 

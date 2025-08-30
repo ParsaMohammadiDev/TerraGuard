@@ -6,4 +6,5 @@ public interface Menu {
     Node getView();
     void show();
     void hide();
+    void setInvoker(Object invoker);
 }

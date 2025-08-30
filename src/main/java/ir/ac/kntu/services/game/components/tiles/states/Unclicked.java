@@ -1,12 +1,12 @@
 package ir.ac.kntu.services.game.components.tiles.states;
 
 import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
+import ir.ac.kntu.services.app.menus.ConstructionMenu;
 import ir.ac.kntu.services.app.menus.Menu;
 import ir.ac.kntu.services.app.menus.factories.MenuFactory;
 import ir.ac.kntu.services.game.components.tiles.ClickableTile;
 import ir.ac.kntu.services.game.components.tiles.states.providers.TileStateProvider;
-import javafx.scene.Node;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 public class Unclicked implements TileState {
     private final AnimationFactory animFactory;
@@ -24,10 +24,11 @@ public class Unclicked implements TileState {
     @Override
     public void setTile(ClickableTile tile) {
         this.tile = tile;
+        menu.setInvoker(tile);
     }
 
     @Override
-    public void apply(Node view) {
+    public void apply(Pane view) {
         animFactory.getTileHoverAnimation().animate(view);
     }
 
