@@ -1,7 +1,6 @@
 package ir.ac.kntu.services.game.components.tiles.states;
 
 import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
-import ir.ac.kntu.services.app.menus.ConstructionMenu;
 import ir.ac.kntu.services.app.menus.Menu;
 import ir.ac.kntu.services.app.menus.factories.MenuFactory;
 import ir.ac.kntu.services.game.components.tiles.ClickableTile;

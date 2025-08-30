@@ -5,8 +5,6 @@ import ir.ac.kntu.services.app.menus.Menu;
 import ir.ac.kntu.services.app.menus.factories.MenuFactory;
 import ir.ac.kntu.services.game.components.tiles.ClickableTile;
 import ir.ac.kntu.services.game.components.tiles.states.providers.TileStateProvider;
-import javafx.scene.Node;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class Clicked implements TileState {

@@ -1,6 +1,7 @@
 package ir.ac.kntu.services.app.menus.options;
 
 import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
+import ir.ac.kntu.services.app.menus.ConstructionMenu;
 import ir.ac.kntu.services.game.components.defenders.types.DefenderType;
 import ir.ac.kntu.services.game.core.markets.Market;
 import javafx.geometry.Pos;
@@ -25,6 +26,7 @@ public abstract class ConstructionOption implements MenuOption {
     private Text nameText;
     private Text priceText;
     private Image itemImage;
+    private ConstructionMenu menu;
 
     private final HBox optionPane = new HBox();
 
@@ -88,6 +90,14 @@ public abstract class ConstructionOption implements MenuOption {
 
     public DefenderType getDefenderType() {
         return defenderType;
+    }
+
+    public void setMenu(ConstructionMenu menu) {
+        this.menu = menu;
+    }
+
+    public ConstructionMenu getMenu() {
+        return menu;
     }
 
     public abstract void executeOnAction();

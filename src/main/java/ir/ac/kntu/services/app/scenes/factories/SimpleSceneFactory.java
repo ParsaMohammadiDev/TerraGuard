@@ -4,7 +4,6 @@ import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
 import ir.ac.kntu.services.app.database.DataManager;
 import ir.ac.kntu.services.app.huds.factories.HUDFactory;
 import ir.ac.kntu.services.app.menus.factories.MenuFactory;
-import ir.ac.kntu.services.app.menus.options.providers.MenuOptionProvider;
 import ir.ac.kntu.services.app.scenes.*;
 import ir.ac.kntu.services.app.scenes.managers.SceneManager;
 import ir.ac.kntu.services.game.components.maps.renderers.MapRenderer;

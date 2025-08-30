@@ -5,7 +5,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 
 public class IntroScene implements SceneLogic {
     private static final String NAME_ICON_PATH = "/app/name_icon.png";

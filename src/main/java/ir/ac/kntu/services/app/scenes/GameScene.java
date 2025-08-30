@@ -2,7 +2,6 @@ package ir.ac.kntu.services.app.scenes;
 
 import ir.ac.kntu.services.app.huds.factories.HUDFactory;
 import ir.ac.kntu.services.app.menus.factories.MenuFactory;
-import ir.ac.kntu.services.app.menus.options.providers.MenuOptionProvider;
 import ir.ac.kntu.services.game.core.GameEngine;
 import javafx.scene.Node;
 import javafx.scene.Scene;

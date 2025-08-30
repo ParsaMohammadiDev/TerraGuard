@@ -3,15 +3,17 @@ package ir.ac.kntu.services.game.components.tiles;
 import ir.ac.kntu.services.game.components.tiles.states.TileState;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 public abstract class ClickableTile extends Tile {
     private TileState state;
-    private final Node view;
+    private final Pane view;
 
     public ClickableTile(TileType tileType, Double tileSize, TileState state) {
         super(tileType, tileSize);
         this.state = state;
-        this.view = new ImageView(getImage());
+        this.view = new Pane();
+        view.getChildren().add(new ImageView(getImage()));
         setState(state);
         state.setTile(this);
         view.setOnMouseClicked(e -> executeOnClick());

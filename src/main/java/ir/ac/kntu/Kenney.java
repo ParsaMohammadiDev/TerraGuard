@@ -5,11 +5,14 @@ import ir.ac.kntu.services.app.animations.factories.SimpleAnimationFactory;
 import ir.ac.kntu.services.app.database.DataManager;
 import ir.ac.kntu.services.app.huds.factories.HUDFactory;
 import ir.ac.kntu.services.app.huds.factories.SimpleHUDFactory;
-import ir.ac.kntu.services.app.menus.factories.MenuFactory;
 import ir.ac.kntu.services.app.menus.factories.SimpleMenuFactory;
 import ir.ac.kntu.services.app.menus.options.providers.MenuOptionProvider;
 import ir.ac.kntu.services.app.menus.options.providers.SimpleMenuOptionProvider;
 import ir.ac.kntu.services.app.scenes.managers.SceneManager;
+import ir.ac.kntu.services.game.components.defenders.factories.DefenderFactory;
+import ir.ac.kntu.services.game.components.defenders.factories.SimpleDefenderFactory;
+import ir.ac.kntu.services.game.components.defenders.managers.DefenderManager;
+import ir.ac.kntu.services.game.components.defenders.managers.SimpleDefenderManager;
 import ir.ac.kntu.services.game.components.defenders.types.DefenderType;
 import ir.ac.kntu.services.game.components.defenders.types.factories.DefenderTypeFactory;
 import ir.ac.kntu.services.game.components.defenders.types.factories.FlyWeightDefenderTypeFactory;
@@ -55,7 +58,6 @@ import java.util.List;
 
 public class Kenney extends Application {
     private static final String APP_NAME = "Kenney";
-    private static final String APP_VERSION = "1.0-Beta";
     private static final String ICON_PATH = "/app/icon.png";
 
     public static void main(String[] args) {
@@ -81,6 +83,8 @@ public class Kenney extends Application {
         WalletPublisher walletPublisher = new SimpleWalletPublisher();
         DefenderTypeFactory defenderTypeFactory = new FlyWeightDefenderTypeFactory();
         List<DefenderType> defenderTypes = new ArrayList<>();
+        SimpleMenuFactory menuFactory = new SimpleMenuFactory();
+        DefenderFactory defenderFactory = new SimpleDefenderFactory();
 
         defenderTypes.add(defenderTypeFactory.getFastTowerType());
 
@@ -92,16 +96,17 @@ public class Kenney extends Application {
         WalletMediator walletMediator = new SimpleWalletMediator(wallet);
         Market market = new KenneyMarket(defenderTypes, walletPublisher, walletMediator);
 
-        MenuOptionProvider menuOptionProvider = new SimpleMenuOptionProvider(defenderTypeFactory, market, animFactory);
-        MenuFactory menuFactory = new SimpleMenuFactory(menuOptionProvider);
+
         TileStateProvider tileStateProvider = new SimpleTileStateProvider(animFactory, menuFactory);
+        DefenderManager defenderManager = new SimpleDefenderManager(tileStateProvider, defenderFactory);
+        MenuOptionProvider menuOptionProvider = new SimpleMenuOptionProvider(defenderTypeFactory, market, animFactory, defenderManager);
+        menuFactory.setOptionProvider(menuOptionProvider);
         TileFactory tileFactory = new FlyWeightTileFactory(animFactory, tileStateProvider);
         MapRenderer mapRenderer = new GridMapRenderer(tileFactory);
         EnemyRenderer enemyRenderer = new SimpleEnemyRenderer(mapRenderer, tileFactory);
         PathFinder pathFinder = new BFSPathFinder(tileFactory);
         EnemyFactory enemyFactory = new SimpleEnemyFactory(enemyTypeFactory, pathFinder);
         EnemyManager enemyManager = new SimpleEnemyManager(enemyFactory, enemyRenderer);
-
         GameEngine gameEngine = new KenneyGameEngine(mapRenderer, enemyRenderer, enemyManager, difficultyFactory, coinGenerator);
 
         SceneFactory sceneFactory = new SimpleSceneFactory(
