@@ -5,4 +5,5 @@ import javafx.beans.property.BooleanProperty;
 
 public interface Market {
     BooleanProperty isAffordable(DefenderType defenderType);
+    boolean purchase(DefenderType defenderType);
 }
