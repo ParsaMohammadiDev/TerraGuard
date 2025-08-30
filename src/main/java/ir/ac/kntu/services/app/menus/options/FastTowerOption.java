@@ -5,8 +5,12 @@ import ir.ac.kntu.services.game.components.defenders.types.factories.DefenderTyp
 import ir.ac.kntu.services.game.core.markets.Market;
 
 public class FastTowerOption extends ConstructionOption {
-
     public FastTowerOption(DefenderTypeFactory defenderTypeFactory, AnimationFactory animFactory, Market market) {
         super(defenderTypeFactory.getFastTowerType(), animFactory, market);
+    }
+
+    @Override
+    public void executeOnAction() {
+        getMarket().purchase(getDefenderType());
     }
 }

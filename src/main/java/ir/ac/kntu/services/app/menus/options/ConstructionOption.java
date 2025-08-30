@@ -19,6 +19,8 @@ public abstract class ConstructionOption implements MenuOption {
     private static final Image COIN_ICON_IMAGE = new Image(COIN_ICON_PATH);
 
     private final AnimationFactory animFactory;
+    private final Market market;
+    private final DefenderType defenderType;
 
     private Text nameText;
     private Text priceText;
@@ -31,7 +33,10 @@ public abstract class ConstructionOption implements MenuOption {
         this.priceText = new Text(String.valueOf((int)defenderType.getPrice()));
         this.itemImage = defenderType.getImage();
         this.animFactory = animFactory;
+        this.market = market;
+        this.defenderType = defenderType;
         styleMenuPane(market, defenderType);
+        optionPane.setOnMouseClicked(event -> executeOnAction());
     }
 
     @Override
@@ -76,4 +81,14 @@ public abstract class ConstructionOption implements MenuOption {
         );
         animFactory.getButtonHoverAnimation().animate(optionPane);
     }
+
+    public Market getMarket() {
+        return market;
+    }
+
+    public DefenderType getDefenderType() {
+        return defenderType;
+    }
+
+    public abstract void executeOnAction();
 }
