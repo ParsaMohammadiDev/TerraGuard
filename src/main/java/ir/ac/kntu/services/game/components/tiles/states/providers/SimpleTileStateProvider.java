@@ -2,6 +2,8 @@ package ir.ac.kntu.services.game.components.tiles.states.providers;
 
 import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
 import ir.ac.kntu.services.app.menus.factories.MenuFactory;
+import ir.ac.kntu.services.game.components.defenders.Defender;
+import ir.ac.kntu.services.game.components.tiles.states.Built;
 import ir.ac.kntu.services.game.components.tiles.states.Clicked;
 import ir.ac.kntu.services.game.components.tiles.states.Unclicked;
 import ir.ac.kntu.services.game.components.tiles.states.TileState;
@@ -23,5 +25,10 @@ public class SimpleTileStateProvider implements TileStateProvider {
     @Override
     public TileState getClickedTileState() {
         return new Clicked(animFactory, menuFactory, this);
+    }
+
+    @Override
+    public TileState getBuiltState(Defender defender) {
+        return new Built(defender);
     }
 }
