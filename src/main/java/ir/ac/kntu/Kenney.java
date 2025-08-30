@@ -30,6 +30,8 @@ import ir.ac.kntu.services.game.components.wallets.CoinsWallet;
 import ir.ac.kntu.services.game.components.wallets.Wallet;
 import ir.ac.kntu.services.game.components.wallets.generators.AutoCoinGenerator;
 import ir.ac.kntu.services.game.components.wallets.generators.CoinGenerator;
+import ir.ac.kntu.services.game.components.wallets.mediators.SimpleWalletMediator;
+import ir.ac.kntu.services.game.components.wallets.mediators.WalletMediator;
 import ir.ac.kntu.services.game.components.wallets.publishers.SimpleWalletPublisher;
 import ir.ac.kntu.services.game.components.wallets.publishers.WalletPublisher;
 import ir.ac.kntu.services.game.core.GameEngine;
@@ -87,7 +89,8 @@ public class Kenney extends Application {
         Wallet wallet = new CoinsWallet(walletPublisher);
         CoinGenerator coinGenerator = new AutoCoinGenerator(wallet);
         HUDFactory hudFactory = new SimpleHUDFactory(walletPublisher);
-        Market market = new KenneyMarket(defenderTypes, walletPublisher);
+        WalletMediator walletMediator = new SimpleWalletMediator(wallet);
+        Market market = new KenneyMarket(defenderTypes, walletPublisher, walletMediator);
 
         MenuOptionProvider menuOptionProvider = new SimpleMenuOptionProvider(defenderTypeFactory, market, animFactory);
         MenuFactory menuFactory = new SimpleMenuFactory(menuOptionProvider);
