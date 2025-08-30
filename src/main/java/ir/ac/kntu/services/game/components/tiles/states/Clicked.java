@@ -5,6 +5,7 @@ import ir.ac.kntu.services.app.menus.Menu;
 import ir.ac.kntu.services.app.menus.factories.MenuFactory;
 import ir.ac.kntu.services.game.components.tiles.ClickableTile;
 import ir.ac.kntu.services.game.components.tiles.states.providers.TileStateProvider;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 
 public class Clicked implements TileState {
@@ -26,7 +27,7 @@ public class Clicked implements TileState {
     }
 
     @Override
-    public void apply(ImageView view) {
+    public void apply(Node view) {
         animFactory.getKillerAnimation().animate(view);
     }
 

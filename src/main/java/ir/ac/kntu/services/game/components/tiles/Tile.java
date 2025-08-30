@@ -1,5 +1,6 @@
 package ir.ac.kntu.services.game.components.tiles;
 
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -12,7 +13,7 @@ public abstract class Tile {
         this.tileSize = tileSize;
     }
 
-    public ImageView getView() {
+    public Node getView() {
         ImageView imageView = new ImageView(getImage());
         imageView.setFitWidth(tileSize);
         imageView.setFitHeight(tileSize);
