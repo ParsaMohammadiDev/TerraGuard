@@ -23,6 +23,8 @@ public class IntroScene implements SceneLogic {
         ImageView nameIconView = new ImageView(nameIcon);
         animFactory.getZoomAndFadeAnimation().animate(nameIconView);
         root.getChildren().add(nameIconView);
-        return new Scene(root, 1200, 650, Color.rgb(3, 177, 252));
+        Scene scene = new Scene(root, 1200, 650);
+        scene.getStylesheets().add(getClass().getResource("/style/intro_scene_style.css").toExternalForm());
+        return scene;
     }
 }

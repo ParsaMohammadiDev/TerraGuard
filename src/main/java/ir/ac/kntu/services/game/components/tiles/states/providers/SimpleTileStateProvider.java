@@ -12,7 +12,7 @@ public class SimpleTileStateProvider implements TileStateProvider {
 
     public SimpleTileStateProvider(AnimationFactory animFactory, MenuFactory menuFactory) {
         this.animFactory = animFactory;
-        this.menuFacry = menuFactory;
+        this.menuFactory = menuFactory;
     }
 
     @Override
