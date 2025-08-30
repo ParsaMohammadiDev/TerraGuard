@@ -60,7 +60,7 @@ public abstract class ConstructionOption implements MenuOption {
     private Pane getPricePane() {
         HBox pricePane = new HBox();
         ImageView coinIcon = new ImageView(COIN_ICON_IMAGE);
-        coinIcon.setFitHeight(30);
+        coinIcon.setFitHeight(25);
         styleText(priceText);
         coinIcon.setPreserveRatio(true);
         pricePane.getChildren().addAll(coinIcon, priceText);
@@ -74,8 +74,8 @@ public abstract class ConstructionOption implements MenuOption {
     }
 
     private void styleMenuPane(Market market, DefenderType defenderType) {
-        optionPane.setAlignment(Pos.CENTER);
-        optionPane.setSpacing(50);
+        optionPane.setAlignment(Pos.CENTER_LEFT);
+        optionPane.setSpacing(20);
         optionPane.getChildren().addAll(getTitlePane(), getPricePane());
         optionPane.disableProperty().bind(market.isAffordable(defenderType).not());
         optionPane.opacityProperty().bind(

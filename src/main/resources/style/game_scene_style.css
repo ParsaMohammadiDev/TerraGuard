@@ -36,10 +36,14 @@
     -fx-padding: 10 20 10 10;
 }
 
+.scroll_pane {
+    -fx-spacing: 20px;
+}
+
 .scroll-pane {
     -fx-background: transparent;
     -fx-background-color: transparent;
-    -fx-padding: 20;
+
     -fx-spacing: 20;
 }
 

@@ -20,11 +20,12 @@ public class ConstructionMenu implements Menu {
             option.setMenu(this);
             pane.getChildren().add(option.getView());
         }
+        pane.getStyleClass().add("scroll_pane");
         ScrollPane scrollPane = new ScrollPane(pane);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         menuPane = new VBox(scrollPane);
         menuPane.getStyleClass().add("construction_menu");
-        menuPane.setPrefSize(350, 200);
+        menuPane.setPrefSize(450, 200);
         menuPane.setAlignment(Pos.TOP_CENTER);
         menuPane.setVisible(false);
     }
