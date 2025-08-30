@@ -87,6 +87,7 @@ public class Kenney extends Application {
         DefenderFactory defenderFactory = new SimpleDefenderFactory();
 
         defenderTypes.add(defenderTypeFactory.getFastTowerType());
+        defenderTypes.add(defenderTypeFactory.getPowerfulTowerType());
 
         SceneManager sceneManager = new SimpleSceneManager(primaryStage);
 
