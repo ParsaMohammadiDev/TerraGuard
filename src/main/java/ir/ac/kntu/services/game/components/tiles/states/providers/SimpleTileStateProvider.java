@@ -19,12 +19,12 @@ public class SimpleTileStateProvider implements TileStateProvider {
 
     @Override
     public TileState getUnclickedTileState() {
-        return new Unclicked(animFactory, menuFactory, this);
+        return new Unclicked(animFactory, menuFactory.getConstructionMenu(), this);
     }
 
     @Override
     public TileState getClickedTileState() {
-        return new Clicked(animFactory, menuFactory, this);
+        return new Clicked(animFactory, menuFactory.getConstructionMenu(), this);
     }
 
     @Override

@@ -4,4 +4,5 @@ import javafx.scene.Node;
 
 public interface MenuOption {
     Node getView();
+    void executeOnAction();
 }

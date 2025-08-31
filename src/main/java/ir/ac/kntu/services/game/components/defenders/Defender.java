@@ -11,7 +11,7 @@ public abstract class Defender {
     private static final Image DEFENDER_BASE = new Image(DEFENDER_BASE_PATH);
 
     private final DefenderType defenderType;
-    private final StackPane defenderView;
+    private final Pane defenderView;
 
     public Defender(DefenderType defenderType) {
         this.defenderType = defenderType;

@@ -7,4 +7,5 @@ public interface Menu {
     void show();
     void hide();
     void setInvoker(Object invoker);
+    Object getInvoker();
 }

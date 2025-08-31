@@ -14,8 +14,8 @@ public class Clicked implements TileState {
 
     private ClickableTile tile;
 
-    public Clicked(AnimationFactory animFactory, MenuFactory menuFactory, TileStateProvider stateProvider) {
-        this.menu = menuFactory.getConstructionMenu();
+    public Clicked(AnimationFactory animFactory, Menu menu, TileStateProvider stateProvider) {
+        this.menu = menu;
         this.stateProvider = stateProvider;
         this.animFactory = animFactory;
     }

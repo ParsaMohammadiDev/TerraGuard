@@ -20,7 +20,7 @@ public class CoinsWallet implements Wallet {
     }
 
     @Override
-    public boolean withdraw(double amount) {
+    public synchronized boolean withdraw(double amount) {
         if (balance < amount) return false;
         else balance -= amount;
         walletPublisher.notifySubscribers(balance);

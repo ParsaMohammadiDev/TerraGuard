@@ -53,4 +53,9 @@ public class ConstructionMenu implements Menu {
     public void setInvoker(Object invoker) {
         this.tile = (ClickableTile) invoker;
     }
+
+    @Override
+    public Object getInvoker() {
+        return tile;
+    }
 }

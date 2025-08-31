@@ -3,6 +3,7 @@ package ir.ac.kntu.services.app.menus.options;
 import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
 import ir.ac.kntu.services.game.components.defenders.managers.DefenderManager;
 import ir.ac.kntu.services.game.components.defenders.types.factories.DefenderTypeFactory;
+import ir.ac.kntu.services.game.components.tiles.ClickableTile;
 import ir.ac.kntu.services.game.core.markets.Market;
 
 public class PowerfulTowerOption extends ConstructionOption {
@@ -16,7 +17,7 @@ public class PowerfulTowerOption extends ConstructionOption {
     @Override
     public void executeOnAction() {
         getMarket().purchase(getDefenderType());
-        defenderManager.plantDefender(getMenu().getTile(), getDefenderType());
+        defenderManager.plantDefender((ClickableTile) getMenu().getInvoker(), getDefenderType());
         getMenu().hide();
     }
 }

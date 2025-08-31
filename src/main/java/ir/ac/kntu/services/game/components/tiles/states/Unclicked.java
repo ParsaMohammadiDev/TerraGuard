@@ -2,7 +2,6 @@ package ir.ac.kntu.services.game.components.tiles.states;
 
 import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
 import ir.ac.kntu.services.app.menus.Menu;
-import ir.ac.kntu.services.app.menus.factories.MenuFactory;
 import ir.ac.kntu.services.game.components.tiles.ClickableTile;
 import ir.ac.kntu.services.game.components.tiles.states.providers.TileStateProvider;
 import javafx.scene.layout.Pane;
@@ -14,10 +13,10 @@ public class Unclicked implements TileState {
 
     private ClickableTile tile;
 
-    public Unclicked(AnimationFactory animFactory, MenuFactory menuFactory, TileStateProvider stateProvider) {
+    public Unclicked(AnimationFactory animFactory, Menu menu, TileStateProvider stateProvider) {
         this.animFactory = animFactory;
         this.stateProvider = stateProvider;
-        this.menu = menuFactory.getConstructionMenu();
+        this.menu = menu;
     }
 
     @Override
