@@ -8,4 +8,5 @@ public interface SceneFactory {
     Scene getGameScene();
     Scene getMapSelectorScene();
     Scene getDifficultySelectorScene();
+    Scene getGameOverScene();
 }

@@ -56,4 +56,9 @@ public class SimpleSceneFactory implements SceneFactory {
     public Scene getDifficultySelectorScene() {
         return new DifficultySelectorScene(gameEngine, difficultyFactory, sceneManager, animFactory).getScene();
     }
+
+    @Override
+    public Scene getGameOverScene() {
+        return new GameOverScene(animFactory, sceneManager).getScene();
+    }
 }

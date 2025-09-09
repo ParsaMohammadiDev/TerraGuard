@@ -47,4 +47,9 @@ public class SimpleSceneManager implements SceneManager {
     public void showDifficultySelector() {
         stage.setScene(sceneFactory.getDifficultySelectorScene());
     }
+
+    @Override
+    public void showGameOver() {
+        stage.setScene(sceneFactory.getGameOverScene());
+    }
 }
