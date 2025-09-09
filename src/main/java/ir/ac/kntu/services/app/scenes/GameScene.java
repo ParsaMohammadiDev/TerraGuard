@@ -33,7 +33,7 @@ public class GameScene implements SceneLogic {
         VBox root = new VBox();
         HBox sceneElements = new HBox();
         sceneElements.getStyleClass().add("scene_elements");
-        Pane gamePane = gameEngine.getGamePane();
+        Pane gamePane = gameEngine.startGame();
         gamePane.getStyleClass().add("game_pane");
         sceneElements.getChildren().addAll(gamePane, getGameHUD());
         root.getChildren().add(sceneElements);

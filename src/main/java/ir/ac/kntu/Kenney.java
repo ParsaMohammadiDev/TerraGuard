@@ -108,7 +108,15 @@ public class Kenney extends Application {
         PathFinder pathFinder = new BFSPathFinder(tileFactory);
         EnemyFactory enemyFactory = new SimpleEnemyFactory(enemyTypeFactory, pathFinder);
         EnemyManager enemyManager = new SimpleEnemyManager(enemyFactory, enemyRenderer);
-        GameEngine gameEngine = new KenneyGameEngine(mapRenderer, enemyRenderer, enemyManager, difficultyFactory, coinGenerator);
+
+        GameEngine gameEngine = new KenneyGameEngine(
+                mapRenderer,
+                enemyRenderer,
+                enemyManager,
+                difficultyFactory,
+                coinGenerator,
+                sceneManager,
+                wallet);
 
         SceneFactory sceneFactory = new SimpleSceneFactory(
                 gameEngine,

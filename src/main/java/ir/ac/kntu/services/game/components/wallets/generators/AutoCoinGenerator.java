@@ -11,15 +11,17 @@ public class AutoCoinGenerator implements CoinGenerator {
 
     private final Wallet wallet;
 
-    private final ScheduledExecutorService executor;
+    private ScheduledExecutorService executor;
 
     public AutoCoinGenerator(Wallet wallet) {
         this.wallet = wallet;
-        executor = Executors.newSingleThreadScheduledExecutor();
     }
 
     @Override
     public void generate() {
+        if (executor == null || executor.isShutdown() || executor.isTerminated()) {
+            executor = Executors.newSingleThreadScheduledExecutor();
+        }
         executor.scheduleWithFixedDelay(() -> wallet.charge(1), 0, GENERATION_DELAY, TIME_UNIT);
     }
 

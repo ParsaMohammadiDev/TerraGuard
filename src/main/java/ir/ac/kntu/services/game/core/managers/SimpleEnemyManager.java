@@ -3,6 +3,7 @@ package ir.ac.kntu.services.game.core.managers;
 import ir.ac.kntu.services.game.components.enemies.Enemy;
 import ir.ac.kntu.services.game.components.enemies.factories.EnemyFactory;
 import ir.ac.kntu.services.game.components.maps.Map;
+import ir.ac.kntu.services.game.core.GameEngine;
 import ir.ac.kntu.services.game.core.difficulties.GameDifficulty;
 import ir.ac.kntu.services.game.core.spawners.EnemyRenderer;
 import javafx.animation.KeyFrame;
@@ -13,9 +14,16 @@ public class SimpleEnemyManager implements EnemyManager {
     private static final int SOLIDER_COUNT_SEED = 5;
     private static final int SOLIDER_SPAWN_RATE_SEED = 4;
     private static final int SOLDIER_SPEED_SEED = 30;
+    private static final double ENEMY_OVERCOME_PERCENTAGE = 0.1;
 
     private final EnemyFactory enemyFactory;
     private final EnemyRenderer enemyRenderer;
+    private GameEngine gameEngine;
+
+    private Timeline soldierManager;
+
+    private int initEnemyCount = 0;
+    private int reachedEnemyCount = 0;
 
     public SimpleEnemyManager(EnemyFactory enemyFactory, EnemyRenderer enemyRenderer) {
         this.enemyFactory = enemyFactory;
@@ -23,28 +31,46 @@ public class SimpleEnemyManager implements EnemyManager {
     }
 
     @Override
-    public void runEnemies(GameDifficulty difficulty, Map map) {
+    public void runEnemies(GameDifficulty difficulty, Map map, GameEngine gameEngine) {
         runSoldiers(difficulty, map);
+        this.gameEngine = gameEngine;
+    }
+
+    @Override
+    public void reachEnemy() {
+        reachedEnemyCount ++;
+        if (reachedEnemyCount >= initEnemyCount * ENEMY_OVERCOME_PERCENTAGE) {
+            reset();
+            gameEngine.gameOver();
+        }
     }
 
     private void runSoldiers(GameDifficulty difficulty, Map map) {
         int soldierCount = (int) (difficulty.getDifficultyCoefficient() * SOLIDER_COUNT_SEED);
+        initEnemyCount += soldierCount;
         double spawnRate = 1000 * SOLIDER_SPAWN_RATE_SEED * Math.pow(difficulty.getDifficultyCoefficient(), -1);
         double soldierSpeed = difficulty.getDifficultyCoefficient() * SOLDIER_SPEED_SEED;
 
-        Timeline timeline = new Timeline();
-        timeline.setCycleCount(soldierCount);
+        soldierManager = new Timeline();
+        soldierManager.setCycleCount(soldierCount);
 
         KeyFrame keyFrame = new KeyFrame(
                 Duration.millis(spawnRate),
                 event -> {
                     Enemy newSoldier = enemyFactory.getSolider(map);
                     newSoldier.setSpeed(soldierSpeed);
-                    enemyRenderer.addEnemy(newSoldier);
+                    enemyRenderer.addEnemy(newSoldier, this);
                 }
         );
 
-        timeline.getKeyFrames().add(keyFrame);
-        timeline.play();
+        soldierManager.getKeyFrames().add(keyFrame);
+        soldierManager.play();
+    }
+
+    private void reset() {
+        reachedEnemyCount = 0;
+        initEnemyCount = 0;
+        enemyRenderer.reset();
+        if (soldierManager != null) soldierManager.stop();
     }
 }
