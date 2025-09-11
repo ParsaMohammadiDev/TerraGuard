@@ -8,8 +8,10 @@ import javafx.scene.layout.StackPane;
 import java.util.List;
 
 public class Solider extends Enemy {
+    private static final double DAMAGE_COEFFICIENT = 10.0;
+
     public Solider(EnemyType type, List<Point2D> path) {
-        super(type, path);
+        super(type, path, DAMAGE_COEFFICIENT);
     }
 
     @Override

@@ -14,13 +14,17 @@ public abstract class Enemy {
     private double x;
     private double y;
     private double speed;
+    private double health;
     private StackPane enemyView;
 
-    public Enemy(EnemyType type, List<Point2D> path) {
+    private double damageCoefficient;
+
+    public Enemy(EnemyType type, List<Point2D> path, double damageCoefficient) {
         this.type = type;
         this.path = path;
         enemyView = getEnemyComposite();
         enemyView.setPrefSize(VIEW_SIZE, VIEW_SIZE);
+        this.damageCoefficient = damageCoefficient;
     }
 
     public EnemyType getEnemyType() {
@@ -45,6 +49,14 @@ public abstract class Enemy {
 
     public double getSpeed() {
         return speed;
+    }
+
+    public double getHealth() {
+        return health;
+    }
+
+    public void damage(double amount) {
+        health -= damageCoefficient * amount;
     }
 
     public void setSpeed(double speed) {

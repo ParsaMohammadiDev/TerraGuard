@@ -14,7 +14,7 @@ public class SimpleEnemyManager implements EnemyManager {
     private static final int SOLIDER_COUNT_SEED = 5;
     private static final int SOLIDER_SPAWN_RATE_SEED = 4;
     private static final int SOLDIER_SPEED_SEED = 30;
-    private static final double ENEMY_OVERCOME_PERCENTAGE = 0.1;
+    private static final double ENEMY_OVERCOME_PERCENTAGE = 0.5;
 
     private final EnemyFactory enemyFactory;
     private final EnemyRenderer enemyRenderer;
