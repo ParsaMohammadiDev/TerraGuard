@@ -1,4 +1,4 @@
-package ir.ac.kntu.services.game.components.defenders.managers;
+package ir.ac.kntu.services.game.core.managers;
 
 import ir.ac.kntu.services.game.components.defenders.types.DefenderType;
 import ir.ac.kntu.services.game.components.tiles.ClickableTile;
