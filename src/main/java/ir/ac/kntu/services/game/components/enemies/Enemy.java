@@ -1,12 +1,13 @@
 package ir.ac.kntu.services.game.components.enemies;
 
+import ir.ac.kntu.services.game.components.Entity;
 import ir.ac.kntu.services.game.components.enemies.types.EnemyType;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import java.util.List;
 
-public abstract class Enemy {
+public abstract class Enemy implements Entity {
     private static final double VIEW_SIZE = 70;
 
     private EnemyType type;
@@ -31,10 +32,6 @@ public abstract class Enemy {
         return type;
     }
 
-    public Pane getView() {
-        return enemyView;
-    }
-
     public List<Point2D> getPath() {
         return path;
     }
@@ -51,14 +48,6 @@ public abstract class Enemy {
         return speed;
     }
 
-    public double getHealth() {
-        return health;
-    }
-
-    public void damage(double amount) {
-        health -= damageCoefficient * amount;
-    }
-
     public void setSpeed(double speed) {
         this.speed = speed;
     }
@@ -71,4 +60,19 @@ public abstract class Enemy {
     }
 
     public abstract StackPane getEnemyComposite();
+
+    @Override
+    public Pane getView() {
+        return enemyView;
+    }
+
+    @Override
+    public double getHealth() {
+        return health;
+    }
+
+    @Override
+    public void damage(double amount) {
+        health -= damageCoefficient * amount;
+    }
 }
