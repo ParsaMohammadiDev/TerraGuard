@@ -1,6 +1,7 @@
 package ir.ac.kntu.services.game.components.defenders;
 
 import ir.ac.kntu.services.game.components.Shooter;
+import ir.ac.kntu.services.game.components.bullets.BulletType;
 import ir.ac.kntu.services.game.components.defenders.types.DefenderType;
 import ir.ac.kntu.services.game.components.enemies.Enemy;
 import javafx.scene.image.ImageView;
@@ -10,6 +11,8 @@ import java.util.List;
 
 public class PowerfulTower extends Defender implements Shooter {
     private static final double DAMAGE_COEFFICIENT = 2.5;
+
+    private final BulletType bulletType = BulletType.NORMAL_BULLET;
 
     public PowerfulTower(DefenderType defenderType) {
         super(defenderType, DAMAGE_COEFFICIENT);
@@ -25,5 +28,10 @@ public class PowerfulTower extends Defender implements Shooter {
     @Override
     public void activate(List<Enemy> enemies) {
         // logic
+    }
+
+    @Override
+    public BulletType getBulletType() {
+        return bulletType;
     }
 }
