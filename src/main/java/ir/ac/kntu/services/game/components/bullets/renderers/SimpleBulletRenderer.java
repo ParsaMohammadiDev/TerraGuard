@@ -1,0 +1,60 @@
+package ir.ac.kntu.services.game.components.bullets.renderers;
+
+import ir.ac.kntu.services.game.components.Entity;
+import ir.ac.kntu.services.game.components.Shooter;
+import ir.ac.kntu.services.game.components.bullets.Bullet;
+import javafx.animation.AnimationTimer;
+import javafx.geometry.Bounds;
+import javafx.geometry.Point2D;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import java.util.ArrayList;
+import java.util.List;
+
+public class SimpleBulletRenderer implements BulletRenderer {
+    private final List<AnimationTimer> timers = new ArrayList<>();
+
+    @Override
+    public void renderBullet(Bullet bullet, Shooter shooter, Entity target, Pane gamePane) {
+        Point2D shootingPoint = shooter.getMuzzlePosition();
+        Point2D targetPosition = new Point2D(target.getView().getLayoutX(), target.getView().getLayoutY());
+        bullet.setPosition(shootingPoint.getX(), shootingPoint.getY());
+
+        double dx = targetPosition.getX() - shootingPoint.getX();
+        double dy = targetPosition.getY() - shootingPoint.getY();
+
+        double length = Math.sqrt(dx * dx + dy * dy);
+        double dirX = dx / length;
+        double dirY = dy / length;
+
+        double speed = bullet.getSpeed();
+        double angle = Math.toDegrees(Math.atan2(dy, dx));
+        // bullet.getView().setRotate(angle);
+
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                bullet.setPosition(
+                        bullet.getView().getLayoutX() + dirX * speed,
+                        bullet.getView().getLayoutY() + dirY * speed
+                );
+
+                if (isCollidedWithGamePane(bullet, gamePane)) {
+                    this.stop();
+                    bullet.getView().setVisible(false);
+                    gamePane.getChildren().remove(bullet.getView());
+                }
+            }
+        };
+        timers.add(timer);
+        timer.start();
+    }
+
+    private boolean isCollidedWithGamePane(Bullet bullet, Pane gamePane) {
+        Bounds bulletBounds = bullet.getView().getBoundsInParent();
+        Bounds paneBounds = gamePane.getLayoutBounds();
+        return !paneBounds.contains(bulletBounds);
+    }
+}
