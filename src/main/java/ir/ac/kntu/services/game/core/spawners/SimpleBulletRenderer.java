@@ -1,4 +1,4 @@
-package ir.ac.kntu.services.game.components.bullets.renderers;
+package ir.ac.kntu.services.game.core.spawners;
 
 import ir.ac.kntu.services.game.components.Entity;
 import ir.ac.kntu.services.game.components.Shooter;
@@ -6,9 +6,6 @@ import ir.ac.kntu.services.game.components.bullets.Bullet;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
-import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import java.util.ArrayList;
 import java.util.List;

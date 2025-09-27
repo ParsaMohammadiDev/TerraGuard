@@ -1,10 +1,10 @@
-package ir.ac.kntu.services.game.components.bullets.managers;
+package ir.ac.kntu.services.game.core.managers;
 
 import ir.ac.kntu.services.game.components.Entity;
 import ir.ac.kntu.services.game.components.Shooter;
 import ir.ac.kntu.services.game.components.bullets.Bullet;
 import ir.ac.kntu.services.game.components.bullets.factories.BulletFactory;
-import ir.ac.kntu.services.game.components.bullets.renderers.BulletRenderer;
+import ir.ac.kntu.services.game.core.spawners.BulletRenderer;
 import javafx.scene.layout.Pane;
 
 public class SimpleBulletManager implements BulletManager {

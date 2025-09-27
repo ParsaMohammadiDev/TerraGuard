@@ -1,7 +1,7 @@
 package ir.ac.kntu.services.game.core;
 
 import ir.ac.kntu.services.app.scenes.managers.SceneManager;
-import ir.ac.kntu.services.game.components.bullets.managers.BulletManager;
+import ir.ac.kntu.services.game.core.managers.BulletManager;
 import ir.ac.kntu.services.game.components.maps.GrassLand;
 import ir.ac.kntu.services.game.components.maps.Map;
 import ir.ac.kntu.services.game.components.maps.renderers.MapRenderer;

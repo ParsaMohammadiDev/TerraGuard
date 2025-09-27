@@ -1,4 +1,4 @@
-package ir.ac.kntu.services.game.components.bullets.renderers;
+package ir.ac.kntu.services.game.core.spawners;
 
 import ir.ac.kntu.services.game.components.Entity;
 import ir.ac.kntu.services.game.components.Shooter;

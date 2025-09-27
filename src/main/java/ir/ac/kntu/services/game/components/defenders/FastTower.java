@@ -2,14 +2,13 @@ package ir.ac.kntu.services.game.components.defenders;
 
 import ir.ac.kntu.services.game.components.Shooter;
 import ir.ac.kntu.services.game.components.bullets.BulletType;
-import ir.ac.kntu.services.game.components.bullets.managers.BulletManager;
+import ir.ac.kntu.services.game.core.managers.BulletManager;
 import ir.ac.kntu.services.game.components.defenders.types.DefenderType;
 import ir.ac.kntu.services.game.components.enemies.Enemy;
 import ir.ac.kntu.services.game.components.tiles.ClickableTile;
 import ir.ac.kntu.services.game.core.strategies.EnemySelector;
 import ir.ac.kntu.services.game.core.strategies.OldEnemySelector;
 import javafx.application.Platform;
-import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;

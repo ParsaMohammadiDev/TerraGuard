@@ -1,6 +1,6 @@
 package ir.ac.kntu.services.game.components.defenders.factories;
 
-import ir.ac.kntu.services.game.components.bullets.managers.BulletManager;
+import ir.ac.kntu.services.game.core.managers.BulletManager;
 import ir.ac.kntu.services.game.components.defenders.Defender;
 import ir.ac.kntu.services.game.components.defenders.FastTower;
 import ir.ac.kntu.services.game.components.defenders.PowerfulTower;
