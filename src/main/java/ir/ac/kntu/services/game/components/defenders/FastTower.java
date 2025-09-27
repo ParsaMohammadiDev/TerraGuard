@@ -4,34 +4,21 @@ import ir.ac.kntu.services.game.components.Shooter;
 import ir.ac.kntu.services.game.components.bullets.BulletType;
 import ir.ac.kntu.services.game.core.managers.BulletManager;
 import ir.ac.kntu.services.game.components.defenders.types.DefenderType;
-import ir.ac.kntu.services.game.components.enemies.Enemy;
 import ir.ac.kntu.services.game.components.tiles.ClickableTile;
-import ir.ac.kntu.services.game.core.strategies.EnemySelector;
 import ir.ac.kntu.services.game.core.strategies.OldEnemySelector;
-import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
-public class FastTower extends Defender implements Shooter {
+public class FastTower extends ShooterDefender {
     private static final double DAMAGE_COEFFICIENT = 5.0;
     private static final double MUZZLE_LENGTH = 40.0; // in pixels
     private static final long SHOOTING_DELAY = 1;
 
     private final BulletType bulletType = BulletType.FAST_BULLET;
-    private final EnemySelector enemySelector = new OldEnemySelector();
-
-    private final BulletManager bulletManager;
-
-    private ScheduledExecutorService enemyTracker;
 
     public FastTower(DefenderType defenderType, BulletManager bulletManager, ClickableTile tile) {
-        super(defenderType, DAMAGE_COEFFICIENT, tile);
-        this.bulletManager = bulletManager;
+        super(defenderType, DAMAGE_COEFFICIENT, tile, bulletManager, new OldEnemySelector(), SHOOTING_DELAY);
     }
 
     @Override
@@ -39,35 +26,6 @@ public class FastTower extends Defender implements Shooter {
         Pane fastTowerPane = new Pane();
         fastTowerPane.getChildren().add(new ImageView(getDefenderType().getImage()));
         return fastTowerPane;
-    }
-
-    @Override
-    public void activate(List<Enemy> enemies) {
-        if (enemyTracker == null || enemyTracker.isShutdown()) {
-            enemyTracker = Executors.newSingleThreadScheduledExecutor();
-            enemyTracker.scheduleWithFixedDelay(() -> {
-                if (enemies != null && !enemies.isEmpty()) {
-                    Platform.runLater(() -> {
-                        bulletManager.shoot(this, enemySelector.selectEnemy(enemies, this));
-                    });
-                }
-            }, 0, SHOOTING_DELAY, TimeUnit.SECONDS);
-        }
-    }
-
-    @Override
-    public void deactivate() {
-        if (enemyTracker != null && !enemyTracker.isShutdown()) {
-            enemyTracker.shutdown();
-            try {
-                if (!enemyTracker.awaitTermination(5, TimeUnit.SECONDS)) {
-                    enemyTracker.shutdownNow();
-                }
-            } catch (InterruptedException e) {
-                enemyTracker.shutdownNow();
-                Thread.currentThread().interrupt();
-            }
-        }
     }
 
     @Override

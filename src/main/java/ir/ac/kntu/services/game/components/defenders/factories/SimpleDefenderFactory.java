@@ -29,7 +29,7 @@ public class SimpleDefenderFactory implements DefenderFactory {
         if(defenderType instanceof FastTowerType)
             return new FastTower(defenderType, bulletManager, tile);
         if(defenderType instanceof PowerfulTowerType)
-            return new PowerfulTower(defenderType, tile);
+            return new PowerfulTower(defenderType, tile, bulletManager);
         else
             throw new IllegalStateException("Unsupported defenderType");
     }
