@@ -38,6 +38,8 @@ public abstract class Defender implements Entity {
 
     public abstract void activate(List<Enemy> enemies);
 
+    public abstract void deactivate();
+
     @Override
     public Node getView() {
         return tile.getView();

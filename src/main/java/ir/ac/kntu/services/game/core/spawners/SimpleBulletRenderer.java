@@ -12,9 +12,11 @@ import java.util.List;
 
 public class SimpleBulletRenderer implements BulletRenderer {
     private final List<AnimationTimer> timers = new ArrayList<>();
+    private final List<Bullet> renderingBullets = new ArrayList<>();
 
     @Override
     public void renderBullet(Bullet bullet, Shooter shooter, Entity target, Pane gamePane) {
+        renderingBullets.add(bullet);
         Point2D shootingPoint = shooter.getMuzzlePosition();
         Point2D targetPosition = new Point2D(target.getView().getLayoutX(), target.getView().getLayoutY());
         bullet.setPosition(shootingPoint.getX(), shootingPoint.getY());
@@ -40,8 +42,7 @@ public class SimpleBulletRenderer implements BulletRenderer {
 
                 if (isCollidedWithGamePane(bullet, gamePane)) {
                     this.stop();
-                    bullet.getView().setVisible(false);
-                    gamePane.getChildren().remove(bullet.getView());
+                    terminateBullet(bullet);
                 }
             }
         };
@@ -49,9 +50,28 @@ public class SimpleBulletRenderer implements BulletRenderer {
         timer.start();
     }
 
+    private void terminateBullet(Bullet bullet) {
+        bullet.getView().setVisible(false);
+        ((Pane) bullet.getView().getParent()).getChildren().remove(bullet.getView());
+        renderingBullets.remove(bullet);
+    }
+
     private boolean isCollidedWithGamePane(Bullet bullet, Pane gamePane) {
         Bounds bulletBounds = bullet.getView().getBoundsInParent();
         Bounds paneBounds = gamePane.getLayoutBounds();
         return !paneBounds.contains(bulletBounds);
+    }
+
+    @Override
+    public void reset() {
+        for (AnimationTimer timer : timers) {
+            timer.stop();
+        }
+        for (Bullet bullet : renderingBullets) {
+            bullet.getView().setVisible(false);
+            ((Pane) bullet.getView().getParent()).getChildren().remove(bullet.getView());
+        }
+        renderingBullets.clear();
+        timers.clear();
     }
 }

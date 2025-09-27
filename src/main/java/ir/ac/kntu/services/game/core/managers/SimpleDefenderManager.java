@@ -30,4 +30,11 @@ public class SimpleDefenderManager implements DefenderManager {
         defender.activate(enemies);
         defenders.add(defender);
     }
+
+    @Override
+    public void reset() {
+        for (Defender defender : defenders) {
+            defender.deactivate();
+        }
+    }
 }

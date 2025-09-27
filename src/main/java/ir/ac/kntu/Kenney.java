@@ -125,7 +125,8 @@ public class Kenney extends Application {
                 coinGenerator,
                 sceneManager,
                 wallet,
-                bulletManager);
+                bulletManager,
+                defenderManager);
 
         SceneFactory sceneFactory = new SimpleSceneFactory(
                 gameEngine,

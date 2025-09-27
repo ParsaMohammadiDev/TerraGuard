@@ -37,6 +37,11 @@ public class PowerfulTower extends Defender implements Shooter {
     }
 
     @Override
+    public void deactivate() {
+        // logic
+    }
+
+    @Override
     public BulletType getBulletType() {
         return bulletType;
     }

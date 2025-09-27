@@ -9,6 +9,7 @@ import ir.ac.kntu.services.game.components.wallets.Wallet;
 import ir.ac.kntu.services.game.components.wallets.generators.CoinGenerator;
 import ir.ac.kntu.services.game.core.difficulties.GameDifficulty;
 import ir.ac.kntu.services.game.core.difficulties.factories.DifficultyFactory;
+import ir.ac.kntu.services.game.core.managers.DefenderManager;
 import ir.ac.kntu.services.game.core.managers.EnemyManager;
 import ir.ac.kntu.services.game.core.spawners.EnemyRenderer;
 import javafx.scene.layout.Pane;
@@ -21,6 +22,7 @@ public class KenneyGameEngine implements GameEngine {
     private final CoinGenerator coinGenerator;
     private final SceneManager sceneManager;
     private final BulletManager bulletManager;
+    private final DefenderManager defenderManager;
     private final Wallet wallet;
 
     private Map gameMap;
@@ -28,7 +30,15 @@ public class KenneyGameEngine implements GameEngine {
 
     private final StackPane gamePane = new StackPane();
 
-    public KenneyGameEngine(MapRenderer mapRenderer, EnemyRenderer enemyRenderer, EnemyManager enemyManager, DifficultyFactory difficultyFactory, CoinGenerator coinGenerator, SceneManager sceneManager, Wallet wallet, BulletManager bulletManager) {
+    public KenneyGameEngine(MapRenderer mapRenderer,
+                            EnemyRenderer enemyRenderer,
+                            EnemyManager enemyManager,
+                            DifficultyFactory difficultyFactory,
+                            CoinGenerator coinGenerator,
+                            SceneManager sceneManager,
+                            Wallet wallet,
+                            BulletManager bulletManager,
+                            DefenderManager defenderManager) {
         this.mapRenderer = mapRenderer;
         this.enemyRenderer = enemyRenderer;
         this.enemyManager = enemyManager;
@@ -36,6 +46,7 @@ public class KenneyGameEngine implements GameEngine {
         this.difficulty = difficultyFactory.getEasyDifficulty();
         this.bulletManager = bulletManager;
         this.sceneManager = sceneManager;
+        this.defenderManager = defenderManager;
         this.wallet = wallet;
         this.gameMap = new GrassLand();
     }
@@ -77,6 +88,8 @@ public class KenneyGameEngine implements GameEngine {
         difficulty.reset();
         coinGenerator.stop();
         wallet.reset();
+        bulletManager.reset();
+        defenderManager.reset();
         sceneManager.showGameOver();
     }
 }

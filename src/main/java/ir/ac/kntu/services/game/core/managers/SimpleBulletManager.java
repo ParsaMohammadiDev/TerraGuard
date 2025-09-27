@@ -29,4 +29,9 @@ public class SimpleBulletManager implements BulletManager {
         bulletsPane.getChildren().add(bullet.getView());
         bulletRenderer.renderBullet(bullet, shooter, target, bulletsPane);
     }
+
+    @Override
+    public void reset() {
+        bulletRenderer.reset();
+    }
 }

@@ -56,6 +56,21 @@ public class FastTower extends Defender implements Shooter {
     }
 
     @Override
+    public void deactivate() {
+        if (enemyTracker != null && !enemyTracker.isShutdown()) {
+            enemyTracker.shutdown();
+            try {
+                if (!enemyTracker.awaitTermination(5, TimeUnit.SECONDS)) {
+                    enemyTracker.shutdownNow();
+                }
+            } catch (InterruptedException e) {
+                enemyTracker.shutdownNow();
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
+
+    @Override
     public BulletType getBulletType() {
         return bulletType;
     }

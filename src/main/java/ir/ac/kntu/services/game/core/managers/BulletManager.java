@@ -7,4 +7,5 @@ import javafx.scene.layout.Pane;
 public interface BulletManager {
     void shoot(Shooter shooter, Entity target);
     Pane renderBullets();
+    void reset();
 }
