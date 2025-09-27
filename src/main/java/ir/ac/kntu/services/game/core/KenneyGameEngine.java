@@ -1,6 +1,7 @@
 package ir.ac.kntu.services.game.core;
 
 import ir.ac.kntu.services.app.scenes.managers.SceneManager;
+import ir.ac.kntu.services.game.components.bullets.managers.BulletManager;
 import ir.ac.kntu.services.game.components.maps.GrassLand;
 import ir.ac.kntu.services.game.components.maps.Map;
 import ir.ac.kntu.services.game.components.maps.renderers.MapRenderer;
@@ -19,6 +20,7 @@ public class KenneyGameEngine implements GameEngine {
     private final EnemyManager enemyManager;
     private final CoinGenerator coinGenerator;
     private final SceneManager sceneManager;
+    private final BulletManager bulletManager;
     private final Wallet wallet;
 
     private Map gameMap;
@@ -26,12 +28,13 @@ public class KenneyGameEngine implements GameEngine {
 
     private final StackPane gamePane = new StackPane();
 
-    public KenneyGameEngine(MapRenderer mapRenderer, EnemyRenderer enemyRenderer, EnemyManager enemyManager, DifficultyFactory difficultyFactory, CoinGenerator coinGenerator, SceneManager sceneManager, Wallet wallet) {
+    public KenneyGameEngine(MapRenderer mapRenderer, EnemyRenderer enemyRenderer, EnemyManager enemyManager, DifficultyFactory difficultyFactory, CoinGenerator coinGenerator, SceneManager sceneManager, Wallet wallet, BulletManager bulletManager) {
         this.mapRenderer = mapRenderer;
         this.enemyRenderer = enemyRenderer;
         this.enemyManager = enemyManager;
         this.coinGenerator = coinGenerator;
         this.difficulty = difficultyFactory.getEasyDifficulty();
+        this.bulletManager = bulletManager;
         this.sceneManager = sceneManager;
         this.wallet = wallet;
         this.gameMap = new GrassLand();
@@ -64,6 +67,7 @@ public class KenneyGameEngine implements GameEngine {
         coinGenerator.generate();
         gamePane.getChildren().add(mapRenderer.renderMap(gameMap));
         gamePane.getChildren().add(enemyRenderer.renderEnemies());
+        gamePane.getChildren().add(bulletManager.renderBullets());
         gamePane.getChildren().add(mapRenderer.renderOverlay(gameMap));
         return gamePane;
     }
