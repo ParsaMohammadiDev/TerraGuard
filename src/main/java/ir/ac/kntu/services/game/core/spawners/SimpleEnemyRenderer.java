@@ -34,6 +34,11 @@ public class SimpleEnemyRenderer implements EnemyRenderer {
         moveEnemy(enemy, enemyManager);
     }
 
+    @Override
+    public List<Enemy> getEnemies() {
+        return enemies;
+    }
+
     private void moveEnemy(Enemy enemy, EnemyManager enemyManager) {
         List<Point2D> path = enemy.getPath();
         if (path == null || path.size() < 2) return;

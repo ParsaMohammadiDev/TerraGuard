@@ -55,8 +55,7 @@ public abstract class Enemy implements Entity {
     public void setPosition(double x, double y) {
         this.x = x;
         this.y = y;
-        Pane view = getView();
-        view.relocate(x, y);
+        enemyView.relocate(x, y);
     }
 
     public abstract StackPane getEnemyComposite();

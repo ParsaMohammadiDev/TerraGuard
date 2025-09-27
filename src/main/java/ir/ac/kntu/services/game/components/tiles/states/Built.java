@@ -26,6 +26,6 @@ public class Built implements TileState {
     @Override
     public void apply(Pane view) {
         view.getChildren().removeFirst();
-        view.getChildren().add(defender.getView());
+        view.getChildren().add(defender.getDefenderView());
     }
 }
