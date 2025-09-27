@@ -28,7 +28,7 @@ public class SimpleBulletRenderer implements BulletRenderer {
 
         double speed = bullet.getSpeed();
         double angle = Math.toDegrees(Math.atan2(dy, dx));
-        // bullet.getView().setRotate(angle);
+        bullet.getView().setRotate(angle - 90);
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
