@@ -4,7 +4,7 @@ import ir.ac.kntu.services.game.components.Entity;
 import ir.ac.kntu.services.game.components.Shooter;
 import ir.ac.kntu.services.game.components.bullets.Bullet;
 import ir.ac.kntu.services.game.components.bullets.factories.BulletFactory;
-import ir.ac.kntu.services.game.core.spawners.BulletRenderer;
+import ir.ac.kntu.services.game.core.renderers.BulletRenderer;
 import javafx.scene.layout.Pane;
 
 public class SimpleBulletManager implements BulletManager {

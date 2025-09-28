@@ -1,4 +1,4 @@
-package ir.ac.kntu.services.game.core.spawners;
+package ir.ac.kntu.services.game.core.renderers;
 
 import ir.ac.kntu.services.game.components.enemies.Enemy;
 import ir.ac.kntu.services.game.components.maps.renderers.MapRenderer;

@@ -11,7 +11,7 @@ import ir.ac.kntu.services.game.core.difficulties.GameDifficulty;
 import ir.ac.kntu.services.game.core.difficulties.factories.DifficultyFactory;
 import ir.ac.kntu.services.game.core.managers.DefenderManager;
 import ir.ac.kntu.services.game.core.managers.EnemyManager;
-import ir.ac.kntu.services.game.core.spawners.EnemyRenderer;
+import ir.ac.kntu.services.game.core.renderers.EnemyRenderer;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 

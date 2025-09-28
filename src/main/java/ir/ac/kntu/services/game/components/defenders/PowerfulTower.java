@@ -6,6 +6,7 @@ import ir.ac.kntu.services.game.components.tiles.ClickableTile;
 import ir.ac.kntu.services.game.core.managers.BulletManager;
 import ir.ac.kntu.services.game.core.strategies.OldEnemySelector;
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
@@ -15,6 +16,7 @@ public class PowerfulTower extends ShooterDefender{
     private static final long SHOOTING_DELAY = 2;
 
     private final BulletType bulletType = BulletType.NORMAL_BULLET;
+    private Pane powerfulTowerPane;
 
     public PowerfulTower(DefenderType defenderType, ClickableTile tile, BulletManager bulletManager) {
         super(defenderType, DAMAGE_COEFFICIENT, tile, bulletManager, new OldEnemySelector(), SHOOTING_DELAY);
@@ -22,9 +24,9 @@ public class PowerfulTower extends ShooterDefender{
 
     @Override
     public Pane getDefenderComposite() {
-        Pane powerfulTower = new Pane();
-        powerfulTower.getChildren().add(new ImageView(getDefenderType().getImage()));
-        return powerfulTower;
+        powerfulTowerPane = new Pane();
+        powerfulTowerPane.getChildren().add(new ImageView(getDefenderType().getImage()));
+        return powerfulTowerPane;
     }
 
     @Override
@@ -40,5 +42,10 @@ public class PowerfulTower extends ShooterDefender{
         double muzzleX = x + (MUZZLE_LENGTH * Math.cos(Math.toRadians(rotation)));
         double muzzleY = y + (MUZZLE_LENGTH * Math.sin(Math.toRadians(rotation)));
         return new Point2D(muzzleX, muzzleY);
+    }
+
+    @Override
+    public Node getMuzzleView() {
+        return powerfulTowerPane;
     }
 }

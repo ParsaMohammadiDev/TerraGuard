@@ -7,6 +7,7 @@ import ir.ac.kntu.services.game.components.defenders.types.DefenderType;
 import ir.ac.kntu.services.game.components.tiles.ClickableTile;
 import ir.ac.kntu.services.game.core.strategies.OldEnemySelector;
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
@@ -16,6 +17,7 @@ public class FastTower extends ShooterDefender {
     private static final long SHOOTING_DELAY = 1;
 
     private final BulletType bulletType = BulletType.FAST_BULLET;
+    private Pane fastTowerPane;
 
     public FastTower(DefenderType defenderType, BulletManager bulletManager, ClickableTile tile) {
         super(defenderType, DAMAGE_COEFFICIENT, tile, bulletManager, new OldEnemySelector(), SHOOTING_DELAY);
@@ -23,7 +25,7 @@ public class FastTower extends ShooterDefender {
 
     @Override
     public Pane getDefenderComposite() {
-        Pane fastTowerPane = new Pane();
+        fastTowerPane = new Pane();
         fastTowerPane.getChildren().add(new ImageView(getDefenderType().getImage()));
         return fastTowerPane;
     }
@@ -37,9 +39,14 @@ public class FastTower extends ShooterDefender {
     public Point2D getMuzzlePosition() {
         double x = getView().getLayoutX();
         double y = getView().getLayoutY();
-        double rotation = getView().getRotate() + 90;
+        double rotation = fastTowerPane.getRotate() + 270;
         double muzzleX = x + (MUZZLE_LENGTH * Math.cos(Math.toRadians(rotation)));
         double muzzleY = y + (MUZZLE_LENGTH * Math.sin(Math.toRadians(rotation)));
         return new Point2D(muzzleX, muzzleY);
+    }
+
+    @Override
+    public Node getMuzzleView() {
+        return fastTowerPane;
     }
 }

@@ -5,7 +5,7 @@ import ir.ac.kntu.services.game.components.enemies.factories.EnemyFactory;
 import ir.ac.kntu.services.game.components.maps.Map;
 import ir.ac.kntu.services.game.core.GameEngine;
 import ir.ac.kntu.services.game.core.difficulties.GameDifficulty;
-import ir.ac.kntu.services.game.core.spawners.EnemyRenderer;
+import ir.ac.kntu.services.game.core.renderers.EnemyRenderer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;

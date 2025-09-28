@@ -13,8 +13,7 @@ import ir.ac.kntu.services.game.components.bullets.factories.BulletFactory;
 import ir.ac.kntu.services.game.components.bullets.factories.SimpleBulletFactory;
 import ir.ac.kntu.services.game.core.managers.BulletManager;
 import ir.ac.kntu.services.game.core.managers.SimpleBulletManager;
-import ir.ac.kntu.services.game.core.spawners.BulletRenderer;
-import ir.ac.kntu.services.game.core.spawners.SimpleBulletRenderer;
+import ir.ac.kntu.services.game.core.renderers.*;
 import ir.ac.kntu.services.game.components.defenders.factories.DefenderFactory;
 import ir.ac.kntu.services.game.components.defenders.factories.SimpleDefenderFactory;
 import ir.ac.kntu.services.game.core.managers.DefenderManager;
@@ -54,8 +53,6 @@ import ir.ac.kntu.services.game.core.managers.EnemyManager;
 import ir.ac.kntu.services.game.core.managers.SimpleEnemyManager;
 import ir.ac.kntu.services.game.core.markets.KenneyMarket;
 import ir.ac.kntu.services.game.core.markets.Market;
-import ir.ac.kntu.services.game.core.spawners.EnemyRenderer;
-import ir.ac.kntu.services.game.core.spawners.SimpleEnemyRenderer;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -91,7 +88,8 @@ public class Kenney extends Application {
         List<DefenderType> defenderTypes = new ArrayList<>();
         SimpleMenuFactory menuFactory = new SimpleMenuFactory();
         BulletFactory bulletFactory = new SimpleBulletFactory();
-        BulletRenderer bulletRenderer = new SimpleBulletRenderer();
+        EffectRenderer effectRenderer = new SimpleEffectRenderer();
+        BulletRenderer bulletRenderer = new SimpleBulletRenderer(effectRenderer);
 
         defenderTypes.add(defenderTypeFactory.getFastTowerType());
         defenderTypes.add(defenderTypeFactory.getPowerfulTowerType());

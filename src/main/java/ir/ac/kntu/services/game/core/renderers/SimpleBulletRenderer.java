@@ -1,4 +1,4 @@
-package ir.ac.kntu.services.game.core.spawners;
+package ir.ac.kntu.services.game.core.renderers;
 
 import ir.ac.kntu.services.game.components.Entity;
 import ir.ac.kntu.services.game.components.Shooter;
@@ -13,6 +13,11 @@ import java.util.List;
 public class SimpleBulletRenderer implements BulletRenderer {
     private final List<AnimationTimer> timers = new ArrayList<>();
     private final List<Bullet> renderingBullets = new ArrayList<>();
+    private final EffectRenderer effectRenderer;
+
+    public SimpleBulletRenderer(EffectRenderer effectRenderer) {
+        this.effectRenderer = effectRenderer;
+    }
 
     @Override
     public void renderBullet(Bullet bullet, Shooter shooter, Entity target, Pane gamePane) {
@@ -31,6 +36,8 @@ public class SimpleBulletRenderer implements BulletRenderer {
         double speed = bullet.getSpeed();
         double angle = Math.toDegrees(Math.atan2(dy, dx));
         bullet.getView().setRotate(angle - 90);
+
+        effectRenderer.rotateMuzzle(shooter, angle - 270, 1);
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
