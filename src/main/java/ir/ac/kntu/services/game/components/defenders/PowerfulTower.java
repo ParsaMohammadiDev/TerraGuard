@@ -38,7 +38,7 @@ public class PowerfulTower extends ShooterDefender{
     public Point2D getMuzzlePosition() {
         double x = getView().getLayoutX();
         double y = getView().getLayoutY();
-        double rotation = getView().getRotate() + 90;
+        double rotation = powerfulTowerPane.getRotate() + 270;
         double muzzleX = x + (MUZZLE_LENGTH * Math.cos(Math.toRadians(rotation)));
         double muzzleY = y + (MUZZLE_LENGTH * Math.sin(Math.toRadians(rotation)));
         return new Point2D(muzzleX, muzzleY);
