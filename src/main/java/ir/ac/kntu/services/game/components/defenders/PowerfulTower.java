@@ -48,4 +48,9 @@ public class PowerfulTower extends ShooterDefender{
     public Node getMuzzleView() {
         return powerfulTowerPane;
     }
+
+    @Override
+    public double getShootingDelay() {
+        return SHOOTING_DELAY;
+    }
 }

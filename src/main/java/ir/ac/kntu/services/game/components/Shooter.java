@@ -8,4 +8,5 @@ public interface Shooter {
     BulletType getBulletType();
     Point2D getMuzzlePosition();
     Node getMuzzleView();
+    double getShootingDelay();
 }

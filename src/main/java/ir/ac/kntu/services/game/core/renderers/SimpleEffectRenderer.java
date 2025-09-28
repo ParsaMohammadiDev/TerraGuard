@@ -12,7 +12,7 @@ public class SimpleEffectRenderer implements EffectRenderer {
     private Timeline timeline;
 
     @Override
-    public void rotateMuzzle(Shooter shooter, double targetAngle, double duration) {
+    public void rotateMuzzle(Shooter shooter, double targetAngle) {
         Node muzzle = shooter.getMuzzleView();
 
         double current = muzzle.getRotate();
@@ -25,7 +25,7 @@ public class SimpleEffectRenderer implements EffectRenderer {
 
         timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, new KeyValue(muzzle.rotateProperty(), current)),
-                new KeyFrame(Duration.seconds(duration),
+                new KeyFrame(Duration.seconds(shooter.getShootingDelay()),
                         new KeyValue(muzzle.rotateProperty(), endAngle, Interpolator.EASE_BOTH))
         );
         timeline.play();

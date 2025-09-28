@@ -1,6 +1,5 @@
 package ir.ac.kntu.services.game.components.defenders;
 
-import ir.ac.kntu.services.game.components.Shooter;
 import ir.ac.kntu.services.game.components.bullets.BulletType;
 import ir.ac.kntu.services.game.core.managers.BulletManager;
 import ir.ac.kntu.services.game.components.defenders.types.DefenderType;
@@ -48,5 +47,10 @@ public class FastTower extends ShooterDefender {
     @Override
     public Node getMuzzleView() {
         return fastTowerPane;
+    }
+
+    @Override
+    public double getShootingDelay() {
+        return SHOOTING_DELAY;
     }
 }

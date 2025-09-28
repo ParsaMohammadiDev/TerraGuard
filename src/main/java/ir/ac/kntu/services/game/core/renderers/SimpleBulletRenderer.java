@@ -37,7 +37,7 @@ public class SimpleBulletRenderer implements BulletRenderer {
         double angle = Math.toDegrees(Math.atan2(dy, dx));
         bullet.getView().setRotate(angle - 90);
 
-        effectRenderer.rotateMuzzle(shooter, angle - 270, 1);
+        effectRenderer.rotateMuzzle(shooter, angle - 270);
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
