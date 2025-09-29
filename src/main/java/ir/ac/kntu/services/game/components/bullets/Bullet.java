@@ -1,10 +1,10 @@
 package ir.ac.kntu.services.game.components.bullets;
 
-import javafx.scene.Group;
+import ir.ac.kntu.services.game.components.Collidable;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 
-public abstract class Bullet {
+public abstract class Bullet implements Collidable {
     private final ImageView view;
     private BulletType type;
     private double x;

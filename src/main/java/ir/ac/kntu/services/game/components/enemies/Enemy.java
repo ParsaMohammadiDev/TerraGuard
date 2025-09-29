@@ -1,5 +1,6 @@
 package ir.ac.kntu.services.game.components.enemies;
 
+import ir.ac.kntu.services.game.components.Collidable;
 import ir.ac.kntu.services.game.components.Entity;
 import ir.ac.kntu.services.game.components.enemies.types.EnemyType;
 import javafx.geometry.Point2D;
@@ -7,7 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import java.util.List;
 
-public abstract class Enemy implements Entity {
+public abstract class Enemy implements Entity, Collidable {
     private static final double VIEW_SIZE = 70;
 
     private EnemyType type;

@@ -9,6 +9,7 @@ import java.util.List;
 
 public class Solider extends Enemy {
     private static final double DAMAGE_COEFFICIENT = 10.0;
+    private static final double COLLISION_MARGIN = 30;
 
     public Solider(EnemyType type, List<Point2D> path) {
         super(type, path, DAMAGE_COEFFICIENT);
@@ -19,5 +20,10 @@ public class Solider extends Enemy {
         StackPane solider = new StackPane();
         solider.getChildren().addAll(new ImageView(getEnemyType().getBaseImage()));
         return solider;
+    }
+
+    @Override
+    public double getCollisionMargin() {
+        return COLLISION_MARGIN;
     }
 }
