@@ -86,19 +86,13 @@ public class KenneyGameEngine implements GameEngine {
     }
 
     @Override
-    public boolean isPlayable(int initEnemyCount, int reachedEnemyCount, int terminatedEnemyCount) {
-        if (reachedEnemyCount >= initEnemyCount * ENEMY_OVERCOME_PERCENTAGE) {
-            gameOver();
-            return false;
-        }
-        if (terminatedEnemyCount == 1) {
-            gameOver(); // temp
-            return false;
-        }
-        return true;
+    public void checkGameStatus(int initEnemyCount, int reachedEnemyCount, int terminatedEnemyCount) {
+        if (reachedEnemyCount >= initEnemyCount * ENEMY_OVERCOME_PERCENTAGE) gameOver();
+        if (terminatedEnemyCount == 1) gameOver();
     }
 
     private void gameOver() {
+        enemyManager.reset();
         difficulty.reset();
         coinGenerator.stop();
         wallet.reset();

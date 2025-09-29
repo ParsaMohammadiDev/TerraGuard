@@ -46,18 +46,14 @@ public class SimpleEnemyManager implements EnemyManager {
     public void reachEnemy(Enemy enemy) {
         reachedEnemyCount ++;
         enemies.remove(enemy);
-        if (!(gameEngine.isPlayable(initEnemyCount, reachedEnemyCount, terminatedEnemyCount))) {
-            reset();
-        }
+        gameEngine.checkGameStatus(initEnemyCount, reachedEnemyCount, terminatedEnemyCount);
     }
 
     @Override
     public void terminateEnemy(Enemy enemy) {
         terminatedEnemyCount ++;
         enemies.remove(enemy);
-        if (!(gameEngine.isPlayable(initEnemyCount, reachedEnemyCount, terminatedEnemyCount))) {
-            reset();
-        }
+        gameEngine.checkGameStatus(initEnemyCount, reachedEnemyCount, terminatedEnemyCount);
     }
 
     @Override
@@ -87,7 +83,7 @@ public class SimpleEnemyManager implements EnemyManager {
         soldierManager.play();
     }
 
-    private void reset() {
+    public void reset() {
         reachedEnemyCount = 0;
         terminatedEnemyCount = 0;
         initEnemyCount = 0;

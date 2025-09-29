@@ -12,4 +12,5 @@ public interface EnemyManager {
     void reachEnemy(Enemy enemy);
     void terminateEnemy(Enemy enemy);
     List<Enemy> getEnemies();
+    void reset();
 }
