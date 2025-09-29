@@ -20,12 +20,11 @@ public abstract class ShooterDefender extends Defender implements Shooter {
     private ScheduledExecutorService enemyTracker;
 
     public ShooterDefender(DefenderType defenderType,
-                           double damageCoefficient,
                            ClickableTile tile,
                            BulletManager bulletManager,
                            EnemySelector enemySelector,
                            long shooting_delay) {
-        super(defenderType, damageCoefficient, tile);
+        super(defenderType, tile);
         this.shooting_delay = shooting_delay;
         this.bulletManager = bulletManager;
         this.enemySelector = enemySelector;

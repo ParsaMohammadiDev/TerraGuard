@@ -20,11 +20,9 @@ public abstract class Defender implements Entity {
     private final ClickableTile tile;
 
     private double health;
-    private double damageCoefficient;
 
-    public Defender(DefenderType defenderType, double damageCoefficient, ClickableTile tile) {
+    public Defender(DefenderType defenderType, ClickableTile tile) {
         this.defenderType = defenderType;
-        this.damageCoefficient = damageCoefficient;
         this.tile = tile;
         defenderView = new StackPane();
         defenderView.getChildren().addAll(new ImageView(DEFENDER_BASE), getDefenderComposite());

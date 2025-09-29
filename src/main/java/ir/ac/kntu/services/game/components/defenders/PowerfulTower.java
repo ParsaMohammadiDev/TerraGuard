@@ -5,14 +5,12 @@ import ir.ac.kntu.services.game.components.defenders.types.DefenderType;
 import ir.ac.kntu.services.game.components.tiles.ClickableTile;
 import ir.ac.kntu.services.game.core.managers.BulletManager;
 import ir.ac.kntu.services.game.core.strategies.EnemySelector;
-import ir.ac.kntu.services.game.core.strategies.OldEnemySelector;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class PowerfulTower extends ShooterDefender{
-    private static final double DAMAGE_COEFFICIENT = 2.5;
     private static final double MUZZLE_LENGTH = 40.0; // in pixels
     private static final long SHOOTING_DELAY = 2;
 
@@ -20,7 +18,7 @@ public class PowerfulTower extends ShooterDefender{
     private Pane powerfulTowerPane;
 
     public PowerfulTower(DefenderType defenderType, ClickableTile tile, BulletManager bulletManager, EnemySelector enemySelector) {
-        super(defenderType, DAMAGE_COEFFICIENT, tile, bulletManager, enemySelector, SHOOTING_DELAY);
+        super(defenderType, tile, bulletManager, enemySelector, SHOOTING_DELAY);
     }
 
     @Override
