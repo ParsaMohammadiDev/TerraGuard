@@ -8,6 +8,7 @@ public interface SceneManager {
     void showGame();
     void showMapSelector();
     void showGameOver();
+    void showLevelUp();
     void showDifficultySelector();
     void setSceneFactory(SceneFactory sceneFactory);
 }

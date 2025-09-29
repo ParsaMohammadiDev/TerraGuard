@@ -52,4 +52,9 @@ public class SimpleSceneManager implements SceneManager {
     public void showGameOver() {
         stage.setScene(sceneFactory.getGameOverScene());
     }
+
+    @Override
+    public void showLevelUp() {
+        stage.setScene(sceneFactory.getLevelUpScene());
+    }
 }

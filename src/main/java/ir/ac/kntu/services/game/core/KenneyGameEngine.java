@@ -88,7 +88,7 @@ public class KenneyGameEngine implements GameEngine {
     @Override
     public void checkGameStatus(int initEnemyCount, int reachedEnemyCount, int terminatedEnemyCount) {
         if (reachedEnemyCount >= initEnemyCount * ENEMY_OVERCOME_PERCENTAGE) gameOver();
-        if (terminatedEnemyCount == 1) gameOver();
+        if (terminatedEnemyCount == 1) levelUp();
     }
 
     private void gameOver() {
@@ -99,5 +99,12 @@ public class KenneyGameEngine implements GameEngine {
         bulletManager.reset();
         defenderManager.reset();
         sceneManager.showGameOver();
+    }
+
+    private void levelUp() {
+        enemyManager.reset();
+        bulletManager.reset();
+        defenderManager.reset();
+        sceneManager.showLevelUp();
     }
 }
