@@ -16,6 +16,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 public class KenneyGameEngine implements GameEngine {
+    private static final double ENEMY_OVERCOME_PERCENTAGE = 0.5;
+
     private final MapRenderer mapRenderer;
     private final EnemyRenderer enemyRenderer;
     private final EnemyManager enemyManager;
@@ -84,7 +86,19 @@ public class KenneyGameEngine implements GameEngine {
     }
 
     @Override
-    public void gameOver() {
+    public boolean isPlayable(int initEnemyCount, int reachedEnemyCount, int terminatedEnemyCount) {
+        if (reachedEnemyCount >= initEnemyCount * ENEMY_OVERCOME_PERCENTAGE) {
+            gameOver();
+            return false;
+        }
+        if (terminatedEnemyCount == 1) {
+            gameOver(); // temp
+            return false;
+        }
+        return true;
+    }
+
+    private void gameOver() {
         difficulty.reset();
         coinGenerator.stop();
         wallet.reset();

@@ -10,5 +10,5 @@ public interface GameEngine {
     void setGameMap(Map map);
     void setGameDifficulty(GameDifficulty difficulty);
     Pane startGame();
-    void gameOver();
+    boolean isPlayable(int initEnemyCount, int reachedEnemyCount, int terminatedEnemyCount);
 }
