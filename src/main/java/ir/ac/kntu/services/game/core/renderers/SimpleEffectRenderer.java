@@ -25,7 +25,7 @@ public class SimpleEffectRenderer implements EffectRenderer {
 
         timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, new KeyValue(muzzle.rotateProperty(), current)),
-                new KeyFrame(Duration.seconds(shooter.getShootingDelay()),
+                new KeyFrame(Duration.seconds(shooter.getShootingDelay() / 2),
                         new KeyValue(muzzle.rotateProperty(), endAngle, Interpolator.EASE_BOTH))
         );
         timeline.play();
