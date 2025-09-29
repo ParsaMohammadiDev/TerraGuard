@@ -28,6 +28,7 @@ public class SimpleEnemyManager implements EnemyManager {
 
     private int initEnemyCount = 0;
     private int reachedEnemyCount = 0;
+    private int terminatedEnemyCount = 0;
 
     public SimpleEnemyManager(EnemyFactory enemyFactory, EnemyRenderer enemyRenderer) {
         this.enemyFactory = enemyFactory;
@@ -42,11 +43,20 @@ public class SimpleEnemyManager implements EnemyManager {
     }
 
     @Override
-    public void reachEnemy() {
+    public void reachEnemy(Enemy enemy) {
         reachedEnemyCount ++;
-        if (reachedEnemyCount >= initEnemyCount * ENEMY_OVERCOME_PERCENTAGE) {
+        enemies.remove(enemy);
+        if (!(gameEngine.isPlayable(initEnemyCount, reachedEnemyCount, terminatedEnemyCount))) {
             reset();
-            gameEngine.gameOver();
+        }
+    }
+
+    @Override
+    public void terminateEnemy(Enemy enemy) {
+        terminatedEnemyCount ++;
+        enemies.remove(enemy);
+        if (!(gameEngine.isPlayable(initEnemyCount, reachedEnemyCount, terminatedEnemyCount))) {
+            reset();
         }
     }
 
@@ -79,6 +89,7 @@ public class SimpleEnemyManager implements EnemyManager {
 
     private void reset() {
         reachedEnemyCount = 0;
+        terminatedEnemyCount = 0;
         initEnemyCount = 0;
         enemyRenderer.reset();
         if (soldierManager != null) soldierManager.stop();

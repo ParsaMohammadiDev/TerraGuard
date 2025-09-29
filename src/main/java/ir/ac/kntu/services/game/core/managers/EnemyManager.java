@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface EnemyManager {
     void runEnemies(GameDifficulty difficulty, Map map, GameEngine gameEngine);
-    void reachEnemy();
+    void reachEnemy(Enemy enemy);
+    void terminateEnemy(Enemy enemy);
     List<Enemy> getEnemies();
 }
