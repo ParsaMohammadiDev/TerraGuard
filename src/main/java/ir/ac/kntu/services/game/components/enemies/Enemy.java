@@ -19,14 +19,11 @@ public abstract class Enemy implements Entity, Collidable {
     private double health;
     private StackPane enemyView;
 
-    private double damageCoefficient;
-
-    public Enemy(EnemyType type, List<Point2D> path, double damageCoefficient) {
+    public Enemy(EnemyType type, List<Point2D> path) {
         this.type = type;
         this.path = path;
         enemyView = getEnemyComposite();
         enemyView.setPrefSize(VIEW_SIZE, VIEW_SIZE);
-        this.damageCoefficient = damageCoefficient;
     }
 
     public EnemyType getEnemyType() {
@@ -59,7 +56,13 @@ public abstract class Enemy implements Entity, Collidable {
         enemyView.relocate(x, y);
     }
 
+    protected void setHealth(double health) {
+        this.health = health;
+    }
+
     public abstract StackPane getEnemyComposite();
+
+    public abstract double getDamageCoefficient();
 
     @Override
     public Pane getView() {
@@ -69,10 +72,5 @@ public abstract class Enemy implements Entity, Collidable {
     @Override
     public double getHealth() {
         return health;
-    }
-
-    @Override
-    public void damage(double amount) {
-        health -= damageCoefficient * amount;
     }
 }
