@@ -12,6 +12,8 @@ import ir.ac.kntu.services.app.scenes.managers.SceneManager;
 import ir.ac.kntu.services.game.components.bullets.factories.BulletFactory;
 import ir.ac.kntu.services.game.components.bullets.factories.SimpleBulletFactory;
 import ir.ac.kntu.services.game.core.managers.*;
+import ir.ac.kntu.services.game.core.managers.strategies.CollisionHandler;
+import ir.ac.kntu.services.game.core.managers.strategies.SimpleCollisionHandler;
 import ir.ac.kntu.services.game.core.renderers.*;
 import ir.ac.kntu.services.game.components.defenders.factories.DefenderFactory;
 import ir.ac.kntu.services.game.components.defenders.factories.SimpleDefenderFactory;
@@ -103,7 +105,8 @@ public class Kenney extends Application {
         PathFinder pathFinder = new BFSPathFinder(tileFactory);
         EnemyFactory enemyFactory = new SimpleEnemyFactory(enemyTypeFactory, pathFinder);
         EnemyManager enemyManager = new SimpleEnemyManager(enemyFactory, enemyRenderer);
-        CollisionManager collisionManager = new SimpleCollisionManager(enemyManager);
+        CollisionHandler collisionHandler = new SimpleCollisionHandler();
+        CollisionManager collisionManager = new SimpleCollisionManager(enemyManager, collisionHandler);
         BulletRenderer bulletRenderer = new SimpleBulletRenderer(effectRenderer, collisionManager);
         BulletManager bulletManager = new SimpleBulletManager(bulletFactory, bulletRenderer);
         DefenderFactory defenderFactory = new SimpleDefenderFactory(bulletManager, enemyManager);

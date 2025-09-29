@@ -1,19 +1,20 @@
 package ir.ac.kntu.services.game.core.managers;
 
 import ir.ac.kntu.services.game.components.Collidable;
-import ir.ac.kntu.services.game.components.Entity;
 import ir.ac.kntu.services.game.components.bullets.Bullet;
+import ir.ac.kntu.services.game.core.managers.strategies.CollisionHandler;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
-import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import java.util.List;
 
 public class SimpleCollisionManager implements CollisionManager {
     private final List<? extends Collidable> entities;
+    private final CollisionHandler collisionHandler;
 
-    public SimpleCollisionManager(EnemyManager enemyManager) {
+    public SimpleCollisionManager(EnemyManager enemyManager, CollisionHandler collisionHandler) {
         entities = enemyManager.getEnemies();
+        this.collisionHandler = collisionHandler;
     }
 
     @Override
@@ -22,7 +23,7 @@ public class SimpleCollisionManager implements CollisionManager {
         for (Collidable entity : entities) {
             Bounds enemyBounds = getCollisionBounds(entity);
             if (enemyBounds.intersects(bulletBounds)) {
-                // logic of impact will be here
+                collisionHandler.collide(bullet, entity);
                 return true;
             }
         }

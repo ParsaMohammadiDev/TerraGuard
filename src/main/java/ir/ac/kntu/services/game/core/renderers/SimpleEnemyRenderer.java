@@ -62,12 +62,12 @@ public class SimpleEnemyRenderer implements EnemyRenderer {
                 lastUpdate = now;
 
                 if (currentIndex[0] >= path.size()) {
-                    stop();
-                    timers.remove(this);
-                    enemy.getView().setVisible(false);
-                    enemies.remove(enemy);
-                    enemyManager.reachEnemy();
+                    reachEnemy(enemy, this);
                     return;
+                }
+
+                if (enemy.getHealth() <= 0) {
+                    terminateEnemy(enemy, this);
                 }
 
                 Point2D currentPos = new Point2D(enemy.getX(), enemy.getY());
@@ -108,5 +108,19 @@ public class SimpleEnemyRenderer implements EnemyRenderer {
             t.stop();
         }
         timers.clear();
+    }
+
+    private void reachEnemy(Enemy enemy, AnimationTimer timer) {
+        timer.stop();
+        timers.remove(timer);
+        enemy.getView().setVisible(false);
+        enemyManager.reachEnemy(enemy);
+    }
+
+    private void terminateEnemy(Enemy enemy, AnimationTimer timer) {
+        timer.stop();
+        timers.remove(timer);
+        enemy.getView().setVisible(false);
+        enemyManager.terminateEnemy(enemy);
     }
 }
