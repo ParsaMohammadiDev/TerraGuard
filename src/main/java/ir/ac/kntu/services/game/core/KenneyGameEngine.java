@@ -92,10 +92,8 @@ public class KenneyGameEngine implements GameEngine {
     }
 
     private void gameOver() {
+        hardReset();
         enemyManager.reset();
-        difficulty.reset();
-        coinGenerator.stop();
-        wallet.reset();
         bulletManager.reset();
         defenderManager.reset();
         sceneManager.showGameOver();
@@ -106,5 +104,12 @@ public class KenneyGameEngine implements GameEngine {
         bulletManager.reset();
         defenderManager.reset();
         sceneManager.showLevelUp();
+    }
+
+    @Override
+    public void hardReset() {
+        difficulty.reset();
+        coinGenerator.stop();
+        wallet.reset();
     }
 }

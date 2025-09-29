@@ -11,4 +11,5 @@ public interface GameEngine {
     void setGameDifficulty(GameDifficulty difficulty);
     Pane startGame();
     void checkGameStatus(int initEnemyCount, int reachedEnemyCount, int terminatedEnemyCount);
+    void hardReset();
 }

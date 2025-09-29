@@ -1,6 +1,8 @@
 package ir.ac.kntu.services.app.scenes;
 
 import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
+import ir.ac.kntu.services.app.scenes.managers.SceneManager;
+import ir.ac.kntu.services.game.core.GameEngine;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,9 +16,13 @@ import javafx.scene.text.Text;
 
 public class LevelUpScene implements SceneLogic {
     private final AnimationFactory animFactory;
+    private final GameEngine gameEngine;
+    private final SceneManager sceneManager;
 
-    public LevelUpScene(AnimationFactory animFactory) {
+    public LevelUpScene(AnimationFactory animFactory, GameEngine gameEngine, SceneManager sceneManager) {
+        this.gameEngine = gameEngine;
         this.animFactory = animFactory;
+        this.sceneManager = sceneManager;
     }
 
     @Override
@@ -41,10 +47,14 @@ public class LevelUpScene implements SceneLogic {
     private Pane getButtons() {
         HBox buttons = new HBox();
         Button exit = new Button("Exit");
-        Button playAgain = new Button("Continue");
-        buttons.getChildren().addAll(exit, playAgain);
+        Button continueButton = new Button("Continue");
+        buttons.getChildren().addAll(exit, continueButton);
         buttons.getStyleClass().add("buttons");
-        animFactory.getButtonHoverAnimation().animate(exit, playAgain);
+        animFactory.getButtonHoverAnimation().animate(exit, continueButton);
+        exit.setOnAction(e -> {
+            gameEngine.hardReset();
+            sceneManager.showMenu();
+        });
         return buttons;
     }
 }

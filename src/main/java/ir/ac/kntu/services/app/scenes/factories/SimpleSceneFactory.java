@@ -64,6 +64,6 @@ public class SimpleSceneFactory implements SceneFactory {
 
     @Override
     public Scene getLevelUpScene() {
-        return new LevelUpScene(animFactory).getScene();
+        return new LevelUpScene(animFactory, gameEngine, sceneManager).getScene();
     }
 }
