@@ -4,6 +4,7 @@ import ir.ac.kntu.services.game.components.bullets.BulletType;
 import ir.ac.kntu.services.game.components.defenders.types.DefenderType;
 import ir.ac.kntu.services.game.components.tiles.ClickableTile;
 import ir.ac.kntu.services.game.core.managers.BulletManager;
+import ir.ac.kntu.services.game.core.strategies.EnemySelector;
 import ir.ac.kntu.services.game.core.strategies.OldEnemySelector;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
@@ -18,8 +19,8 @@ public class PowerfulTower extends ShooterDefender{
     private final BulletType bulletType = BulletType.NORMAL_BULLET;
     private Pane powerfulTowerPane;
 
-    public PowerfulTower(DefenderType defenderType, ClickableTile tile, BulletManager bulletManager) {
-        super(defenderType, DAMAGE_COEFFICIENT, tile, bulletManager, new OldEnemySelector(), SHOOTING_DELAY);
+    public PowerfulTower(DefenderType defenderType, ClickableTile tile, BulletManager bulletManager, EnemySelector enemySelector) {
+        super(defenderType, DAMAGE_COEFFICIENT, tile, bulletManager, enemySelector, SHOOTING_DELAY);
     }
 
     @Override

@@ -32,13 +32,13 @@ public abstract class ShooterDefender extends Defender implements Shooter {
     }
 
     @Override
-    public void activate(List<Enemy> enemies) {
+    public void activate() {
         if (enemyTracker == null || enemyTracker.isShutdown()) {
             enemyTracker = Executors.newSingleThreadScheduledExecutor();
             enemyTracker.scheduleWithFixedDelay(() -> {
-                if (enemies != null && !enemies.isEmpty()) {
+                if (!enemySelector.isEmpty()) {
                     Platform.runLater(() -> {
-                        bulletManager.shoot(this, enemySelector.selectEnemy(enemies, this));
+                        bulletManager.shoot(this, enemySelector.selectEnemy(this));
                     });
                 }
             }, 0, shooting_delay, TimeUnit.SECONDS);

@@ -14,12 +14,10 @@ public class SimpleDefenderManager implements DefenderManager {
     private final DefenderFactory defenderFactory;
 
     private List<Defender> defenders;
-    private List<Enemy> enemies;
 
-    public SimpleDefenderManager(TileStateProvider stateProvider, DefenderFactory defenderFactory, List<Enemy> enemies) {
+    public SimpleDefenderManager(TileStateProvider stateProvider, DefenderFactory defenderFactory) {
         this.stateProvider = stateProvider;
         this.defenderFactory = defenderFactory;
-        this.enemies = enemies;
         defenders = new ArrayList<Defender>();
     }
 
@@ -27,7 +25,7 @@ public class SimpleDefenderManager implements DefenderManager {
     public void plantDefender(ClickableTile tile, DefenderType defenderType) {
         Defender defender = defenderFactory.getDefender(defenderType, tile);
         tile.setState(stateProvider.getBuiltState(defender));
-        defender.activate(enemies);
+        defender.activate();
         defenders.add(defender);
     }
 

@@ -11,9 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SimpleEnemyRenderer implements EnemyRenderer {
-    private final List<Enemy> enemies = new ArrayList<>();
     private final List<AnimationTimer> timers = new ArrayList<>();
     private final Pane enemyPane = new Pane();
+    private List<Enemy> enemies;
+    private EnemyManager enemyManager;
 
     public SimpleEnemyRenderer(MapRenderer mapRenderer, TileFactory tileFactory) {
         enemyPane.setPrefSize(
@@ -23,23 +24,24 @@ public class SimpleEnemyRenderer implements EnemyRenderer {
     }
 
     @Override
+    public void setEnemyManager(EnemyManager enemyManager) {
+        this.enemyManager = enemyManager;
+        enemies = enemyManager.getEnemies();
+    }
+
+    @Override
     public Pane renderEnemies() {
         return enemyPane;
     }
 
     @Override
-    public void addEnemy(Enemy enemy, EnemyManager enemyManager) {
+    public void addEnemy(Enemy enemy) {
         enemies.add(enemy);
         enemyPane.getChildren().add(enemy.getView());
-        moveEnemy(enemy, enemyManager);
+        moveEnemy(enemy);
     }
 
-    @Override
-    public List<Enemy> getEnemies() {
-        return enemies;
-    }
-
-    private void moveEnemy(Enemy enemy, EnemyManager enemyManager) {
+    private void moveEnemy(Enemy enemy) {
         List<Point2D> path = enemy.getPath();
         if (path == null || path.size() < 2) return;
 

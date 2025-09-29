@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface EnemyRenderer {
     Pane renderEnemies();
-    void addEnemy(Enemy enemy, EnemyManager enemyManager);
-    List<Enemy> getEnemies();
+    void addEnemy(Enemy enemy);
     void reset();
+    void setEnemyManager(EnemyManager enemyManager);
 }

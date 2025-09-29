@@ -4,7 +4,7 @@ import ir.ac.kntu.services.game.components.bullets.BulletType;
 import ir.ac.kntu.services.game.core.managers.BulletManager;
 import ir.ac.kntu.services.game.components.defenders.types.DefenderType;
 import ir.ac.kntu.services.game.components.tiles.ClickableTile;
-import ir.ac.kntu.services.game.core.strategies.OldEnemySelector;
+import ir.ac.kntu.services.game.core.strategies.EnemySelector;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -18,8 +18,8 @@ public class FastTower extends ShooterDefender {
     private final BulletType bulletType = BulletType.FAST_BULLET;
     private Pane fastTowerPane;
 
-    public FastTower(DefenderType defenderType, BulletManager bulletManager, ClickableTile tile) {
-        super(defenderType, DAMAGE_COEFFICIENT, tile, bulletManager, new OldEnemySelector(), SHOOTING_DELAY);
+    public FastTower(DefenderType defenderType, BulletManager bulletManager, ClickableTile tile, EnemySelector enemySelector) {
+        super(defenderType, DAMAGE_COEFFICIENT, tile, bulletManager, enemySelector, SHOOTING_DELAY);
     }
 
     @Override

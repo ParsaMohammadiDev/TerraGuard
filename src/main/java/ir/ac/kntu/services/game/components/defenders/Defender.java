@@ -36,7 +36,7 @@ public abstract class Defender implements Entity {
 
     public abstract Pane getDefenderComposite();
 
-    public abstract void activate(List<Enemy> enemies);
+    public abstract void activate();
 
     public abstract void deactivate();
 

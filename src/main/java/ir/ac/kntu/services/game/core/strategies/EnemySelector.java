@@ -6,5 +6,6 @@ import ir.ac.kntu.services.game.components.enemies.Enemy;
 import java.util.List;
 
 public interface EnemySelector {
-    Enemy selectEnemy(List<Enemy> enemies, Defender defender);
+    Enemy selectEnemy(Defender defender);
+    boolean isEmpty();
 }

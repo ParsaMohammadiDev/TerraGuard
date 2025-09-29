@@ -10,6 +10,9 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SimpleEnemyManager implements EnemyManager {
     private static final int SOLIDER_COUNT_SEED = 5;
     private static final int SOLIDER_SPAWN_RATE_SEED = 4;
@@ -18,6 +21,7 @@ public class SimpleEnemyManager implements EnemyManager {
 
     private final EnemyFactory enemyFactory;
     private final EnemyRenderer enemyRenderer;
+    private final List<Enemy> enemies = new ArrayList<>();
     private GameEngine gameEngine;
 
     private Timeline soldierManager;
@@ -28,6 +32,7 @@ public class SimpleEnemyManager implements EnemyManager {
     public SimpleEnemyManager(EnemyFactory enemyFactory, EnemyRenderer enemyRenderer) {
         this.enemyFactory = enemyFactory;
         this.enemyRenderer = enemyRenderer;
+        enemyRenderer.setEnemyManager(this);
     }
 
     @Override
@@ -45,6 +50,11 @@ public class SimpleEnemyManager implements EnemyManager {
         }
     }
 
+    @Override
+    public List<Enemy> getEnemies() {
+        return enemies;
+    }
+
     private void runSoldiers(GameDifficulty difficulty, Map map) {
         int soldierCount = (int) (difficulty.getDifficultyCoefficient() * SOLIDER_COUNT_SEED);
         initEnemyCount += soldierCount;
@@ -59,7 +69,7 @@ public class SimpleEnemyManager implements EnemyManager {
                 event -> {
                     Enemy newSoldier = enemyFactory.getSolider(map);
                     newSoldier.setSpeed(soldierSpeed);
-                    enemyRenderer.addEnemy(newSoldier, this);
+                    enemyRenderer.addEnemy(newSoldier);
                 }
         );
 
