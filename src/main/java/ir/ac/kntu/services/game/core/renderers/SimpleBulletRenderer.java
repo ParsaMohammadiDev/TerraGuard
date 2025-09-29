@@ -50,7 +50,8 @@ public class SimpleBulletRenderer implements BulletRenderer {
                         bullet.getView().getLayoutY() + dirY * speed
                 );
 
-                if (collisionManager.isCollidedWithPaneBounds(bullet.getView(), gamePane)) {
+                if (collisionManager.isCollidedWithPaneBounds(bullet, gamePane) ||
+                collisionManager.isCollided(bullet)) {
                     this.stop();
                     terminateBullet(bullet);
                 }
