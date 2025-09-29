@@ -3,6 +3,7 @@ package ir.ac.kntu.services.game.core.renderers;
 import ir.ac.kntu.services.game.components.Entity;
 import ir.ac.kntu.services.game.components.Shooter;
 import ir.ac.kntu.services.game.components.bullets.Bullet;
+import ir.ac.kntu.services.game.core.managers.CollisionManager;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
@@ -14,9 +15,11 @@ public class SimpleBulletRenderer implements BulletRenderer {
     private final List<AnimationTimer> timers = new ArrayList<>();
     private final List<Bullet> renderingBullets = new ArrayList<>();
     private final EffectRenderer effectRenderer;
+    private final CollisionManager collisionManager;
 
-    public SimpleBulletRenderer(EffectRenderer effectRenderer) {
+    public SimpleBulletRenderer(EffectRenderer effectRenderer, CollisionManager collisionManager) {
         this.effectRenderer = effectRenderer;
+        this.collisionManager = collisionManager;
     }
 
     @Override
@@ -47,7 +50,7 @@ public class SimpleBulletRenderer implements BulletRenderer {
                         bullet.getView().getLayoutY() + dirY * speed
                 );
 
-                if (isCollidedWithGamePane(bullet, gamePane)) {
+                if (collisionManager.isCollidedWithPaneBounds(bullet.getView(), gamePane)) {
                     this.stop();
                     terminateBullet(bullet);
                 }
@@ -61,12 +64,6 @@ public class SimpleBulletRenderer implements BulletRenderer {
         bullet.getView().setVisible(false);
         ((Pane) bullet.getView().getParent()).getChildren().remove(bullet.getView());
         renderingBullets.remove(bullet);
-    }
-
-    private boolean isCollidedWithGamePane(Bullet bullet, Pane gamePane) {
-        Bounds bulletBounds = bullet.getView().getBoundsInParent();
-        Bounds paneBounds = gamePane.getLayoutBounds();
-        return !paneBounds.contains(bulletBounds);
     }
 
     @Override

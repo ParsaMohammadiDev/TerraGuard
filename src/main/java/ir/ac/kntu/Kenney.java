@@ -11,13 +11,10 @@ import ir.ac.kntu.services.app.menus.options.providers.SimpleMenuOptionProvider;
 import ir.ac.kntu.services.app.scenes.managers.SceneManager;
 import ir.ac.kntu.services.game.components.bullets.factories.BulletFactory;
 import ir.ac.kntu.services.game.components.bullets.factories.SimpleBulletFactory;
-import ir.ac.kntu.services.game.core.managers.BulletManager;
-import ir.ac.kntu.services.game.core.managers.SimpleBulletManager;
+import ir.ac.kntu.services.game.core.managers.*;
 import ir.ac.kntu.services.game.core.renderers.*;
 import ir.ac.kntu.services.game.components.defenders.factories.DefenderFactory;
 import ir.ac.kntu.services.game.components.defenders.factories.SimpleDefenderFactory;
-import ir.ac.kntu.services.game.core.managers.DefenderManager;
-import ir.ac.kntu.services.game.core.managers.SimpleDefenderManager;
 import ir.ac.kntu.services.game.components.defenders.types.DefenderType;
 import ir.ac.kntu.services.game.components.defenders.types.factories.DefenderTypeFactory;
 import ir.ac.kntu.services.game.components.defenders.types.factories.FlyWeightDefenderTypeFactory;
@@ -49,8 +46,6 @@ import ir.ac.kntu.services.game.core.difficulties.factories.SimpleDifficultyFact
 import ir.ac.kntu.services.app.scenes.factories.SceneFactory;
 import ir.ac.kntu.services.app.scenes.factories.SimpleSceneFactory;
 import ir.ac.kntu.services.app.scenes.managers.SimpleSceneManager;
-import ir.ac.kntu.services.game.core.managers.EnemyManager;
-import ir.ac.kntu.services.game.core.managers.SimpleEnemyManager;
 import ir.ac.kntu.services.game.core.markets.KenneyMarket;
 import ir.ac.kntu.services.game.core.markets.Market;
 import javafx.application.Application;
@@ -89,7 +84,8 @@ public class Kenney extends Application {
         SimpleMenuFactory menuFactory = new SimpleMenuFactory();
         BulletFactory bulletFactory = new SimpleBulletFactory();
         EffectRenderer effectRenderer = new SimpleEffectRenderer();
-        BulletRenderer bulletRenderer = new SimpleBulletRenderer(effectRenderer);
+        CollisionManager collisionManager = new SimpleCollisionManager();
+        BulletRenderer bulletRenderer = new SimpleBulletRenderer(effectRenderer, collisionManager);
 
         defenderTypes.add(defenderTypeFactory.getFastTowerType());
         defenderTypes.add(defenderTypeFactory.getPowerfulTowerType());
