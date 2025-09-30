@@ -11,15 +11,18 @@ import ir.ac.kntu.services.game.components.tiles.ClickableTile;
 import ir.ac.kntu.services.game.core.managers.EnemyManager;
 import ir.ac.kntu.services.game.core.strategies.EnemySelector;
 import ir.ac.kntu.services.game.core.strategies.OldEnemySelector;
+import ir.ac.kntu.services.game.core.strategies.RandomEnemySelector;
 
 public class SimpleDefenderFactory implements DefenderFactory {
     private final BulletManager bulletManager;
 
     private final EnemySelector oldEnemySelector;
+    private final EnemySelector randomEnemySelector;
 
     public SimpleDefenderFactory(BulletManager bulletManager, EnemyManager enemyManager) {
         this.bulletManager = bulletManager;
         oldEnemySelector = new OldEnemySelector(enemyManager);
+        randomEnemySelector = new RandomEnemySelector(enemyManager);
     }
 
     @Override
@@ -29,7 +32,7 @@ public class SimpleDefenderFactory implements DefenderFactory {
 
     private Defender createDefender(DefenderType defenderType, ClickableTile tile) {
         if(defenderType instanceof FastTowerType)
-            return new FastTower(defenderType, bulletManager, tile, oldEnemySelector);
+            return new FastTower(defenderType, bulletManager, tile, randomEnemySelector);
         if(defenderType instanceof PowerfulTowerType)
             return new PowerfulTower(defenderType, tile, bulletManager, oldEnemySelector);
         else
