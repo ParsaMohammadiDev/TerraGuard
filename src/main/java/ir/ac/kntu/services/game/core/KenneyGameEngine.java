@@ -10,6 +10,7 @@ import ir.ac.kntu.services.game.components.wallets.generators.CoinGenerator;
 import ir.ac.kntu.services.game.core.difficulties.GameDifficulty;
 import ir.ac.kntu.services.game.core.difficulties.factories.DifficultyFactory;
 import ir.ac.kntu.services.game.core.managers.DefenderManager;
+import ir.ac.kntu.services.game.core.managers.DifficultyManager;
 import ir.ac.kntu.services.game.core.managers.EnemyManager;
 import ir.ac.kntu.services.game.core.renderers.EnemyRenderer;
 import javafx.scene.layout.Pane;
@@ -26,6 +27,7 @@ public class KenneyGameEngine implements GameEngine {
     private final BulletManager bulletManager;
     private final DefenderManager defenderManager;
     private final Wallet wallet;
+    private final DifficultyManager difficultyManager;
 
     private Map gameMap;
     private GameDifficulty difficulty;
@@ -41,7 +43,8 @@ public class KenneyGameEngine implements GameEngine {
                             SceneManager sceneManager,
                             Wallet wallet,
                             BulletManager bulletManager,
-                            DefenderManager defenderManager) {
+                            DefenderManager defenderManager,
+                            DifficultyManager difficultyManager) {
         this.mapRenderer = mapRenderer;
         this.enemyRenderer = enemyRenderer;
         this.enemyManager = enemyManager;
@@ -50,6 +53,7 @@ public class KenneyGameEngine implements GameEngine {
         this.bulletManager = bulletManager;
         this.sceneManager = sceneManager;
         this.defenderManager = defenderManager;
+        this.difficultyManager = difficultyManager;
         this.wallet = wallet;
         this.gameMap = new GrassLand();
     }
@@ -112,14 +116,15 @@ public class KenneyGameEngine implements GameEngine {
         coinGenerator.stop();
         enemyManager.reset();
         bulletManager.reset();
-        difficulty.levelUp();
+        difficultyManager.levelUp(difficulty);
         sceneManager.showLevelUp();
     }
 
     @Override
     public void hardReset() {
         isReset = true;
-        difficulty.reset();
+        difficultyManager.reset();
+        defenderManager.reset();
         coinGenerator.stop();
         wallet.reset();
     }

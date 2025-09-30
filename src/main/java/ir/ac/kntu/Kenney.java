@@ -112,7 +112,7 @@ public class Kenney extends Application {
         DefenderFactory defenderFactory = new SimpleDefenderFactory(bulletManager, enemyManager);
         DefenderManager defenderManager = new SimpleDefenderManager(tileStateProvider, defenderFactory);
         MenuOptionProvider menuOptionProvider = new SimpleMenuOptionProvider(defenderTypeFactory, market, animFactory, defenderManager);
-
+        DifficultyManager difficultyManager = new SimpleDifficultyManager(difficultyFactory);
 
         menuFactory.setOptionProvider(menuOptionProvider);
 
@@ -125,7 +125,10 @@ public class Kenney extends Application {
                 sceneManager,
                 wallet,
                 bulletManager,
-                defenderManager);
+                defenderManager,
+                difficultyManager);
+
+        difficultyManager.setGameEngine(gameEngine);
 
         SceneFactory sceneFactory = new SimpleSceneFactory(
                 gameEngine,
