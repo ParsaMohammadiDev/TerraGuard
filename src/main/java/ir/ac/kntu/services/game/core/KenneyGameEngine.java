@@ -29,6 +29,7 @@ public class KenneyGameEngine implements GameEngine {
 
     private Map gameMap;
     private GameDifficulty difficulty;
+    private boolean isReset = true;
 
     private final StackPane gamePane = new StackPane();
 
@@ -75,6 +76,7 @@ public class KenneyGameEngine implements GameEngine {
 
     @Override
     public Pane startGame() {
+        if (!isReset) return gamePane;
         gamePane.getChildren().clear();
         enemyManager.runEnemies(difficulty, gameMap, this);
         coinGenerator.generate();
@@ -82,6 +84,7 @@ public class KenneyGameEngine implements GameEngine {
         gamePane.getChildren().add(enemyRenderer.renderEnemies());
         gamePane.getChildren().add(bulletManager.renderBullets());
         gamePane.getChildren().add(mapRenderer.renderOverlay(gameMap));
+        isReset = false;
         return gamePane;
     }
 
@@ -89,6 +92,12 @@ public class KenneyGameEngine implements GameEngine {
     public void checkGameStatus(int initEnemyCount, int reachedEnemyCount, int terminatedEnemyCount) {
         if (reachedEnemyCount >= initEnemyCount * ENEMY_OVERCOME_PERCENTAGE) gameOver();
         if (terminatedEnemyCount == 1) levelUp();
+    }
+
+    @Override
+    public void resume() {
+        coinGenerator.generate();
+        enemyManager.runEnemies(difficulty, gameMap, this);
     }
 
     private void gameOver() {
@@ -100,14 +109,16 @@ public class KenneyGameEngine implements GameEngine {
     }
 
     private void levelUp() {
+        coinGenerator.stop();
         enemyManager.reset();
         bulletManager.reset();
-        defenderManager.reset();
+        difficulty.levelUp();
         sceneManager.showLevelUp();
     }
 
     @Override
     public void hardReset() {
+        isReset = true;
         difficulty.reset();
         coinGenerator.stop();
         wallet.reset();

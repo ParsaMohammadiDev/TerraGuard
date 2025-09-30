@@ -87,6 +87,11 @@ public class SimpleEnemyManager implements EnemyManager {
         reachedEnemyCount = 0;
         terminatedEnemyCount = 0;
         initEnemyCount = 0;
+        enemies.forEach(enemy -> {
+            enemy.getView().setVisible(false);
+            enemy.getView().setDisable(true);
+        });
+        enemies.clear();
         enemyRenderer.reset();
         if (soldierManager != null) soldierManager.stop();
     }

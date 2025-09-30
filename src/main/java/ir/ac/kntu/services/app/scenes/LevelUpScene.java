@@ -55,6 +55,10 @@ public class LevelUpScene implements SceneLogic {
             gameEngine.hardReset();
             sceneManager.showMenu();
         });
+        continueButton.setOnAction(e -> {
+            gameEngine.resume();
+            sceneManager.showGame();
+        });
         return buttons;
     }
 }

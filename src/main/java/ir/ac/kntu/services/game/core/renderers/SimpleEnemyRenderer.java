@@ -100,13 +100,7 @@ public class SimpleEnemyRenderer implements EnemyRenderer {
 
     @Override
     public void reset() {
-        for (Enemy enemy : enemies) {
-            enemy.getView().setVisible(false);
-        }
-        enemies.clear();
-        for (AnimationTimer t : timers) {
-            t.stop();
-        }
+        timers.forEach(AnimationTimer::stop);
         timers.clear();
     }
 

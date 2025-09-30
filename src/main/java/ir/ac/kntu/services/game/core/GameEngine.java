@@ -12,4 +12,5 @@ public interface GameEngine {
     Pane startGame();
     void checkGameStatus(int initEnemyCount, int reachedEnemyCount, int terminatedEnemyCount);
     void hardReset();
+    void resume();
 }
