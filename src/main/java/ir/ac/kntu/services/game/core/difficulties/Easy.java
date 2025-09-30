@@ -1,9 +1,10 @@
 package ir.ac.kntu.services.game.core.difficulties;
 
 public class Easy implements GameDifficulty {
-    private static final double EXPONENTIAL_GROWTH = (double) 1 / 4;
-    private static final double STEP_SIZE = 0.5;
+    private static final double EXPONENTIAL_GROWTH = (double) 1 / 8;
+    private static final double STEP_SIZE = 0.1;
     private static final double START_LEVEL = 0;
+    private static final double END_LEVEL = 3.5;
 
     private double level = START_LEVEL;
     
@@ -18,8 +19,10 @@ public class Easy implements GameDifficulty {
     }
 
     @Override
-    public void levelUp() {
+    public boolean levelUp() {
         level += STEP_SIZE;
+        System.out.println(level + "EASY");
+        return !(level >= END_LEVEL);
     }
 
     @Override

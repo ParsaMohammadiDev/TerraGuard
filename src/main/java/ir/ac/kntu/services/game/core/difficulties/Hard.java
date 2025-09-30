@@ -2,7 +2,7 @@ package ir.ac.kntu.services.game.core.difficulties;
 
 public class Hard implements GameDifficulty {
     private static final double EXPONENTIAL_GROWTH = (double) 1 / 4;
-    private static final double START_LEVEL = 6.6;
+    private static final double START_LEVEL = 5.0;
     private static final double STEP = 0.3;
 
     private double level = START_LEVEL;
@@ -18,8 +18,10 @@ public class Hard implements GameDifficulty {
     }
 
     @Override
-    public void levelUp() {
+    public boolean levelUp() {
         level += STEP;
+        System.out.println(level + "HARD");
+        return true;
     }
 
     @Override

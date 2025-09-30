@@ -2,8 +2,9 @@ package ir.ac.kntu.services.game.core.difficulties;
 
 public class Medium implements GameDifficulty {
     private static final double EXPONENTIAL_GROWTH = (double) 1 / 4;
-    private static final double START_LEVEL = 3.3;
-    private static final double STEP = 0.4;
+    private static final double START_LEVEL = 3.5;
+    private static final double STEP = 0.2;
+    private static final double END_LEVEL = 5.0;
 
     private double level = START_LEVEL;
 
@@ -18,8 +19,10 @@ public class Medium implements GameDifficulty {
     }
 
     @Override
-    public void levelUp() {
+    public boolean levelUp() {
         level += STEP;
+        System.out.println(level + "MEDIUM");
+        return !(level >= END_LEVEL);
     }
 
     @Override
