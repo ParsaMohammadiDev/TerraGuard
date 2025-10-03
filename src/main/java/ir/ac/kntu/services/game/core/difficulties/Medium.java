@@ -21,7 +21,6 @@ public class Medium implements GameDifficulty {
     @Override
     public boolean levelUp() {
         level += STEP;
-        System.out.println(level + "MEDIUM");
         return !(level >= END_LEVEL);
     }
 

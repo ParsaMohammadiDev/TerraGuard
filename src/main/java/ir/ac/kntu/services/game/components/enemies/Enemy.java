@@ -18,12 +18,18 @@ public abstract class Enemy implements Entity, Collidable {
     private double speed;
     private double health;
     private StackPane enemyView;
+    private double resistance;
 
-    public Enemy(EnemyType type, List<Point2D> path) {
+    public Enemy(EnemyType type, List<Point2D> path, double resistance) {
         this.type = type;
         this.path = path;
+        this.resistance = resistance;
         enemyView = getEnemyComposite();
         enemyView.setPrefSize(VIEW_SIZE, VIEW_SIZE);
+    }
+
+    public double getResistance() {
+        return resistance;
     }
 
     public EnemyType getEnemyType() {

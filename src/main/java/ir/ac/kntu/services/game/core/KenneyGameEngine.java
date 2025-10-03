@@ -95,7 +95,7 @@ public class KenneyGameEngine implements GameEngine {
     @Override
     public void checkGameStatus(int initEnemyCount, int reachedEnemyCount, int terminatedEnemyCount) {
         if (reachedEnemyCount >= initEnemyCount * ENEMY_OVERCOME_PERCENTAGE) gameOver();
-        if (terminatedEnemyCount == 1) levelUp();
+        if (terminatedEnemyCount == initEnemyCount) levelUp();
     }
 
     @Override

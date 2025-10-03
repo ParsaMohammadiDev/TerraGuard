@@ -20,7 +20,6 @@ public class Hard implements GameDifficulty {
     @Override
     public boolean levelUp() {
         level += STEP;
-        System.out.println(level + "HARD");
         return true;
     }
 

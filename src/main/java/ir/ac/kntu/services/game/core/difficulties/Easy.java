@@ -21,7 +21,6 @@ public class Easy implements GameDifficulty {
     @Override
     public boolean levelUp() {
         level += STEP_SIZE;
-        System.out.println(level + "EASY");
         return !(level >= END_LEVEL);
     }
 

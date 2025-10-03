@@ -10,11 +10,11 @@ import java.util.List;
 public class Solider extends Enemy {
     private static final double DAMAGE_COEFFICIENT = 10.0;
     private static final double COLLISION_MARGIN = 30;
-    private static final double RESISTANCE = 1;
     private static final double INITIAL_HEALTH = 5;
+    private static final double RESISTANCE_COEFFICIENT = 1;
 
-    public Solider(EnemyType type, List<Point2D> path) {
-        super(type, path);
+    public Solider(EnemyType type, List<Point2D> path, double difficultyCoefficient) {
+        super(type, path, difficultyCoefficient * RESISTANCE_COEFFICIENT);
         setHealth(INITIAL_HEALTH);
     }
 
@@ -37,6 +37,6 @@ public class Solider extends Enemy {
 
     @Override
     public void damage(double amount) {
-        setHealth(getHealth() - amount * RESISTANCE);
+        setHealth(getHealth() - amount / getResistance() );
     }
 }
