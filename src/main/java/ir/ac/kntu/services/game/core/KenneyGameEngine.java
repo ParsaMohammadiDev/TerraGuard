@@ -29,12 +29,10 @@ public class KenneyGameEngine implements GameEngine {
     private final DefenderManager defenderManager;
     private final Wallet wallet;
     private final DifficultyManager difficultyManager;
-    private final LevelPublisher levelPublisher;
 
     private Map gameMap;
     private GameDifficulty difficulty;
     private boolean isReset = true;
-    private int level = 1;
 
     private final StackPane gamePane = new StackPane();
 
@@ -47,8 +45,7 @@ public class KenneyGameEngine implements GameEngine {
                             Wallet wallet,
                             BulletManager bulletManager,
                             DefenderManager defenderManager,
-                            DifficultyManager difficultyManager,
-                            LevelPublisher levelPublisher) {
+                            DifficultyManager difficultyManager) {
         this.mapRenderer = mapRenderer;
         this.enemyRenderer = enemyRenderer;
         this.enemyManager = enemyManager;
@@ -58,7 +55,6 @@ public class KenneyGameEngine implements GameEngine {
         this.sceneManager = sceneManager;
         this.defenderManager = defenderManager;
         this.difficultyManager = difficultyManager;
-        this.levelPublisher = levelPublisher;
         this.wallet = wallet;
         this.gameMap = new GrassLand();
     }
@@ -86,7 +82,6 @@ public class KenneyGameEngine implements GameEngine {
     @Override
     public Pane startGame() {
         if (!isReset) return gamePane;
-        levelPublisher.notifySubscribers(level);
         gamePane.getChildren().clear();
         enemyManager.runEnemies(difficulty, gameMap, this);
         coinGenerator.generate();
@@ -119,8 +114,6 @@ public class KenneyGameEngine implements GameEngine {
     }
 
     private void levelUp() {
-        level++;
-        levelPublisher.notifySubscribers(level);
         coinGenerator.stop();
         enemyManager.reset();
         bulletManager.reset();
@@ -131,8 +124,6 @@ public class KenneyGameEngine implements GameEngine {
     @Override
     public void hardReset() {
         isReset = true;
-        level = 1;
-        levelPublisher.notifySubscribers(level);
         difficultyManager.reset();
         defenderManager.reset();
         coinGenerator.stop();
