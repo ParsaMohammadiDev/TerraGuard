@@ -28,4 +28,9 @@ public class Easy implements GameDifficulty {
     public void reset() {
         level = START_LEVEL;
     }
+
+    @Override
+    public String toString() {
+        return "Easy";
+    }
 }

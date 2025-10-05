@@ -131,7 +131,6 @@ public class Kenney extends Application {
                 defenderManager,
                 difficultyManager);
 
-        difficultyManager.setGameEngine(gameEngine);
         enemyFactory.setGameEngine(gameEngine);
 
         SceneFactory sceneFactory = new SimpleSceneFactory(

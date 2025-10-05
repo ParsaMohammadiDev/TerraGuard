@@ -82,6 +82,7 @@ public class KenneyGameEngine implements GameEngine {
     @Override
     public Pane startGame() {
         if (!isReset) return gamePane;
+        difficultyManager.setGameEngine(this);
         gamePane.getChildren().clear();
         enemyManager.runEnemies(difficulty, gameMap, this);
         coinGenerator.generate();

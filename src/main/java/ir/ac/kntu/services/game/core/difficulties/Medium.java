@@ -28,4 +28,9 @@ public class Medium implements GameDifficulty {
     public void reset() {
         level = START_LEVEL;
     }
+
+    @Override
+    public String toString() {
+        return "Medium";
+    }
 }

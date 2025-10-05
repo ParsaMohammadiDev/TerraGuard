@@ -15,13 +15,14 @@ public class SimpleDifficultyManager implements DifficultyManager {
     public SimpleDifficultyManager(DifficultyFactory difficultyFactory, LevelPublisher levelPublisher) {
         this.difficultyFactory = difficultyFactory;
         this.levelPublisher = levelPublisher;
-        level = 1;
-        levelPublisher.notifySubscribers(level);
     }
 
     @Override
     public void setGameEngine(GameEngine gameEngine) {
         this.gameEngine = gameEngine;
+        level = 1;
+        levelPublisher.notifySubscribers(gameEngine.getGameDifficulty());
+        levelPublisher.notifySubscribers(level);
     }
 
     @Override
@@ -29,6 +30,7 @@ public class SimpleDifficultyManager implements DifficultyManager {
         levelPublisher.notifySubscribers(++ level);
         if (!currentDifficulty.levelUp()) {
             gameEngine.setGameDifficulty(getDifficulty(currentDifficulty.enumerate()));
+            levelPublisher.notifySubscribers(gameEngine.getGameDifficulty());
         }
     }
 
@@ -37,6 +39,7 @@ public class SimpleDifficultyManager implements DifficultyManager {
         level = 1;
         levelPublisher.notifySubscribers(level);
         gameEngine.setGameDifficulty(difficultyFactory.getEasyDifficulty());
+        levelPublisher.notifySubscribers(gameEngine.getGameDifficulty());
     }
 
     private GameDifficulty getDifficulty(int enumeration) {

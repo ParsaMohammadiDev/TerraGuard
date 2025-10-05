@@ -1,5 +1,7 @@
 package ir.ac.kntu.services.game.core.difficulties;
 
+import java.text.StringCharacterIterator;
+
 public class Hard implements GameDifficulty {
     private static final double EXPONENTIAL_GROWTH = (double) 1 / 4;
     private static final double START_LEVEL = 5.0;
@@ -26,5 +28,10 @@ public class Hard implements GameDifficulty {
     @Override
     public void reset() {
         level = START_LEVEL;
+    }
+
+    @Override
+    public String toString() {
+        return "Hard";
     }
 }

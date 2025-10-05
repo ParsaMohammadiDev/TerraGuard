@@ -46,7 +46,11 @@ public class GameScene implements SceneLogic {
     private Pane getGameHUD() {
         Pane gameHUD = new VBox();
         gameHUD.setPrefWidth(350);
-        gameHUD.getChildren().addAll(getCoinsHUD(), getLevelHUD(), menuFactory.getConstructionMenu().getView());
+        gameHUD.getChildren().addAll(
+                getCoinsHUD(),
+                getDifficultyHUD(),
+                getLevelHUD(),
+                menuFactory.getConstructionMenu().getView());
         gameHUD.getStyleClass().add("game_hud");
         return gameHUD;
     }
@@ -72,6 +76,12 @@ public class GameScene implements SceneLogic {
         coinHUD.getChildren().addAll(levelText, levelValue);
         coinHUD.getStyleClass().add("level_hud");
         return coinHUD;
+    }
+
+    private Node getDifficultyHUD() {
+        Text difficultyText = (Text) hudFactory.getDifficultyHUD();
+        setTextStyle(40, difficultyText);
+        return difficultyText;
     }
 
     private void setTextStyle(double size, Text... texts) {
