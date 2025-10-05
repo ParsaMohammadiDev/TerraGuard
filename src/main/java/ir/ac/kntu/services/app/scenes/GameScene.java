@@ -33,9 +33,10 @@ public class GameScene implements SceneLogic {
         VBox root = new VBox();
         HBox sceneElements = new HBox();
         sceneElements.getStyleClass().add("scene_elements");
+        Pane gameHUD = getGameHUD();
         Pane gamePane = gameEngine.startGame();
         gamePane.getStyleClass().add("game_pane");
-        sceneElements.getChildren().addAll(gamePane, getGameHUD());
+        sceneElements.getChildren().addAll(gamePane, gameHUD);
         root.getChildren().add(sceneElements);
         Scene scene = new Scene(root, 1200, 650);
         scene.getStylesheets().add(getClass().getResource("/style/game_scene_style.css").toExternalForm());
@@ -45,7 +46,7 @@ public class GameScene implements SceneLogic {
     private Pane getGameHUD() {
         Pane gameHUD = new VBox();
         gameHUD.setPrefWidth(350);
-        gameHUD.getChildren().addAll(getCoinsHUD(), menuFactory.getConstructionMenu().getView());
+        gameHUD.getChildren().addAll(getCoinsHUD(), getLevelHUD(), menuFactory.getConstructionMenu().getView());
         gameHUD.getStyleClass().add("game_hud");
         return gameHUD;
     }
@@ -60,6 +61,16 @@ public class GameScene implements SceneLogic {
         setTextStyle(40, coinText, (Text) coinValue);
         coinHUD.getChildren().addAll(coinIcon, coinText, coinValue);
         coinHUD.getStyleClass().add("coin_hud");
+        return coinHUD;
+    }
+
+    private Pane getLevelHUD() {
+        Pane coinHUD = new HBox();
+        Text levelText = new Text("Level: ");
+        Node levelValue = hudFactory.getLevelHUD();
+        setTextStyle(30, levelText, (Text) levelValue);
+        coinHUD.getChildren().addAll(levelText, levelValue);
+        coinHUD.getStyleClass().add("level_hud");
         return coinHUD;
     }
 

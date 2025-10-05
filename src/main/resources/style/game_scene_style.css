@@ -23,6 +23,11 @@
     -fx-spacing: 6;
 }
 
+.level_hud {
+    -fx-alignment: CENTER;
+    -fx-spacing: 6;
+}
+
 .game_hud {
     -fx-alignment: TOP_CENTER;
     -fx-spacing: 10;

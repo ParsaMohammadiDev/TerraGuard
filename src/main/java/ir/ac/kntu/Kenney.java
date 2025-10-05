@@ -11,6 +11,8 @@ import ir.ac.kntu.services.app.menus.options.providers.SimpleMenuOptionProvider;
 import ir.ac.kntu.services.app.scenes.managers.SceneManager;
 import ir.ac.kntu.services.game.components.bullets.factories.BulletFactory;
 import ir.ac.kntu.services.game.components.bullets.factories.SimpleBulletFactory;
+import ir.ac.kntu.services.game.core.difficulties.publishers.LevelPublisher;
+import ir.ac.kntu.services.game.core.difficulties.publishers.SimpleLevelPublisher;
 import ir.ac.kntu.services.game.core.managers.*;
 import ir.ac.kntu.services.game.core.managers.strategies.CollisionHandler;
 import ir.ac.kntu.services.game.core.managers.strategies.SimpleCollisionHandler;
@@ -81,6 +83,7 @@ public class Kenney extends Application {
         EnemyTypeFactory enemyTypeFactory = new FlyWeightEnemyTypeFactory();
         DifficultyFactory difficultyFactory = new SimpleDifficultyFactory();
         WalletPublisher walletPublisher = new SimpleWalletPublisher();
+        LevelPublisher levelPublisher = new SimpleLevelPublisher();
         DefenderTypeFactory defenderTypeFactory = new FlyWeightDefenderTypeFactory();
         List<DefenderType> defenderTypes = new ArrayList<>();
         SimpleMenuFactory menuFactory = new SimpleMenuFactory();
@@ -94,7 +97,7 @@ public class Kenney extends Application {
 
         Wallet wallet = new CoinsWallet(walletPublisher);
         CoinGenerator coinGenerator = new AutoCoinGenerator(wallet);
-        HUDFactory hudFactory = new SimpleHUDFactory(walletPublisher);
+        HUDFactory hudFactory = new SimpleHUDFactory(walletPublisher, levelPublisher);
         WalletMediator walletMediator = new SimpleWalletMediator(wallet);
         Market market = new KenneyMarket(defenderTypes, walletPublisher, walletMediator);
 
@@ -126,7 +129,8 @@ public class Kenney extends Application {
                 wallet,
                 bulletManager,
                 defenderManager,
-                difficultyManager);
+                difficultyManager,
+                levelPublisher);
 
         difficultyManager.setGameEngine(gameEngine);
         enemyFactory.setGameEngine(gameEngine);

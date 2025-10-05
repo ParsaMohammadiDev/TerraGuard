@@ -4,4 +4,5 @@ import javafx.scene.Node;
 
 public interface HUDFactory {
     Node getCoinHUD();
+    Node getLevelHUD();
 }
