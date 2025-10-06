@@ -1,18 +1,25 @@
 package ir.ac.kntu.services.game.core.managers;
 
+import ir.ac.kntu.services.app.scenes.managers.SceneManager;
 import ir.ac.kntu.services.game.core.GameEngine;
 import ir.ac.kntu.services.game.core.difficulties.GameDifficulty;
 import ir.ac.kntu.services.game.core.difficulties.factories.DifficultyFactory;
 import ir.ac.kntu.services.game.core.difficulties.publishers.LevelPublisher;
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
 
 public class SimpleDifficultyManager implements DifficultyManager {
+    private static final Duration LEVEL_UP_WAIT_TIME = Duration.seconds(3);
+
     private final DifficultyFactory difficultyFactory;
     private final LevelPublisher levelPublisher;
+    private final SceneManager sceneManager;
     private int level;
 
-    private  GameEngine gameEngine;
+    private GameEngine gameEngine;
 
-    public SimpleDifficultyManager(DifficultyFactory difficultyFactory, LevelPublisher levelPublisher) {
+    public SimpleDifficultyManager(DifficultyFactory difficultyFactory, LevelPublisher levelPublisher, SceneManager sceneManager) {
+        this.sceneManager = sceneManager;
         this.difficultyFactory = difficultyFactory;
         this.levelPublisher = levelPublisher;
     }
@@ -31,6 +38,11 @@ public class SimpleDifficultyManager implements DifficultyManager {
         if (!currentDifficulty.levelUp()) {
             gameEngine.setGameDifficulty(getDifficulty(currentDifficulty.enumerate()));
             levelPublisher.notifySubscribers(gameEngine.getGameDifficulty());
+            sceneManager.showLevelUp();
+        } else {
+            PauseTransition pause = new PauseTransition(LEVEL_UP_WAIT_TIME);
+            pause.setOnFinished(event -> {gameEngine.resume();});
+            pause.play();
         }
     }
 

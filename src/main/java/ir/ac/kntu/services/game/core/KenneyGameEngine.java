@@ -119,7 +119,6 @@ public class KenneyGameEngine implements GameEngine {
         enemyManager.reset();
         bulletManager.reset();
         difficultyManager.levelUp(difficulty);
-        sceneManager.showLevelUp();
     }
 
     @Override
