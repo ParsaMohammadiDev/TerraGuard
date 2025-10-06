@@ -42,8 +42,10 @@ public class SimpleEffectRenderer implements EffectRenderer {
         impactView.setScaleY(INIT_EFFECT_SCALE);
         impactView.setLayoutX(bullet.getView().getLayoutX());
         impactView.setLayoutY(bullet.getView().getLayoutY());
-        Pane gamePane = (Pane) bullet.getView().getParent();
-        gamePane.getChildren().add(impactView);
+        var pane = bullet.getView().getParent();
+        if (pane instanceof Pane gamePane) {
+            gamePane.getChildren().add(impactView);
+        }
 
         ScaleTransition popup = new ScaleTransition(Duration.millis(100), impactView);
         popup.setToX(FINIAL_EFFECT_SCALE);
@@ -51,7 +53,9 @@ public class SimpleEffectRenderer implements EffectRenderer {
 
         popup.setOnFinished((e) -> {
             impactView.setVisible(false);
-            gamePane.getChildren().remove(impactView);
+            if (pane instanceof Pane gamePane) {
+                gamePane.getChildren().remove(impactView);
+            }
         });
         popup.play();
     }

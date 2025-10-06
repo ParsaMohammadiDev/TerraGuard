@@ -3,7 +3,6 @@ package ir.ac.kntu.services.game.core.managers;
 import ir.ac.kntu.services.game.components.defenders.Defender;
 import ir.ac.kntu.services.game.components.defenders.factories.DefenderFactory;
 import ir.ac.kntu.services.game.components.defenders.types.DefenderType;
-import ir.ac.kntu.services.game.components.enemies.Enemy;
 import ir.ac.kntu.services.game.components.tiles.ClickableTile;
 import ir.ac.kntu.services.game.components.tiles.states.providers.TileStateProvider;
 import java.util.ArrayList;
@@ -34,5 +33,16 @@ public class SimpleDefenderManager implements DefenderManager {
         for (Defender defender : defenders) {
             defender.deactivate();
         }
+        defenders.clear();
+    }
+
+    @Override
+    public void pause() {
+        defenders.forEach(Defender::deactivate);
+    }
+
+    @Override
+    public void resume() {
+        defenders.forEach(Defender::activate);
     }
 }

@@ -13,4 +13,6 @@ public interface EnemyManager {
     void terminateEnemy(Enemy enemy);
     List<Enemy> getEnemies();
     void reset();
+    void pause();
+    void resume();
 }

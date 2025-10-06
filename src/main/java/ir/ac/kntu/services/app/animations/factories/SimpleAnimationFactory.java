@@ -22,4 +22,9 @@ public class SimpleAnimationFactory implements AnimationFactory {
     public Animation getKillerAnimation() {
         return new KillerAnimation();
     }
+
+    @Override
+    public Animation getFadeAnimation() {
+        return new FadeAnimation();
+    }
 }

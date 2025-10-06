@@ -13,4 +13,5 @@ public interface GameEngine {
     void checkGameStatus(int initEnemyCount, int reachedEnemyCount, int terminatedEnemyCount);
     void hardReset();
     void resume();
+    void pause();
 }

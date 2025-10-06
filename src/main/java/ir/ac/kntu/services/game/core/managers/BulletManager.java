@@ -8,4 +8,6 @@ public interface BulletManager {
     void shoot(Shooter shooter, Entity target);
     Pane renderBullets();
     void reset();
+    void pause();
+    void resume();
 }

@@ -13,8 +13,10 @@ import java.util.List;
 public class SimpleEnemyRenderer implements EnemyRenderer {
     private final List<AnimationTimer> timers = new ArrayList<>();
     private final Pane enemyPane = new Pane();
+
     private List<Enemy> enemies;
     private EnemyManager enemyManager;
+    private boolean isPaused = false;
 
     public SimpleEnemyRenderer(MapRenderer mapRenderer, TileFactory tileFactory) {
         enemyPane.setPrefSize(
@@ -53,7 +55,7 @@ public class SimpleEnemyRenderer implements EnemyRenderer {
 
             @Override
             public void handle(long now) {
-                if (lastUpdate < 0) {
+                if (lastUpdate < 0 || isPaused) {
                     lastUpdate = now;
                     return;
                 }
@@ -102,6 +104,17 @@ public class SimpleEnemyRenderer implements EnemyRenderer {
     public void reset() {
         timers.forEach(AnimationTimer::stop);
         timers.clear();
+        isPaused = false;
+    }
+
+    @Override
+    public void pause() {
+        isPaused = true;
+    }
+
+    @Override
+    public void resume() {
+        isPaused = false;
     }
 
     private void reachEnemy(Enemy enemy, AnimationTimer timer) {

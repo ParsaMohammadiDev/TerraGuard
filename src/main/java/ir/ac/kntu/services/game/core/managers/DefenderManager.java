@@ -6,4 +6,6 @@ import ir.ac.kntu.services.game.components.tiles.ClickableTile;
 public interface DefenderManager {
     void plantDefender(ClickableTile tile, DefenderType defenderType);
     void reset();
+    void pause();
+    void resume();
 }

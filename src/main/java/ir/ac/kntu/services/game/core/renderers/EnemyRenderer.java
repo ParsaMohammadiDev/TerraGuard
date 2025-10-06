@@ -11,4 +11,6 @@ public interface EnemyRenderer {
     void addEnemy(Enemy enemy);
     void reset();
     void setEnemyManager(EnemyManager enemyManager);
+    void pause();
+    void resume();
 }

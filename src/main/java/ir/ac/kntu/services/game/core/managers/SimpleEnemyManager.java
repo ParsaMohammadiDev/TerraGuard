@@ -17,7 +17,6 @@ public class SimpleEnemyManager implements EnemyManager {
     private static final int SOLIDER_COUNT_SEED = 5;
     private static final int SOLIDER_SPAWN_RATE_SEED = 4;
     private static final int SOLDIER_SPEED_SEED = 30;
-    private static final double ENEMY_OVERCOME_PERCENTAGE = 0.5;
 
     private final EnemyFactory enemyFactory;
     private final EnemyRenderer enemyRenderer;
@@ -83,10 +82,9 @@ public class SimpleEnemyManager implements EnemyManager {
         soldierManager.play();
     }
 
+    @Override
     public void reset() {
-        reachedEnemyCount = 0;
-        terminatedEnemyCount = 0;
-        initEnemyCount = 0;
+        resetFlags();
         enemies.forEach(enemy -> {
             enemy.getView().setVisible(false);
             enemy.getView().setDisable(true);
@@ -94,5 +92,23 @@ public class SimpleEnemyManager implements EnemyManager {
         enemies.clear();
         enemyRenderer.reset();
         if (soldierManager != null) soldierManager.stop();
+    }
+
+    @Override
+    public void pause() {
+        enemyRenderer.pause();
+        if (soldierManager != null) soldierManager.pause();
+    }
+
+    @Override
+    public void resume() {
+        enemyRenderer.resume();
+        if (soldierManager != null) soldierManager.play();
+    }
+
+    private void resetFlags() {
+        initEnemyCount = 0;
+        terminatedEnemyCount = 0;
+        reachedEnemyCount = 0;
     }
 }

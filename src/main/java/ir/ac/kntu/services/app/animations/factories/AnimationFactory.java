@@ -7,4 +7,5 @@ public interface AnimationFactory {
     Animation getButtonHoverAnimation();
     Animation getTileHoverAnimation();
     Animation getKillerAnimation();
+    Animation getFadeAnimation();
 }

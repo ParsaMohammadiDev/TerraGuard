@@ -8,4 +8,6 @@ import javafx.scene.layout.Pane;
 public interface BulletRenderer {
     public void renderBullet(Bullet bullet, Shooter shooter, Entity target, Pane gamePane);
     void reset();
+    void pause();
+    void resume();
 }

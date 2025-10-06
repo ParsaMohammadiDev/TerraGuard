@@ -63,7 +63,10 @@ public class SimpleBulletRenderer implements BulletRenderer {
 
     private void terminateBullet(Bullet bullet) {
         bullet.getView().setVisible(false);
-        ((Pane) bullet.getView().getParent()).getChildren().remove(bullet.getView());
+        var pane = bullet.getView().getParent();
+        if (pane instanceof Pane bulletsPane) {
+            bulletsPane.getChildren().remove(bullet.getView());
+        }
         renderingBullets.remove(bullet);
     }
 
@@ -73,10 +76,19 @@ public class SimpleBulletRenderer implements BulletRenderer {
             timer.stop();
         }
         for (Bullet bullet : renderingBullets) {
-            bullet.getView().setVisible(false);
-            ((Pane) bullet.getView().getParent()).getChildren().remove(bullet.getView());
+            terminateBullet(bullet);
         }
         renderingBullets.clear();
         timers.clear();
+    }
+
+    @Override
+    public void pause() {
+        timers.forEach(AnimationTimer::stop);
+    }
+
+    @Override
+    public void resume() {
+        timers.forEach(AnimationTimer::start);
     }
 }

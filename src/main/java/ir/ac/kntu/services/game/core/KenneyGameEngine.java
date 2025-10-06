@@ -33,6 +33,7 @@ public class KenneyGameEngine implements GameEngine {
     private Map gameMap;
     private GameDifficulty difficulty;
     private boolean isReset = true;
+    private boolean isPause = false;
 
     private final StackPane gamePane = new StackPane();
 
@@ -103,7 +104,14 @@ public class KenneyGameEngine implements GameEngine {
     @Override
     public void resume() {
         coinGenerator.generate();
-        enemyManager.runEnemies(difficulty, gameMap, this);
+        if(!isPause) {
+            enemyManager.runEnemies(difficulty, gameMap, this);
+        } else {
+            isPause = false;
+            defenderManager.resume();
+            enemyManager.resume();
+            bulletManager.resume();
+        }
     }
 
     private void gameOver() {
@@ -123,10 +131,22 @@ public class KenneyGameEngine implements GameEngine {
 
     @Override
     public void hardReset() {
+        isPause = false;
         isReset = true;
+        enemyManager.reset();
+        bulletManager.reset();
         difficultyManager.reset();
         defenderManager.reset();
         coinGenerator.stop();
         wallet.reset();
+    }
+
+    @Override
+    public void pause() {
+        isPause = true;
+        coinGenerator.stop();
+        enemyManager.pause();
+        bulletManager.pause();
+        defenderManager.pause();
     }
 }

@@ -33,5 +33,16 @@ public class SimpleBulletManager implements BulletManager {
     @Override
     public void reset() {
         bulletRenderer.reset();
+        bulletsPane.getChildren().clear();
+    }
+
+    @Override
+    public void pause() {
+        bulletRenderer.pause();
+    }
+
+    @Override
+    public void resume() {
+        bulletRenderer.resume();
     }
 }

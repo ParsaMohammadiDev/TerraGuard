@@ -44,7 +44,7 @@ public class SimpleSceneFactory implements SceneFactory {
 
     @Override
     public Scene getGameScene() {
-        return new GameScene(gameEngine, hudFactory, menuFactory).getScene();
+        return new GameScene(gameEngine, hudFactory, menuFactory, animFactory, sceneManager).getScene();
     }
 
     @Override
