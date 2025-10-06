@@ -72,7 +72,7 @@ public class GameScene implements SceneLogic {
         Pane coinHUD = new HBox();
         Text levelText = new Text("Level: ");
         Node levelValue = hudFactory.getLevelHUD();
-        setTextStyle(30, levelText, (Text) levelValue);
+        setTextStyle(40, levelText, (Text) levelValue);
         coinHUD.getChildren().addAll(levelText, levelValue);
         coinHUD.getStyleClass().add("level_hud");
         return coinHUD;

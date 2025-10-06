@@ -108,7 +108,7 @@ public class Kenney extends Application {
         PathFinder pathFinder = new BFSPathFinder(tileFactory);
         EnemyFactory enemyFactory = new SimpleEnemyFactory(enemyTypeFactory, pathFinder);
         EnemyManager enemyManager = new SimpleEnemyManager(enemyFactory, enemyRenderer);
-        CollisionHandler collisionHandler = new SimpleCollisionHandler();
+        CollisionHandler collisionHandler = new SimpleCollisionHandler(effectRenderer);
         CollisionManager collisionManager = new SimpleCollisionManager(enemyManager, collisionHandler);
         BulletRenderer bulletRenderer = new SimpleBulletRenderer(effectRenderer, collisionManager);
         BulletManager bulletManager = new SimpleBulletManager(bulletFactory, bulletRenderer);

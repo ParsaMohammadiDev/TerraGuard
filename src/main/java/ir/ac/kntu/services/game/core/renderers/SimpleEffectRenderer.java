@@ -1,14 +1,18 @@
 package ir.ac.kntu.services.game.core.renderers;
 
 import ir.ac.kntu.services.game.components.Shooter;
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
+import ir.ac.kntu.services.game.components.bullets.Bullet;
+import javafx.animation.*;
 import javafx.scene.Node;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class SimpleEffectRenderer implements EffectRenderer {
+    private static final Duration IMPACT_DURATION = Duration.millis(100);
+    private static final double INIT_EFFECT_SCALE = 0.1;
+    private static final double FINIAL_EFFECT_SCALE = 1;
+
     private Timeline timeline;
 
     @Override
@@ -29,6 +33,27 @@ public class SimpleEffectRenderer implements EffectRenderer {
                         new KeyValue(muzzle.rotateProperty(), endAngle, Interpolator.EASE_BOTH))
         );
         timeline.play();
+    }
+
+    @Override
+    public void playBulletImpactEffect(Bullet bullet) {
+        ImageView impactView = new ImageView(bullet.getType().getImpactImage());
+        impactView.setScaleX(INIT_EFFECT_SCALE);
+        impactView.setScaleY(INIT_EFFECT_SCALE);
+        impactView.setLayoutX(bullet.getView().getLayoutX());
+        impactView.setLayoutY(bullet.getView().getLayoutY());
+        Pane gamePane = (Pane) bullet.getView().getParent();
+        gamePane.getChildren().add(impactView);
+
+        ScaleTransition popup = new ScaleTransition(Duration.millis(100), impactView);
+        popup.setToX(FINIAL_EFFECT_SCALE);
+        popup.setToY(FINIAL_EFFECT_SCALE);
+
+        popup.setOnFinished((e) -> {
+            impactView.setVisible(false);
+            gamePane.getChildren().remove(impactView);
+        });
+        popup.play();
     }
 
     private double normalize180(double a) {
