@@ -41,8 +41,11 @@ public class MapSelectorScene implements SceneLogic {
 
     @Override
     public Scene getScene() {
-        VBox root = new VBox();
-        root.getChildren().addAll(createPageTitle(), createNavigator(), createSelectButton());
+        StackPane root = new StackPane();
+        VBox mainPane = new VBox();
+        mainPane.getStyleClass().add("main_pane");
+        mainPane.getChildren().addAll(createPageTitle(), createNavigator(), createSelectButton());
+        root.getChildren().add(mainPane);
         Scene scene = new Scene(root, 1200, 650);
         scene.getStylesheets().add(getClass().getResource("/style/map_selector_scene_style.css").toExternalForm());
         return scene;

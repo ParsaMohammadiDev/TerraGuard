@@ -2,6 +2,9 @@
     -fx-background-image: url("/app/menu_background.png");
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
+}
+
+.main_pane {
     -fx-alignment: CENTER;
     -fx-spacing: 20px;
 }

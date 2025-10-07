@@ -2,8 +2,11 @@
     -fx-background-image: url("/app/menu_background.png");
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
-    -fx-alignment: TOP_CENTER;
     -fx-spacing: 10px;
+}
+
+.menu_items {
+    -fx-alignment: TOP-CENTER;
 }
 
 .buttons {

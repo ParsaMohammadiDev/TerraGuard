@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -32,11 +33,14 @@ public class DifficultySelectorScene implements SceneLogic {
 
     @Override
     public Scene getScene() {
-        VBox root = new VBox();
+        StackPane root = new StackPane();
+        VBox mainPane = new VBox();
+        mainPane.getStyleClass().add("main_pane");
         VBox difficultySelector = new VBox();
         difficultySelector.getChildren().addAll(createSliderLabels(), createSlider());
         difficultySelector.getStyleClass().add("difficulty_selector");
-        root.getChildren().addAll(createPageTitle(), difficultySelector, createSelectButton());
+        mainPane.getChildren().addAll(createPageTitle(), difficultySelector, createSelectButton());
+        root.getChildren().addAll(mainPane);
         Scene scene = new Scene(root, 1200, 650);
         scene.getStylesheets().add(getClass().getResource("/style/difficulty_selector_scene_style.css").toExternalForm());
         return scene;
