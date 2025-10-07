@@ -8,6 +8,10 @@ import ir.ac.kntu.services.app.huds.factories.SimpleHUDFactory;
 import ir.ac.kntu.services.app.menus.factories.SimpleMenuFactory;
 import ir.ac.kntu.services.app.menus.options.providers.MenuOptionProvider;
 import ir.ac.kntu.services.app.menus.options.providers.SimpleMenuOptionProvider;
+import ir.ac.kntu.services.app.prompts.factories.PromptFactory;
+import ir.ac.kntu.services.app.prompts.factories.SimplePromptFactory;
+import ir.ac.kntu.services.app.prompts.managers.PromptManager;
+import ir.ac.kntu.services.app.prompts.managers.SimplePromptManager;
 import ir.ac.kntu.services.app.scenes.managers.SceneManager;
 import ir.ac.kntu.services.game.components.bullets.factories.BulletFactory;
 import ir.ac.kntu.services.game.components.bullets.factories.SimpleBulletFactory;
@@ -89,11 +93,13 @@ public class Kenney extends Application {
         SimpleMenuFactory menuFactory = new SimpleMenuFactory();
         BulletFactory bulletFactory = new SimpleBulletFactory();
         EffectRenderer effectRenderer = new SimpleEffectRenderer();
+        PromptFactory promptFactory = new SimplePromptFactory(animFactory, primaryStage);
+        PromptManager promptManager = new SimplePromptManager(promptFactory);
 
         defenderTypes.add(defenderTypeFactory.getFastTowerType());
         defenderTypes.add(defenderTypeFactory.getPowerfulTowerType());
 
-        SceneManager sceneManager = new SimpleSceneManager(primaryStage);
+        SceneManager sceneManager = new SimpleSceneManager(primaryStage, promptManager);
 
         Wallet wallet = new CoinsWallet(walletPublisher);
         CoinGenerator coinGenerator = new AutoCoinGenerator(wallet);
@@ -132,6 +138,7 @@ public class Kenney extends Application {
                 difficultyManager);
 
         enemyFactory.setGameEngine(gameEngine);
+        promptFactory.setGameEngine(gameEngine);
 
         SceneFactory sceneFactory = new SimpleSceneFactory(
                 gameEngine,
@@ -141,7 +148,8 @@ public class Kenney extends Application {
                 dataManager,
                 animFactory,
                 hudFactory,
-                menuFactory);
+                menuFactory,
+                promptManager);
 
         sceneManager.setSceneFactory(sceneFactory);
 

@@ -4,6 +4,7 @@ import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
 import ir.ac.kntu.services.app.database.DataManager;
 import ir.ac.kntu.services.app.huds.factories.HUDFactory;
 import ir.ac.kntu.services.app.menus.factories.MenuFactory;
+import ir.ac.kntu.services.app.prompts.managers.PromptManager;
 import ir.ac.kntu.services.app.scenes.*;
 import ir.ac.kntu.services.app.scenes.managers.SceneManager;
 import ir.ac.kntu.services.game.components.maps.renderers.MapRenderer;
@@ -20,9 +21,19 @@ public class SimpleSceneFactory implements SceneFactory {
     private final AnimationFactory animFactory;
     private final HUDFactory hudFactory;
     private final MenuFactory menuFactory;
+    private final PromptManager promptManager;
 
-    public SimpleSceneFactory(GameEngine gameEngine, MapRenderer mapRenderer, DifficultyFactory difficultyFactory, SceneManager sceneManager, DataManager dataManager, AnimationFactory animFactory, HUDFactory hudFactory, MenuFactory menuFactory) {
+    public SimpleSceneFactory(GameEngine gameEngine,
+                              MapRenderer mapRenderer,
+                              DifficultyFactory difficultyFactory,
+                              SceneManager sceneManager,
+                              DataManager dataManager,
+                              AnimationFactory animFactory,
+                              HUDFactory hudFactory,
+                              MenuFactory menuFactory,
+                              PromptManager promptManager) {
         this.gameEngine = gameEngine;
+        this.promptManager = promptManager;
         this.mapRenderer = mapRenderer;
         this.sceneManager = sceneManager;
         this.dataManager = dataManager;
@@ -44,7 +55,7 @@ public class SimpleSceneFactory implements SceneFactory {
 
     @Override
     public Scene getGameScene() {
-        return new GameScene(gameEngine, hudFactory, menuFactory, animFactory, sceneManager).getScene();
+        return new GameScene(gameEngine, hudFactory, menuFactory, animFactory, sceneManager, promptManager).getScene();
     }
 
     @Override

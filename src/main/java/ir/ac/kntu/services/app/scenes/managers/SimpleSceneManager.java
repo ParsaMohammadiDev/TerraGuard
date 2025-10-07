@@ -1,5 +1,6 @@
 package ir.ac.kntu.services.app.scenes.managers;
 
+import ir.ac.kntu.services.app.prompts.managers.PromptManager;
 import ir.ac.kntu.services.app.scenes.factories.SceneFactory;
 import javafx.animation.PauseTransition;
 import javafx.stage.Stage;
@@ -9,10 +10,16 @@ public class SimpleSceneManager implements SceneManager {
     private static final Duration INTRO_DURATION = Duration.seconds(2);
 
     private final Stage stage;
+    private final PromptManager promptManager;
     private SceneFactory sceneFactory;
 
-    public SimpleSceneManager(Stage stage) {
+    public SimpleSceneManager(Stage stage, PromptManager promptManager) {
         this.stage = stage;
+        this.promptManager = promptManager;
+        stage.setOnCloseRequest(e -> {
+            e.consume();
+            promptManager.showExitPrompt();
+        });
     }
 
     public void setSceneFactory(SceneFactory sceneFactory) {

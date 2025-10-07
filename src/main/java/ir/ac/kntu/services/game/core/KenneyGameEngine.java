@@ -133,12 +133,16 @@ public class KenneyGameEngine implements GameEngine {
     public void hardReset() {
         isPause = false;
         isReset = true;
-        enemyManager.reset();
-        bulletManager.reset();
-        difficultyManager.reset();
-        defenderManager.reset();
-        coinGenerator.stop();
-        wallet.reset();
+        try {
+            enemyManager.reset();
+            bulletManager.reset();
+            difficultyManager.reset();
+            defenderManager.reset();
+            coinGenerator.stop();
+            wallet.reset();
+        } catch (NullPointerException exception) {
+            return;
+        }
     }
 
     @Override
