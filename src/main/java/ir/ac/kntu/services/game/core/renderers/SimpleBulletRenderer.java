@@ -17,6 +17,8 @@ public class SimpleBulletRenderer implements BulletRenderer {
     private final EffectRenderer effectRenderer;
     private final CollisionManager collisionManager;
 
+    private boolean isPause = false;
+
     public SimpleBulletRenderer(EffectRenderer effectRenderer, CollisionManager collisionManager) {
         this.effectRenderer = effectRenderer;
         this.collisionManager = collisionManager;
@@ -45,6 +47,8 @@ public class SimpleBulletRenderer implements BulletRenderer {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+                if (isPause) return;
+
                 bullet.setPosition(
                         bullet.getView().getLayoutX() + dirX * speed,
                         bullet.getView().getLayoutY() + dirY * speed
@@ -61,7 +65,7 @@ public class SimpleBulletRenderer implements BulletRenderer {
         timer.start();
     }
 
-    private synchronized void terminateBullet(Bullet bullet) {
+    private void terminateBullet(Bullet bullet) {
         bullet.getView().setVisible(false);
         var pane = bullet.getView().getParent();
         if (pane instanceof Pane bulletsPane) {
@@ -72,10 +76,11 @@ public class SimpleBulletRenderer implements BulletRenderer {
 
     @Override
     public void reset() {
+        isPause = false;
         for (AnimationTimer timer : timers) {
             timer.stop();
         }
-        for (Bullet bullet : renderingBullets) {
+        for (Bullet bullet : new ArrayList<>(renderingBullets)) {
             terminateBullet(bullet);
         }
         renderingBullets.clear();
@@ -84,11 +89,11 @@ public class SimpleBulletRenderer implements BulletRenderer {
 
     @Override
     public void pause() {
-        timers.forEach(AnimationTimer::stop);
+        isPause = true;
     }
 
     @Override
     public void resume() {
-        timers.forEach(AnimationTimer::start);
+        isPause = false;
     }
 }
