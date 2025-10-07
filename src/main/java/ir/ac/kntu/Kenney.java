@@ -93,7 +93,7 @@ public class Kenney extends Application {
         SimpleMenuFactory menuFactory = new SimpleMenuFactory();
         BulletFactory bulletFactory = new SimpleBulletFactory();
         EffectRenderer effectRenderer = new SimpleEffectRenderer();
-        PromptFactory promptFactory = new SimplePromptFactory(animFactory, primaryStage);
+        PromptFactory promptFactory = new SimplePromptFactory(animFactory,primaryStage);
         PromptManager promptManager = new SimplePromptManager(promptFactory);
 
         defenderTypes.add(defenderTypeFactory.getFastTowerType());
@@ -139,6 +139,7 @@ public class Kenney extends Application {
 
         enemyFactory.setGameEngine(gameEngine);
         promptFactory.setGameEngine(gameEngine);
+        promptFactory.setSceneManager(sceneManager);
 
         SceneFactory sceneFactory = new SimpleSceneFactory(
                 gameEngine,
