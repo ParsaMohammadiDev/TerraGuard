@@ -52,7 +52,6 @@ public class ExitPrompt implements Prompt {
     private Pane getBackground() {
         Pane background = new Pane();
         background.getStyleClass().add("prompt_background");
-        background.setOnMouseClicked(event -> promptPane.setVisible(false));
         return background;
     }
 

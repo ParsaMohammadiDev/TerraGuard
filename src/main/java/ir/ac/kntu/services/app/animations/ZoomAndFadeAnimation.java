@@ -7,7 +7,7 @@ import javafx.scene.Node;
 import javafx.util.Duration;
 
 public class ZoomAndFadeAnimation implements Animation {
-    private static final double ANIMATION_DURATION = 1;
+    private static final Duration ANIMATION_DURATION = Duration.millis(500);
     private static final double INIT_SCALE = 0.8;
     private static final double FINAL_SCALE = 1.0;
     private static final double INIT_OPACITY = 0;
@@ -20,12 +20,12 @@ public class ZoomAndFadeAnimation implements Animation {
 
         for (Node node : nodes) {
             setStartFrame(node);
-            FadeTransition fade = new FadeTransition(Duration.seconds(ANIMATION_DURATION), node);
+            FadeTransition fade = new FadeTransition(ANIMATION_DURATION, node);
             fade.setFromValue(INIT_OPACITY);
             fade.setToValue(FINAL_OPACITY);
             fade.setCycleCount(1);
             fade.setDelay(Duration.seconds(delayAcumulator));
-            ScaleTransition zoomOut = new ScaleTransition(Duration.seconds(ANIMATION_DURATION), node);
+            ScaleTransition zoomOut = new ScaleTransition(ANIMATION_DURATION, node);
             zoomOut.setFromX(INIT_SCALE);
             zoomOut.setFromY(INIT_SCALE);
             zoomOut.setToX(FINAL_SCALE);
