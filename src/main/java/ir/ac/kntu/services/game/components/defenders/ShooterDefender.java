@@ -40,7 +40,7 @@ public abstract class ShooterDefender extends Defender implements Shooter {
                         bulletManager.shoot(this, enemySelector.selectEnemy(this));
                     });
                 }
-            }, 0, shooting_delay, TimeUnit.SECONDS);
+            }, shooting_delay, shooting_delay, TimeUnit.SECONDS);
         }
     }
 
@@ -49,7 +49,7 @@ public abstract class ShooterDefender extends Defender implements Shooter {
         if (enemyTracker != null && !enemyTracker.isShutdown()) {
             enemyTracker.shutdown();
             try {
-                if (!enemyTracker.awaitTermination(5, TimeUnit.SECONDS)) {
+                if (!enemyTracker.awaitTermination(1, TimeUnit.SECONDS)) {
                     enemyTracker.shutdownNow();
                 }
             } catch (InterruptedException e) {
