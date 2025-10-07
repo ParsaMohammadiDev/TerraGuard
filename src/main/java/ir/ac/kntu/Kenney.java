@@ -90,7 +90,7 @@ public class Kenney extends Application {
         LevelPublisher levelPublisher = new SimpleLevelPublisher();
         DefenderTypeFactory defenderTypeFactory = new FlyWeightDefenderTypeFactory();
         List<DefenderType> defenderTypes = new ArrayList<>();
-        SimpleMenuFactory menuFactory = new SimpleMenuFactory();
+        SimpleMenuFactory menuFactory = new SimpleMenuFactory(animFactory);
         BulletFactory bulletFactory = new SimpleBulletFactory();
         EffectRenderer effectRenderer = new SimpleEffectRenderer();
         PromptFactory promptFactory = new SimplePromptFactory(animFactory,primaryStage);

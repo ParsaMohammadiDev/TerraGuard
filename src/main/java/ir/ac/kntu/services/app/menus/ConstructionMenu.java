@@ -1,5 +1,6 @@
 package ir.ac.kntu.services.app.menus;
 
+import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
 import ir.ac.kntu.services.app.menus.options.ConstructionOption;import ir.ac.kntu.services.app.menus.options.MenuOption;
 import ir.ac.kntu.services.game.components.tiles.ClickableTile;
 import javafx.geometry.Pos;
@@ -10,11 +11,13 @@ import javafx.scene.layout.VBox;
 import java.util.List;
 
 public class ConstructionMenu implements Menu {
+    private final AnimationFactory animFactory;
     private final VBox menuPane;
 
     private ClickableTile tile;
 
-    public ConstructionMenu(List<ConstructionOption> options) {
+    public ConstructionMenu(List<ConstructionOption> options, AnimationFactory animFactory) {
+        this.animFactory = animFactory;
         Pane pane = new VBox();
         for (ConstructionOption option : options) {
             option.setMenu(this);
@@ -42,6 +45,7 @@ public class ConstructionMenu implements Menu {
     @Override
     public void show() {
         menuPane.setVisible(true);
+        animFactory.getZoomAndFadeAnimation().animate(menuPane);
     }
 
     @Override
