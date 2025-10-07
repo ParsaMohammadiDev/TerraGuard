@@ -52,7 +52,10 @@ public class GameScene implements SceneLogic {
     }
 
     private Pane getMainPane() {
-        VBox mainPane = new VBox();
+        VBox root = new VBox();
+        HBox mainPane = new HBox();
+        root.getStyleClass().add("justifier");
+        mainPane.getStyleClass().add("main_pane");
         HBox sceneElements = new HBox();
         sceneElements.getStyleClass().add("scene_elements");
         Pane gameHUD = getGameHUD();
@@ -60,7 +63,8 @@ public class GameScene implements SceneLogic {
         gamePane.getStyleClass().add("game_pane");
         sceneElements.getChildren().addAll(gamePane, gameHUD);
         mainPane.getChildren().addAll(sceneElements, getPauseButton());
-        return mainPane;
+        root.getChildren().add(mainPane);
+        return root;
     }
 
     private Button getPauseButton() {
