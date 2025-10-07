@@ -61,7 +61,7 @@ public class SimpleBulletRenderer implements BulletRenderer {
         timer.start();
     }
 
-    private void terminateBullet(Bullet bullet) {
+    private synchronized void terminateBullet(Bullet bullet) {
         bullet.getView().setVisible(false);
         var pane = bullet.getView().getParent();
         if (pane instanceof Pane bulletsPane) {
