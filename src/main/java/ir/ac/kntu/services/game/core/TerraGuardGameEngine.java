@@ -1,7 +1,6 @@
 package ir.ac.kntu.services.game.core;
 
 import ir.ac.kntu.services.app.scenes.managers.SceneManager;
-import ir.ac.kntu.services.game.core.difficulties.publishers.LevelPublisher;
 import ir.ac.kntu.services.game.core.managers.BulletManager;
 import ir.ac.kntu.services.game.components.maps.GrassLand;
 import ir.ac.kntu.services.game.components.maps.Map;
@@ -17,7 +16,7 @@ import ir.ac.kntu.services.game.core.renderers.EnemyRenderer;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
-public class KenneyGameEngine implements GameEngine {
+public class TerraGuardGameEngine implements GameEngine {
     private static final double ENEMY_OVERCOME_PERCENTAGE = 0.5;
 
     private final MapRenderer mapRenderer;
@@ -37,16 +36,16 @@ public class KenneyGameEngine implements GameEngine {
 
     private final StackPane gamePane = new StackPane();
 
-    public KenneyGameEngine(MapRenderer mapRenderer,
-                            EnemyRenderer enemyRenderer,
-                            EnemyManager enemyManager,
-                            DifficultyFactory difficultyFactory,
-                            CoinGenerator coinGenerator,
-                            SceneManager sceneManager,
-                            Wallet wallet,
-                            BulletManager bulletManager,
-                            DefenderManager defenderManager,
-                            DifficultyManager difficultyManager) {
+    public TerraGuardGameEngine(MapRenderer mapRenderer,
+                                EnemyRenderer enemyRenderer,
+                                EnemyManager enemyManager,
+                                DifficultyFactory difficultyFactory,
+                                CoinGenerator coinGenerator,
+                                SceneManager sceneManager,
+                                Wallet wallet,
+                                BulletManager bulletManager,
+                                DefenderManager defenderManager,
+                                DifficultyManager difficultyManager) {
         this.mapRenderer = mapRenderer;
         this.enemyRenderer = enemyRenderer;
         this.enemyManager = enemyManager;

@@ -10,11 +10,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class KenneyMarket implements Market, WalletSubscriber {
+public class TerraGuardMarket implements Market, WalletSubscriber {
     private final WalletMediator walletMediator;
     private final Map<DefenderType, BooleanProperty> affordability = new HashMap<>();
 
-    public KenneyMarket(List<DefenderType> defenderTypes, WalletPublisher walletPublisher, WalletMediator walletMediator) {
+    public TerraGuardMarket(List<DefenderType> defenderTypes, WalletPublisher walletPublisher, WalletMediator walletMediator) {
         defenderTypes.forEach(defenderType -> affordability.put(defenderType, new SimpleBooleanProperty(false)));
         walletPublisher.addSubscriber(this);
         this.walletMediator = walletMediator;

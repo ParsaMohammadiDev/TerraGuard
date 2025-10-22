@@ -48,13 +48,13 @@ import ir.ac.kntu.services.game.components.wallets.mediators.WalletMediator;
 import ir.ac.kntu.services.game.components.wallets.publishers.SimpleWalletPublisher;
 import ir.ac.kntu.services.game.components.wallets.publishers.WalletPublisher;
 import ir.ac.kntu.services.game.core.GameEngine;
-import ir.ac.kntu.services.game.core.KenneyGameEngine;
+import ir.ac.kntu.services.game.core.TerraGuardGameEngine;
 import ir.ac.kntu.services.game.core.difficulties.factories.DifficultyFactory;
 import ir.ac.kntu.services.game.core.difficulties.factories.SimpleDifficultyFactory;
 import ir.ac.kntu.services.app.scenes.factories.SceneFactory;
 import ir.ac.kntu.services.app.scenes.factories.SimpleSceneFactory;
 import ir.ac.kntu.services.app.scenes.managers.SimpleSceneManager;
-import ir.ac.kntu.services.game.core.markets.KenneyMarket;
+import ir.ac.kntu.services.game.core.markets.TerraGuardMarket;
 import ir.ac.kntu.services.game.core.markets.Market;
 import javafx.application.Application;
 import javafx.scene.image.Image;
@@ -62,8 +62,8 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Kenney extends Application {
-    private static final String APP_NAME = "Kenney";
+public class TerraGuard extends Application {
+    private static final String APP_NAME = "TerraGuard";
     private static final String ICON_PATH = "/app/icon.png";
 
     public static void main(String[] args) {
@@ -105,7 +105,7 @@ public class Kenney extends Application {
         CoinGenerator coinGenerator = new AutoCoinGenerator(wallet);
         HUDFactory hudFactory = new SimpleHUDFactory(walletPublisher, levelPublisher);
         WalletMediator walletMediator = new SimpleWalletMediator(wallet);
-        Market market = new KenneyMarket(defenderTypes, walletPublisher, walletMediator);
+        Market market = new TerraGuardMarket(defenderTypes, walletPublisher, walletMediator);
 
         TileStateProvider tileStateProvider = new SimpleTileStateProvider(animFactory, menuFactory);
         TileFactory tileFactory = new FlyWeightTileFactory(animFactory, tileStateProvider);
@@ -125,7 +125,7 @@ public class Kenney extends Application {
 
         menuFactory.setOptionProvider(menuOptionProvider);
 
-        GameEngine gameEngine = new KenneyGameEngine(
+        GameEngine gameEngine = new TerraGuardGameEngine(
                 mapRenderer,
                 enemyRenderer,
                 enemyManager,
