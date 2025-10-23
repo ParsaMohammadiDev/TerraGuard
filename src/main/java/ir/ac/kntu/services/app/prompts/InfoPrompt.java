@@ -47,7 +47,7 @@ public class InfoPrompt implements Prompt {
     private void setPane() {
         promptPane = new StackPane();
         promptPane.getChildren().addAll(getBackground(), getPromptPane());
-        promptPane.getStylesheets().add(getClass().getResource("/style/info_prompt_style.css").toExternalForm());
+        promptPane.getStylesheets().add(getClass().getResource("/style/prompt_style.css").toExternalForm());
         promptPane.setVisible(false);
     }
 
