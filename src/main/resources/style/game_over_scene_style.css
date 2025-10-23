@@ -1,4 +1,4 @@
-.root {
+.elements {
     -fx-background-color: radial-gradient(center 50% 50%, radius 70%, #f6a800, #b26600);
     -fx-alignment: CENTER;
     -fx-spacing: 20;

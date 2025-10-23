@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -24,9 +25,12 @@ public class GameOverScene implements SceneLogic {
 
     @Override
     public Scene getScene() {
+        StackPane root = new StackPane();
         VBox elements = new VBox();
+        elements.getStyleClass().add("elements");
         elements.getChildren().addAll(getTitle(), getButtons());
-        Scene scene = new Scene(elements, 1200, 650);
+        root.getChildren().addAll(elements);
+        Scene scene = new Scene(root, 1200, 650);
         scene.getStylesheets().add(getClass().getResource("/style/game_over_scene_style.css").toExternalForm());
         return scene;
     }
