@@ -22,7 +22,7 @@ javafx {
 }
 
 application {
-    mainClassName = 'ir.ac.kntu.Kenney'
+    mainClassName = 'ir.ac.kntu.TerraGuard'
 }
 
 test {
