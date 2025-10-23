@@ -4,8 +4,9 @@
 
 ---
 ## Introduction
-TerraGuard is a top-down defense game in which players protect their land from waves of enemies by strategically placing
-defenders on the map of the game. Plan your defenders wisely and survive the attack!
+TerraGuard is a top-down defense game built with JavaFX.
+It was originally developed as a university project and has since evolved into a larger, personal game development effort.
+Players must protect their land from waves of enemies by strategically placing defenders on the map. Plan your defense wisely and survive the attack!
 
 ---
 ## Features
