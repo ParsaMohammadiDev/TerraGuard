@@ -1,7 +1,7 @@
 package ir.ac.kntu.services.app.scenes.factories;
 
 import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
-import ir.ac.kntu.services.app.database.DataManager;
+import ir.ac.kntu.services.app.database.GameDataManager;
 import ir.ac.kntu.services.app.huds.factories.HUDFactory;
 import ir.ac.kntu.services.app.menus.factories.MenuFactory;
 import ir.ac.kntu.services.app.prompts.managers.PromptManager;
@@ -17,7 +17,7 @@ public class SimpleSceneFactory implements SceneFactory {
     private final MapRenderer mapRenderer;
     private final DifficultyFactory difficultyFactory;
     private final SceneManager sceneManager;
-    private final DataManager dataManager;
+    private final GameDataManager dataManager;
     private final AnimationFactory animFactory;
     private final HUDFactory hudFactory;
     private final MenuFactory menuFactory;
@@ -27,7 +27,7 @@ public class SimpleSceneFactory implements SceneFactory {
                               MapRenderer mapRenderer,
                               DifficultyFactory difficultyFactory,
                               SceneManager sceneManager,
-                              DataManager dataManager,
+                              GameDataManager dataManager,
                               AnimationFactory animFactory,
                               HUDFactory hudFactory,
                               MenuFactory menuFactory,
@@ -50,7 +50,7 @@ public class SimpleSceneFactory implements SceneFactory {
 
     @Override
     public Scene getMenuScene() {
-        return new MenuScene(sceneManager, animFactory).getScene();
+        return new MenuScene(promptManager, sceneManager, animFactory).getScene();
     }
 
     @Override

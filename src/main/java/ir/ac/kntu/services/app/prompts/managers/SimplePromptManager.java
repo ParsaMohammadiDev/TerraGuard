@@ -24,4 +24,10 @@ public class SimplePromptManager implements PromptManager {
         Prompt prompt = promptFactory.getPausePrompt();
         prompt.showPrompt();
     }
+
+    @Override
+    public void showInfoPrompt() {
+        Prompt prompt = promptFactory.getInfoPrompt();
+        prompt.showPrompt();
+    }
 }

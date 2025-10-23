@@ -1,0 +1,33 @@
+.prompt_background {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+.prompt_pane {
+    -fx-background-color: rgb(0, 178, 255);
+    -fx-border-width: 20px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 25px;
+    -fx-spacing: 10px;
+    -fx-alignment: CENTER;
+    -fx-border-color: White;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 20, 0, 0, 10);
+}
+
+.prompt_buttons {
+    -fx-alignment: CENTER;
+    -fx-spacing: 10px;
+}
+
+.button {
+    -fx-font-family: "Berlin Sans FB";
+    -fx-font-size: 18px;
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-padding: 20px 20px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 25px;
+    -fx-cursor: hand;
+    -fx-border-width: 8px;
+    -fx-border-color: rgb(39, 39, 39);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 20, 0, 0, 10);
+}

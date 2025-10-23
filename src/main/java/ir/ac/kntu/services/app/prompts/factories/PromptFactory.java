@@ -7,6 +7,7 @@ import ir.ac.kntu.services.game.core.GameEngine;
 public interface PromptFactory {
     Prompt getExitPrompt();
     Prompt getPausePrompt();
+    Prompt getInfoPrompt();
     void setGameEngine(GameEngine gameEngine);
     void setSceneManager(SceneManager sceneManager);
 }

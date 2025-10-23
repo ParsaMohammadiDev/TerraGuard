@@ -2,7 +2,9 @@ package ir.ac.kntu;
 
 import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
 import ir.ac.kntu.services.app.animations.factories.SimpleAnimationFactory;
-import ir.ac.kntu.services.app.database.DataManager;
+import ir.ac.kntu.services.app.database.AppDataManager;
+import ir.ac.kntu.services.app.database.GameDataManager;
+import ir.ac.kntu.services.app.database.PropertiesAppDataManager;
 import ir.ac.kntu.services.app.huds.factories.HUDFactory;
 import ir.ac.kntu.services.app.huds.factories.SimpleHUDFactory;
 import ir.ac.kntu.services.app.menus.factories.SimpleMenuFactory;
@@ -35,7 +37,7 @@ import ir.ac.kntu.services.game.components.maps.renderers.MapRenderer;
 import ir.ac.kntu.services.game.components.pathfinders.BFSPathFinder;
 import ir.ac.kntu.services.game.components.pathfinders.PathFinder;
 import ir.ac.kntu.services.game.components.tiles.factories.FlyWeightTileFactory;
-import ir.ac.kntu.services.app.database.HardCodedDataManager;
+import ir.ac.kntu.services.app.database.HardCodedGameDataManager;
 import ir.ac.kntu.services.game.components.tiles.factories.TileFactory;
 import ir.ac.kntu.services.game.components.tiles.states.providers.SimpleTileStateProvider;
 import ir.ac.kntu.services.game.components.tiles.states.providers.TileStateProvider;
@@ -83,7 +85,8 @@ public class TerraGuard extends Application {
 
     private SceneManager setServices(Stage primaryStage) {
         AnimationFactory animFactory = new SimpleAnimationFactory();
-        DataManager dataManager = new HardCodedDataManager();
+        GameDataManager dataManager = new HardCodedGameDataManager();
+        AppDataManager appDataManager = new PropertiesAppDataManager();
         EnemyTypeFactory enemyTypeFactory = new FlyWeightEnemyTypeFactory();
         DifficultyFactory difficultyFactory = new SimpleDifficultyFactory();
         WalletPublisher walletPublisher = new SimpleWalletPublisher();
@@ -93,7 +96,7 @@ public class TerraGuard extends Application {
         SimpleMenuFactory menuFactory = new SimpleMenuFactory(animFactory);
         BulletFactory bulletFactory = new SimpleBulletFactory();
         EffectRenderer effectRenderer = new SimpleEffectRenderer();
-        PromptFactory promptFactory = new SimplePromptFactory(animFactory,primaryStage);
+        PromptFactory promptFactory = new SimplePromptFactory(appDataManager, animFactory,primaryStage);
         PromptManager promptManager = new SimplePromptManager(promptFactory);
 
         defenderTypes.add(defenderTypeFactory.getFastTowerType());

@@ -1,7 +1,7 @@
 package ir.ac.kntu.services.app.scenes;
 
 import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
-import ir.ac.kntu.services.app.database.DataManager;
+import ir.ac.kntu.services.app.database.GameDataManager;
 import ir.ac.kntu.services.app.scenes.managers.SceneManager;
 import ir.ac.kntu.services.game.components.maps.Map;
 import ir.ac.kntu.services.game.components.maps.renderers.MapRenderer;
@@ -29,7 +29,7 @@ public class MapSelectorScene implements SceneLogic {
     private int currentMapIndex = 0;
     private ImageView mapThumbnailView;
 
-    public MapSelectorScene(GameEngine gameEngine, MapRenderer mapRenderer, DataManager dataManager, AnimationFactory animFactory, SceneManager sceneManager) {
+    public MapSelectorScene(GameEngine gameEngine, MapRenderer mapRenderer, GameDataManager dataManager, AnimationFactory animFactory, SceneManager sceneManager) {
         this.gameEngine = gameEngine;
         this.mapRenderer = mapRenderer;
         this.animFactory = animFactory;

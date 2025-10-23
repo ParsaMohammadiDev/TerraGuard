@@ -1,6 +1,7 @@
 package ir.ac.kntu.services.app.scenes;
 
 import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
+import ir.ac.kntu.services.app.prompts.managers.PromptManager;
 import ir.ac.kntu.services.app.scenes.managers.SceneManager;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -18,10 +19,12 @@ public class MenuScene implements SceneLogic {
 
     private final SceneManager sceneManager;
     private final AnimationFactory animFactory;
+    private final PromptManager promptManager;
 
-    public MenuScene(SceneManager sceneManager, AnimationFactory animFactory) {
+    public MenuScene(PromptManager promptManager, SceneManager sceneManager, AnimationFactory animFactory) {
         this.sceneManager = sceneManager;
         this.animFactory = animFactory;
+        this.promptManager = promptManager;
     }
 
     @Override
@@ -55,9 +58,11 @@ public class MenuScene implements SceneLogic {
         selectMap.setOnAction(event -> sceneManager.showMapSelector());
         Button difficulty = new Button("Game Difficulty");
         difficulty.setOnAction(event -> {sceneManager.showDifficultySelector();});
-        buttons.getChildren().addAll(startGame, selectMap, difficulty);
+        Button info = new Button("info");
+        info.setOnAction(event -> promptManager.showInfoPrompt());
+        buttons.getChildren().addAll(startGame, selectMap, difficulty, info);
         buttons.getStyleClass().add("buttons");
-        animFactory.getButtonHoverAnimation().animate(startGame, selectMap, difficulty);
+        animFactory.getButtonHoverAnimation().animate(startGame, selectMap, difficulty, info);
         return buttons;
     }
 }
