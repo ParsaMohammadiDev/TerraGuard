@@ -23,9 +23,9 @@ public abstract class ConstructionOption implements MenuOption {
     private final Market market;
     private final DefenderType defenderType;
 
-    private Text nameText;
-    private Text priceText;
-    private Image itemImage;
+    private final Text nameText;
+    private final Text priceText;
+    private final Image itemImage;
     private Menu menu;
 
     private final HBox optionPane = new HBox();

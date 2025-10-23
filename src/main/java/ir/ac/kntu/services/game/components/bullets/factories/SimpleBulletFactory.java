@@ -11,7 +11,6 @@ public class SimpleBulletFactory implements BulletFactory {
         return switch (type) {
             case NORMAL_BULLET -> new NormalBullet();
             case FAST_BULLET -> new FastBullet();
-            default -> throw new IllegalStateException("invalid BulletType");
         };
     }
 }

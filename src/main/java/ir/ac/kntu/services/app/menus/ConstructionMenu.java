@@ -1,7 +1,7 @@
 package ir.ac.kntu.services.app.menus;
 
 import ir.ac.kntu.services.app.animations.factories.AnimationFactory;
-import ir.ac.kntu.services.app.menus.options.ConstructionOption;import ir.ac.kntu.services.app.menus.options.MenuOption;
+import ir.ac.kntu.services.app.menus.options.ConstructionOption;
 import ir.ac.kntu.services.game.components.tiles.ClickableTile;
 import javafx.geometry.Pos;
 import javafx.scene.Node;

@@ -15,8 +15,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class InfoPrompt implements Prompt {
     private static final double PROMPT_WIDTH = 700;
@@ -62,9 +60,9 @@ public class InfoPrompt implements Prompt {
         VBox main = new VBox();
         main.setMaxWidth(PROMPT_WIDTH);
         main.setMaxHeight(PROMPT_HEIGHT);
-        Text version = new Text("Version: " + appInfo.getVersion());
+        Text version = new Text("Version: " + appInfo.version());
         Text build = new Text("Build: " + getBuild(appInfo));
-        Text repo = new Text("Repository: " + appInfo.getRepo());
+        Text repo = new Text("Repository: " + appInfo.repo());
         setTextStyle(20, 1.25, version, build, repo);
         Button ok = new Button("OK");
         animFactory.getButtonHoverAnimation().animate(ok);
@@ -77,7 +75,7 @@ public class InfoPrompt implements Prompt {
     }
 
     private String getBuild(AppInfo appInfo) {
-        long rawData = appInfo.getBuild();
+        long rawData = appInfo.build();
         return new SimpleDateFormat("yyyyMMddHHmmss").format(rawData);
     }
 

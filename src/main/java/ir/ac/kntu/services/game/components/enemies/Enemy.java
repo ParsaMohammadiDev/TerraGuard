@@ -11,14 +11,14 @@ import java.util.List;
 public abstract class Enemy implements Entity, Collidable {
     private static final double VIEW_SIZE = 70;
 
-    private EnemyType type;
-    private List<Point2D> path;
+    private final EnemyType type;
+    private final List<Point2D> path;
+    private final StackPane enemyView;
+    private final double resistance;
     private double x;
     private double y;
     private double speed;
     private double health;
-    private StackPane enemyView;
-    private double resistance;
 
     public Enemy(EnemyType type, List<Point2D> path, double resistance) {
         this.type = type;

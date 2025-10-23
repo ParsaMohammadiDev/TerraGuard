@@ -2,12 +2,10 @@ package ir.ac.kntu.services.game.components.defenders;
 
 import ir.ac.kntu.services.game.components.Shooter;
 import ir.ac.kntu.services.game.components.defenders.types.DefenderType;
-import ir.ac.kntu.services.game.components.enemies.Enemy;
 import ir.ac.kntu.services.game.components.tiles.ClickableTile;
 import ir.ac.kntu.services.game.core.managers.BulletManager;
 import ir.ac.kntu.services.game.core.strategies.EnemySelector;
 import javafx.application.Platform;
-import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;

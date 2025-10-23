@@ -3,8 +3,8 @@ package ir.ac.kntu.services.game.components.defenders.types;
 import javafx.scene.image.Image;
 
 public abstract class DefenderType {
-    private String name;
-    private double price;
+    private final String name;
+    private final double price;
 
     public DefenderType(String name, double price) {
         this.name = name;

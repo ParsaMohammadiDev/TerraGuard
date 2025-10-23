@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SimpleMenuOptionProvider implements MenuOptionProvider {
-    private final List<ConstructionOption> constructionMenuOptions = new ArrayList<ConstructionOption>();
+    private final List<ConstructionOption> constructionMenuOptions = new ArrayList<>();
 
     public SimpleMenuOptionProvider(DefenderTypeFactory defenderTypeFactory, Market market, AnimationFactory animFactory, DefenderManager defenderManager) {
         constructionMenuOptions.add(new FastTowerOption(defenderTypeFactory, animFactory, market, defenderManager));

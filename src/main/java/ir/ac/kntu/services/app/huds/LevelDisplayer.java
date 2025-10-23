@@ -6,7 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.text.Text;
 
 public class LevelDisplayer implements HUD, LevelSubscriber {
-    private Text levelText = new Text();
+    private final Text levelText = new Text();
 
     public LevelDisplayer(LevelPublisher levelPublisher) {
         levelPublisher.addSubscriber(this);

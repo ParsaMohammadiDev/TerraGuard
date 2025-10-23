@@ -13,7 +13,7 @@ public class FlyWeightTileFactory implements TileFactory {
     private final AnimationFactory animFactory;
     private final TileStateProvider tileStateProvider;
 
-    private final Map<TileType, Tile> tiles = new HashMap<TileType, Tile>();
+    private final Map<TileType, Tile> tiles = new HashMap<>();
 
     public FlyWeightTileFactory(AnimationFactory animFactory, TileStateProvider tileStateProvider) {
         this.animFactory = animFactory;

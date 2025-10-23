@@ -5,7 +5,6 @@ import ir.ac.kntu.services.game.components.Shooter;
 import ir.ac.kntu.services.game.components.bullets.Bullet;
 import ir.ac.kntu.services.game.core.managers.CollisionManager;
 import javafx.animation.AnimationTimer;
-import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 import java.util.ArrayList;

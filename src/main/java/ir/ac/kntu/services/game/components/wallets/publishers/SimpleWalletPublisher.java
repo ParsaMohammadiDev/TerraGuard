@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SimpleWalletPublisher implements WalletPublisher {
-    private final List<WalletSubscriber> subscribers = new ArrayList<WalletSubscriber>();
+    private final List<WalletSubscriber> subscribers = new ArrayList<>();
 
     @Override
     public void addSubscriber(WalletSubscriber subscriber) {

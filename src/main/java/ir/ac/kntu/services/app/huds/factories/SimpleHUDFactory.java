@@ -2,7 +2,6 @@ package ir.ac.kntu.services.app.huds.factories;
 
 import ir.ac.kntu.services.app.huds.CoinDisplayer;
 import ir.ac.kntu.services.app.huds.DifficultyDisplayer;
-import ir.ac.kntu.services.app.huds.HUD;
 import ir.ac.kntu.services.app.huds.LevelDisplayer;
 import ir.ac.kntu.services.game.components.wallets.publishers.WalletPublisher;
 import ir.ac.kntu.services.game.core.difficulties.publishers.LevelPublisher;

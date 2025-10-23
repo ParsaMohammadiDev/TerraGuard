@@ -13,7 +13,7 @@ public enum BulletType {
     private final Image image;
     private final Image impactImage;
 
-    private BulletType(Image image, Image impactImage) {
+    BulletType(Image image, Image impactImage) {
         this.image = image;
         this.impactImage = impactImage;
     }

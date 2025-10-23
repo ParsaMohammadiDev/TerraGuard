@@ -12,12 +12,12 @@ public class SimpleDefenderManager implements DefenderManager {
     private final TileStateProvider stateProvider;
     private final DefenderFactory defenderFactory;
 
-    private List<Defender> defenders;
+    private final List<Defender> defenders;
 
     public SimpleDefenderManager(TileStateProvider stateProvider, DefenderFactory defenderFactory) {
         this.stateProvider = stateProvider;
         this.defenderFactory = defenderFactory;
-        defenders = new ArrayList<Defender>();
+        defenders = new ArrayList<>();
     }
 
     @Override

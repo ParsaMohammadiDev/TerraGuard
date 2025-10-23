@@ -7,7 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.text.Text;
 
 public class DifficultyDisplayer implements HUD, DifficultySubscriber {
-    private Text difficultyText = new Text();
+    private final Text difficultyText = new Text();
 
     public DifficultyDisplayer(LevelPublisher levelPublisher) {
         levelPublisher.addSubscriber(this);

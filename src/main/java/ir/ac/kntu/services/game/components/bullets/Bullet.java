@@ -6,11 +6,11 @@ import javafx.scene.image.ImageView;
 
 public abstract class Bullet implements Collidable {
     private final ImageView view;
-    private BulletType type;
+    private final BulletType type;
+    private final double speed;
+    private final double damageCoefficient;
     private double x;
     private double y;
-    private double speed;
-    private double damageCoefficient;
 
     public Bullet(BulletType type, double speed, double damageCoefficient) {
         this.type = type;

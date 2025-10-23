@@ -5,8 +5,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public abstract class Tile {
-    private TileType tileType;
-    private double tileSize;
+    private final TileType tileType;
+    private final double tileSize;
 
     public Tile(TileType tileType, double tileSize) {
         this.tileType = tileType;

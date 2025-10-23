@@ -16,7 +16,7 @@ public class ZoomAndFadeAnimation implements Animation {
 
     @Override
     public void animate(Node... nodes) {
-        double delayAcumulator = 0;
+        double delayAccumulator = 0;
 
         for (Node node : nodes) {
             setStartFrame(node);
@@ -24,16 +24,16 @@ public class ZoomAndFadeAnimation implements Animation {
             fade.setFromValue(INIT_OPACITY);
             fade.setToValue(FINAL_OPACITY);
             fade.setCycleCount(1);
-            fade.setDelay(Duration.seconds(delayAcumulator));
+            fade.setDelay(Duration.seconds(delayAccumulator));
             ScaleTransition zoomOut = new ScaleTransition(ANIMATION_DURATION, node);
             zoomOut.setFromX(INIT_SCALE);
             zoomOut.setFromY(INIT_SCALE);
             zoomOut.setToX(FINAL_SCALE);
             zoomOut.setToY(FINAL_SCALE);
-            zoomOut.setDelay(Duration.seconds(delayAcumulator));
+            zoomOut.setDelay(Duration.seconds(delayAccumulator));
             ParallelTransition animationGroup = new ParallelTransition(fade, zoomOut);
             animationGroup.play();
-            delayAcumulator += DELAY;
+            delayAccumulator += DELAY;
         }
     }
 
