@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'org.example'
-version = '1.0-SNAPSHOT'
+version = '1.0.0-beta'
 
 repositories {
     mavenCentral()
@@ -28,3 +28,16 @@ application {
 test {
     useJUnitPlatform()
 }
+
+tasks.register('generateVersionProperties') {
+    doLast {
+        def file = file("src/main/resources/app/app_info.properties")
+        file.text = """
+            version=${project.version}
+            build=${System.currentTimeMillis()}
+            repo=
+        """.stripIndent().trim()
+    }
+}
+
+processResources.dependsOn(generateVersionProperties)
