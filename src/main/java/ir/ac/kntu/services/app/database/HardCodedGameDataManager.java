@@ -7,10 +7,10 @@ import ir.ac.kntu.services.game.components.maps.StoneLand;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HardCodedDataManager implements DataManager {
+public class HardCodedGameDataManager implements GameDataManager {
     private final List<Map> mapsList;
 
-    public HardCodedDataManager() {
+    public HardCodedGameDataManager() {
         mapsList = new ArrayList<>();
         mapsList.add(new StoneLand());
         mapsList.add(new GrassLand());

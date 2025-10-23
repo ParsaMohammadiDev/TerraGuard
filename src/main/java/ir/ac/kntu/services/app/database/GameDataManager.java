@@ -4,6 +4,6 @@ import ir.ac.kntu.services.game.components.maps.Map;
 
 import java.util.List;
 
-public interface DataManager {
+public interface GameDataManager {
     List<Map> loadMapsList();
 }
