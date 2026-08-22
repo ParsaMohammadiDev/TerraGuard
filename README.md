@@ -54,7 +54,7 @@ Branch names: `feature/<feature_name>` or `fix/<bug_name>>`
 - Ensure that project runs correctly.
 - Keep your code **clean** and consistent with the existing style and architecture.
 - Add comments if needed for clarity.
-- **Please read** [architecture.md](docs/architecture.md) to understand the design and architecture of the project and
+- **Please review** [uml_diagram](TerraGuardUML.svg) to understand the design and architecture of the project and
   follow conventional contribution practices.
 
 ---
